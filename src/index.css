@@ -1,13 +1,81 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+    font-family: "Kode Mono";
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+    position: relative;
+}
+
+.profileContainer{
+    display: flex;
+    background-color: blue;
+    justify-content: space-between;
+    
+    .sub1{
+        padding: 3vh;
+        background-color: purple;
+    }
+
+    .sub2{
+        display: flex;
+        position: relative;  
+        padding: 5vh;      
+        background-color: brown;
+    }
+
+    .beforeExp{
+        background-color: coral;
+        height: 24px;
+        width:24px;
+        border-radius: 50%;     
+    }
+
+    .beforeExpactive{
+       background-color: darkgray;
+       height: 24px;
+       width: 24px;
+       border-radius: 50%;
+    }
+   
+    .afterExp{
+        height: 64px;
+        width: 64px;
+        background-color: black;
+        border-radius: 50%;
+    }
+
+  .profileContainerMenu{
+    position: relative;
+    top: 5vh;
+    left: 2vw;
+    background-color: chartreuse;
+    border-radius: 5%;
+    .dpDetails{
+        display: block;
+        text-align: center;
+        padding: 10px;
+        background-color: deeppink;
+        border-radius: 5%;
+    }
+
+    .profileMenu{
+        background-color: lightcoral;
+        padding-left: 5px;
+        li{
+            margin-bottom: 6px;
+            background-color: aliceblue;            
+        }
+
+        li:hover{
+            background-color: darkolivegreen;
+        }
+
+        li a{
+            text-decoration: none;
+        }
+        .menuIcons{
+            padding-right: 5px;
+        }
+    }
+  }
 }
