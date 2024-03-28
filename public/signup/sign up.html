@@ -9,16 +9,43 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-image:url(bg.webp)
         }
         .container {
             max-width: 400px;
             margin: 50px auto;
             padding: 20px;
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
         }
+        .grid-container{
+            display: grid;
+            align-items: center;
+            grid-template-columns: repeat(2, 400px);
+            grid-gap: 5%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .grid-container2{
+            display: grid;
+            align-items: center;
+            grid-template-columns: repeat(1, 400px);
+            grid-gap: 5%;
+        }
+        .grid-container3{
+            display: grid;
+            align-items: center;
+            grid-template-columns: repeat(1, 300px);
+            grid-gap: 20px;
+        }
+        .input-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
         h2 {
             text-align: center;
         }
@@ -39,23 +66,74 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+       
+        a {
+            color:#4caf50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color:green;
+        }
+
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Sign Up</h2>
-        <form action="#" method="post">
-            <input type="text" name="firstname" placeholder="First Name" required>
-            <input type="text" name="middlename" placeholder="Middle Name" required>
-            <input type="text" name="lastname" placeholder="Last Name" required>
-            <input type="email" name="email" placeholder="Email Address" required>
-            <label>Date of Birth:</label>
-            <input type="date" name="dob" placeholder="Date of Birth" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="password" name="confirmpassword" placeholder="Confirm Password" required>
+    <div class="grid-container">
+        <div class="container">
+            <h2>Sign Up</h2>
+            <form action="#" method="post" class="input-container">
 
-            <input type="submit" value="Sign Up">
-        </form>
+                <input type="text" name="firstname" placeholder="First Name" required>
+
+                <input type="text" name="middlename"  placeholder="Middle Name" required>
+                
+                <input type="text" name="lastname" placeholder="Last Name" required>
+
+                <input type="email" name="email" iplaceholder="Email Address" required>
+               
+                <input type="password" name="password" placeholder="Password" required>
+
+                <input type="password" name="confirmpassword" placeholder="Confirm Password" required>
+
+                <div >By clicking Sign Up below, you agree to the WM website <a href="#">terms of use</a> and <a href="#">privacy policy</a>.</div>
+                <input type="submit" value="Sign Up">
+                Already have an account? <a href="#" class="url">Log In</a>
+            </form>
+        </div>
+        <div class="grid-container2">
+            <div class="container">
+                Log in to your My WM account to:
+                <br>
+              <ul>
+                <li>Access pickup and holiday schedules</li>
+                <li>Set notification preferences</li>
+              </ul>  
+            
+            </div>
+            <div class="container grid-container3">
+                Your Hygieno password must include:<br><br>
+                <div >
+                    <input type="checkbox" id="checkbox1" name="checkbox1"disabled>
+                    <label for="checkbox1">Lowercase character</label><br>
+                </div>
+                <div >
+                    <input type="checkbox" id="checkbox1" name="checkbox1"disabled>
+                    <label for="checkbox1">Uppercase character</label><br>
+                </div>
+                <div >
+                    <input type="checkbox" id="checkbox1" name="checkbox1"disabled>
+                    <label for="checkbox1">Eight characters</label><br>
+                </div>
+                <div >
+                    <input type="checkbox" id="checkbox1" name="checkbox1" disabled>
+                    <label for="checkbox1">One number</label>
+                </div>
+            </div>
+        </div>
+        
     </div>
+    
 </body>
 </html>
