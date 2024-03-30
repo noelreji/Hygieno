@@ -6,11 +6,12 @@
             background-size: cover; /* Adjust to your needs */
         }
         .container {
-            max-width: 400px;
             position: absolute;
-            top: 25%;
-            left: 40%;
-            
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: fit-content;
+            width: fit-content;
             margin: 30px auto;
             padding: 20px;
             background-color: #fff;
@@ -25,6 +26,7 @@
         }
         h1 {
             text-align: center;
+
         }
         input[type="email"], input[type="password"], input[type="submit"] {
             width: 100%;
