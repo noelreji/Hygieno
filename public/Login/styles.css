@@ -2,50 +2,31 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image:url(bg.webp);
+            background-image:url(../signup/bg.webp);
             background-size: cover; /* Adjust to your needs */
         }
         .container {
             max-width: 400px;
-            width: fit-content;
-            height: fit-content;
+            position: absolute;
+            top: 25%;
+            left: 40%;
+            
             margin: 30px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 15px;
             box-shadow: 0 0 30px rgba(0,0,0,0.1);
         }
-        .grid-container{
-            display: grid;
-            align-items: center;
-            grid-template-columns: repeat(2, 400px);
-            grid-gap: 5%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .grid-container2{
-            display: grid;
-            align-items: center;
-            grid-template-columns: repeat(1, 400px);
-            grid-gap: 5%;
-        }
-        .grid-container3{
-            display: grid;
-            align-items: center;
-            grid-template-columns: repeat(1, 300px);
-            grid-gap: 20px;
-        }
-        .usertype{
+        .usertype {
             padding-top: 10px;
+            padding-bottom: 10px;
             height: fit-content;
             width: fit-content;
         }
         h1 {
             text-align: center;
         }
-        input[type="text"], input[type="email"], input[type="password"], input[type="submit"] {
+        input[type="email"], input[type="password"], input[type="submit"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -53,10 +34,9 @@
             border-radius: 10px;
             box-sizing: border-box;
         }
-        input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover {
-            border-color: #b8b8b8;
+        input[type="email"]:hover, input[type="password"]:hover {
+            border-color: #bebcbc;
         }
-        
         input[type="submit"] {
             background-color: #4caf50;
             color: white;
@@ -66,7 +46,6 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
-       
         a {
             color:#4caf50;
             text-decoration: none;

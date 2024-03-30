@@ -14,9 +14,3 @@ function checkPasswordStrength(password) {
     // Check for presence of special character
     document.getElementById("specialCheckbox").checked = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password);
 }
-function checkSamePassword(password1,password2) {
-    if(password1==password2){
-        alert("valid");
-    }
-
-}
