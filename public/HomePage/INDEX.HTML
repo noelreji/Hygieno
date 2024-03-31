@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WASTE MANAGEMENT</title>
+    <link rel="stylesheet" href="sample.css">
+</head>
+<body>
+   <div class="main">
+    
+    <nav>
+        <div class="logo">
+            <img src="/home/ram/TUTUORIALJS/logo.jpg" >
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="#">login</a></li>
+                <li><a href="#">sign up</a></li>
+                <li><a href="#">about</a></li>
+                <li><a href="#">help</a></li>
+            </ul>
+        </div>
+        
+    </nav>
+    <hr>
+    <div class="information">
+    <div class="overlay"></div>
+<img src="/home/ram/TUTUORIALJS/center1.png" class ="waste1">
+        <div id="circle">
+
+           
+            <div class="feature one">
+                <img src="/home/ram/TUTUORIALJS/trash.png">
+                <div>
+                    <h1>𝙍𝙚𝙪𝙨𝙚</h1>
+                    <p>𝑹𝒆𝒖𝒔𝒆 𝒚𝒐𝒖𝒓 𝒑𝒓𝒐𝒅𝒖𝒄𝒕𝒔</p>
+                </div>
+            </div>
+            <div class="feature two">
+            <img src="/home/ram/TUTUORIALJS/tree2.png">
+            <div>
+                <h1>𝙍𝙚𝙙𝙪𝙘𝙚</h1>
+                <p><𝑹𝒆𝒅𝒖𝒄𝒆 𝒘𝒊𝒍𝒍 𝒉𝒆𝒍𝒑 𝒕𝒐 𝒍𝒆𝒂𝒅 𝒂 𝒈𝒐𝒐𝒅 𝒍𝒊𝒇𝒆/p>
+            </div>
+            </div>
+            <div class="feature three">
+                <img src="/home/ram/TUTUORIALJS/plastic.png">
+                <div>
+                    <h1>𝙍𝙚𝙘𝙮𝙘𝙡𝙚</h1>
+                    <p>𝑹𝒆𝒄𝒚𝒄𝒍𝒊𝒏𝒈 𝒇𝒖𝒆𝒍𝒔 𝒖𝒑 𝑶𝒙𝒚𝒈𝒆𝒏</p>
+                </div>
+            </div>
+            <div class="feature four">
+                <img src="/home/ram/TUTUORIALJS/collect1.png">
+                <div>
+                    <h1>𝙍𝙚𝙘𝙤𝙫𝙚𝙧</h1>
+                    <p>𝒓𝒆𝒄𝒐𝒗𝒆𝒓 𝒕𝒉𝒆 𝒑𝒂𝒔𝒕 𝒑𝒓𝒐𝒅𝒖𝒄𝒕𝒔</p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    <div  class="controls">
+        <img src="/home/ram/TUTUORIALJS/uparrow.png" id="upbtn">
+        <h3>AIMING GOALS</h3>
+        <img src="/home/ram/TUTUORIALJS/uparrow.png" id="downbtn">
+    </div>
+    </div>
+   </div> 
+   <script>
+    var circle=document.getElementById("circle");
+    var upbtn=document.getElementById("upbtn");
+    var downbtn=document.getElementById("downbtn");
+
+
+
+    var rotateValue=circle.style.transform;
+    var rotateSum;
+
+
+
+    upbtn.onclick=function()
+    {
+        rotateSum=rotateValue+"rotate(-90deg)";
+        circle.style.transform=rotateSum;
+        rotateValue=rotateSum;
+
+    }
+    downbtn.onclick=function()
+    {
+        rotateSum=rotateValue+"rotate(90deg)";
+        circle.style.transform=rotateSum;
+        rotateValue=rotateSum;
+
+    }
+    
+   </script>
+</body>
+</html>
