@@ -2,8 +2,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image:url(../signup/bg.webp);
+            /*background-image:url(../signup/bg.webp);*/
             background-size: cover; /* Adjust to your needs */
+        }
+        #logo {
+            height: 100px;
+            width: 100px;
         }
         .container {
             position: absolute;
