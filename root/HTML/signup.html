@@ -25,7 +25,7 @@
     <div class="grid-container">
         <div class="container">
             <h1>Sign Up</h1>
-            <form action="#" method="post" class="input-container">
+            <form action="#" method="post" class="input-container" onsubmit="return validatePassword()">
 
                 <input type="text" name="firstname" placeholder="First Name" required>
 
@@ -35,9 +35,9 @@
 
                 <input type="email" name="email" placeholder="Email Address" required>
                
-                <input type="password" name="password" id="password" placeholder="Password" oninput="checkPasswordStrength(this.value)" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
 
-                <input type="password" name="confirmpassword" placeholder="Confirm Password" oninput="checkSamePassword(document.getElementById(password),this.value)"required>
+                <input type="password" name="confirmpassword" id="confirm-password" placeholder="Confirm Password" required>
                 
                 <div class="usertype">
                     What do you like to be:<br>
@@ -57,7 +57,7 @@
                 <li>Manage your waste effectively</li>
                 <li>Access pickup and holiday schedules</li>
                 <li>Set notification preferences</li>
-                <li></li>
+                <li>Keep your surrounding clean and Hygienic</li>
               </ul>  
         </div>
     </div>

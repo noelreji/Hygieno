@@ -1,16 +1,47 @@
 function checkPasswordStrength(password) {
     // Check for minimum length
-    document.getElementById("lengthCheckbox").checked = password.length >= 8;
+    if (password.length < 8){
+        alert("Password should have atleast 8 characters");
+        return false;
+    }
+        
     
     // Check for presence of uppercase letter
-    document.getElementById("uppercaseCheckbox").checked = /[A-Z]/.test(password);
+    if (!/[A-Z]/.test(password)){
+        alert("Password should have atleast one capital letter");
+        return false;
+    }
+        
     
     // Check for presence of lowercase letter
-    document.getElementById("lowercaseCheckbox").checked = /[a-z]/.test(password);
+    if (!/[a-z]/.test(password)){
+        alert("Password should have atleast one small letter");
+        return false;
+    }
+        
     
     // Check for presence of number
-    document.getElementById("numberCheckbox").checked = /\d/.test(password);
-    
+    if (!/\d/.test(password)){
+        return false;
+    }
+        
     // Check for presence of special character
-    document.getElementById("specialCheckbox").checked = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password);
+    if(!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password)){
+        alert("Password should have atleast one special character")
+        return false;
+    }
+    return true;
+}
+function validatePassword() {
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("confirm-password").value;
+    if (!checkPasswordStrength(password)){
+        return false;
+    }
+        
+    if (password != confirmPassword) {
+        alert("Passwords do not match!");
+        return false;
+    }
+    return true;
 }
