@@ -2,10 +2,38 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image:url(../Images/signupbg.webp);
+            
             background-size: cover; /* Adjust to your needs */
         }
-        .container {
+        header {
+            background-color: #213f24eb;
+            color: #fff;
+            padding: 20px 0;
+        }
+        header nav .container {
+          width: 80%;
+          top: 0;
+          margin: 0px auto;
+          display: block;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+          color: #fff;
+          text-decoration: none;
+        }
+        nav h1 a{
+          text-decoration: none;
+          color: #fff;
+        }
+        .grid-container .container {
             max-width: 400px;
             width: fit-content;
             height: fit-content;
@@ -31,18 +59,12 @@
             grid-template-columns: repeat(1, 400px);
             grid-gap: 5%;
         }
-        .grid-container3{
-            display: grid;
-            align-items: center;
-            grid-template-columns: repeat(1, 300px);
-            grid-gap: 20px;
-        }
         .usertype{
             padding-top: 10px;
             height: fit-content;
             width: fit-content;
         }
-        h1 {
+        .grid-container .container h1 {
             text-align: center;
         }
         input[type="text"], input[type="email"], input[type="password"], input[type="submit"] {

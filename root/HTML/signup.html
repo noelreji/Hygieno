@@ -9,6 +9,19 @@
     
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1>ʜʏɢɪᴇɴᴏ</h1>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign up</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
     <div class="grid-container">
         <div class="container">
             <h1>Sign Up</h1>
@@ -32,13 +45,12 @@
                     <input type="radio" name="usertype" id="option2" value="Collector"><label for="option2" required>Collector</label>
                 </div>
                 <br>
-                <div style="font-size: 12px; font-style: italic;" >By clicking Sign Up below, you agree to the WM website <a href="#">terms of use</a> and <a href="#">privacy policy</a>.</div>
+                <div style="font-size: 12px; font-style: italic;" >By clicking Sign Up below, you agree to the Hygieno <a href="termsandconditions.html">terms and conditions</a> and <a href="../HTML/privacypolicy.html">privacy policy</a>.</div>
                 <input type="submit" value="Sign Up">
-                <div style="font-size: 15px; font-style: italic;">Already have an account? <a href="../Login/login.html" class="url">Log In</a></div>
+                <div style="font-size: 15px; font-style: italic;">Already have an account? <a href="../HTML/login.html" class="url">Log In</a></div>
             </form>
         </div>
-        <div class="grid-container2">
-            <div class="container">
+        <div class="container grid-container2">
                 Log in to your Hygieno account to:
                 <br>
               <ul>
@@ -47,33 +59,7 @@
                 <li>Set notification preferences</li>
                 <li></li>
               </ul>  
-            
-            </div>
-            <div class="container grid-container3" id="passwordProperties">
-                Your Hygieno password must include:<br><br>
-                <div >
-                    <input type="checkbox" id="lowercaseCheckbox" name="lowercaseCheckbox"disabled>
-                    <label for="lowercaseCheckbox">Lowercase character</label><br>
-                </div>
-                <div >
-                    <input type="checkbox" id="uppercaseCheckbox" name="uppercaseCheckbox"disabled>
-                    <label for="uppercaseCheckbox">Uppercase character</label><br>
-                </div>
-                <div >
-                    <input type="checkbox" id="lengthCheckbox" name="lengthCheckbox" disabled>
-                    <label for="lengthCheckbox">Eight characters</label><br>
-                </div>
-                <div >
-                    <input type="checkbox" id="numberCheckbox" name="numberCheckbox" disabled>
-                    <label for="numberCheckbox">Atleast one number</label>
-                </div>
-                <div >
-                    <input type="checkbox" id="specialCheckbox" name="specialCheckbox" disabled>
-                    <label for="specialCheckbox">Atleast one special character</label>
-                </div>
-            </div>
         </div>
-        
     </div>
 </body>
 </html>

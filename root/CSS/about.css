@@ -23,6 +23,34 @@ body {
     display: flex; /* Set the container to use flexbox */
     
   }
+  header {
+    background-color: #213f24eb;
+    color: #fff;
+    padding: 20px 0;
+}
+header .container {
+  width: 80%;
+  background: none;
+  margin: 0px auto;
+  display: block;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+nav h1 a{
+  text-decoration: none;
+  color: #fff;
+}
   .container1{
     background-color:#8dbb90c4 ;
   }
@@ -30,7 +58,6 @@ body {
     border: 1px solid  #213f24eb;
     padding: 10px;
   }
-  
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 8px;

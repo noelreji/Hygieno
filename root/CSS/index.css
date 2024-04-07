@@ -10,7 +10,7 @@ body {
 }
 
 header {
-    background-color: #213f24eb;;
+    background-color: #213f24eb;
     color: #fff;
     padding: 20px 0;
 }
@@ -83,4 +83,8 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px 0;
+}
+footer .container p a{
+    color: #fff;
+    text-decoration: none;
 }

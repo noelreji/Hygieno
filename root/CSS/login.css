@@ -2,8 +2,9 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            display: block;
             /*background-image:url(../CSS/signupbg.webp);*/
-            background-size: cover; /* Adjust to your needs */
+             /* Adjust to your needs */
         }
         #logo {
             height: 3%;
@@ -11,27 +12,40 @@
             margin-top: .5%;
             margin-left: 1%;
         }
-        .nav-links .menubar{
-            flex:1;
-            text-align:right;
-            color: #85360c;
+        header {
+            background-color: #213f24eb;
+            color: #fff;
+            padding: 20px 0;
         }
-        .nav-links ul li{
-            list-style:none;
-            display: inline-flex;
-            justify-content: space-evenly;
+        header nav .container {
+          width: 80%;
+          top: 0;
+          margin: 0px auto;
+          display: block;
         }
-        .nav-links ul li a{
-            color: #bd1919;
-            text-decoration: none;
-            
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+          color: #fff;
+          text-decoration: none;
+        }
+        nav h1 a{
+          text-decoration: none;
+          color: #fff;
         }
         .tray {
             background-color: #f7f7f7;
-            height: 100vh;
-            width: 100vw;
+            height: 0;
+            width: 0vw;
         }
-        .container {
+        .tray .container {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -50,7 +64,7 @@
             height: fit-content;
             width: fit-content;
         }
-        h1 {
+        .tray .container h1 {
             text-align: center;
 
         }
@@ -81,6 +95,6 @@
             font-style: normal;
         }
 
-        a:hover {
+        .tray .container a:hover {
             color:green;
         }
