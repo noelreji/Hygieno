@@ -2,7 +2,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image:url(bg.webp);
+            background-image:url(../Images/signupbg.webp);
             background-size: cover; /* Adjust to your needs */
         }
         .container {

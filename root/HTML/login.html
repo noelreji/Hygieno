@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/login.css">
+    <script src="#"></script>
+</head>
+<body>
+    <div>
+        <img src="logo512.png" id="logo" class="menubar">
+        <div class="nav-links">
+            <ul>
+                <li><a href="../Login/login.html">Login</a></li>
+                <li><a href="../signup/signup.html">Sign up</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="tray">
+        <div class="container">
+            <h1>Log In</h1>
+            <form action="#" method="post" class="input-container">
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="password" name="password" id="password" placeholder="Password" oninput="checkPasswordStrength(this.value)" required>
+                <div class="usertype">
+                    <div>What are you?<br></div>
+                    <input type="radio" name="usertype" id="option1" value="Disposer"><label for="option1" required>Disposer</label>
+                    <input type="radio" name="usertype" id="option2" value="Collector"><label for="option2" required>Collector</label>
+                </div>
+                <br>
+                <input type="submit" value="Log In">
+                <div style="font-size: 15px; font-style: italic;">Don't have an account? <a href="../signup/signup.html" class="url">Create one</a></div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
