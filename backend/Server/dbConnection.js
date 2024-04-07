@@ -11,4 +11,4 @@ const connectDb = async () => {
         console.error(e);
     }
 }
-module.exports=connectDb;
+module.exports = connectDb , mongo;
