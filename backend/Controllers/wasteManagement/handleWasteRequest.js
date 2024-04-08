@@ -25,7 +25,13 @@ module.exports.handleWasteRequests = async ( data ) => {
             console.log(data);
             responseData.status = 200;
             responseData.messag = "The Waste request have been successfully stored.";
-        }).catch(error)
+        }).catch((error)=>{
+            console.log("Error storing waste requets");
+            console.log(error);
+        })
+    }
+    catch(e){
+        console.log(e)
     }
    
 }
