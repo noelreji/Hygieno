@@ -1,37 +1,35 @@
 const waste  = require('../../SchemaModels/wasteRequests')
 
-module.exports.handleWasteRequests = async ( data ) => {
+module.exports.handleWasteRequest = async ( data ) => {
+
     let responseData = {
         status:Number,
-        message:''
-    }
+        message:String
+      }
+
+    const {location} = data;
+    const { type , coordinates } = JSON.parse(location);
+    const imageBuffer = Buffer.from(data.waste_image, 'base64');
+    
     const newWaste = new waste({
         userId: data.userId,
     
         wasteTypes: data.wasteTypes,
     
-        image: data.image,
+        image: imageBuffer,
     
-        location:
-        {
-            type: data.locationType,
-            coordinates: data.coordinates
+        location:{
+            type : type,
+            coordinates : coordinates
         }
     })
-    try{
-        const response = await newWaste.save();
-        response.then( (data) => {
-            console.log("The Waste request have been successfully stored.");
-            console.log(data);
-            responseData.status = 200;
-            responseData.messag = "The Waste request have been successfully stored.";
-        }).catch((error)=>{
-            console.log("Error storing waste requets");
-            console.log(error);
-        })
-    }
-    catch(e){
-        console.log(e)
-    }
-   
+            await newWaste.save().then( ()=> {
+                responseData.message="Waste Request has been stored successfully",
+                responseData.status=200
+            }).catch( (error) => {
+                responseData.message=`Error storing waste request because ${error}`,
+                responseData.status=404
+            })
+            return responseData;
+            
 }

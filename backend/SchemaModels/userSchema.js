@@ -10,7 +10,7 @@ const collectorSchema = new Schema({
     },
 
     middleName:{
-      type:String,
+      type:String
     },
 
     lastName:{
@@ -49,7 +49,7 @@ const disposerSchema = new Schema({
   },
 
   middleName:{
-    type:String,
+    type:String
   },
 
   lastName:{

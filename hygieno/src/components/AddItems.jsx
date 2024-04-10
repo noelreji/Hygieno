@@ -121,10 +121,23 @@ function AddItems({isOn,setShowItem}) {
     }
   }
 
-  const handleSubmit = () => {
-    console.log(selectedImage);
+  const handleSubmit = async () => {
+
+    let wasteData = new FormData();
+    wasteData.append('userId','66137b0f004cddd58ebe6179');
+    wasteData.append('wasteTypes',selectedTypes);
+    wasteData.append('waste_image',selectedImage);
+    wasteData.append('location',JSON.stringify({
+      type: 'Point',
+      coordinates: [-74.005974, 40.712891]
+    }));
+
+    await fetch('http://localhost:5656/wasteRequests',{
+      method:'POST',
+      body:wasteData
+    }).then( (response) => response.json()).then( (data) => console.log(data.message))
     toggleItemBox();
-  };
+  }
 
   return (
     <div className={`item-box ${showItemBox ? 'active' : ''}`} id='container'  ref={controlClickRef}>

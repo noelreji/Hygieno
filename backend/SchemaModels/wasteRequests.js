@@ -6,7 +6,7 @@ const ObjectId = Schema.Types.ObjectId;
 const wasteRequests = new Schema({
 
     userId:{
-        type:ObjectId,
+        type : ObjectId,
         required:true
     },
 
@@ -23,24 +23,24 @@ const wasteRequests = new Schema({
     location:
     {
         type:{
-            type:String,
+            type: String,
             required:true
         },
         coordinates: {
             type: [Number],
-            required: true,
+            index: '2dsphere',
             validate: {
                 validator: function (value) {
                     return Array.isArray(value) && value.length === 2 && typeof value[0] === 'number' && typeof value[1] === 'number';
                 },
                 message: 'Coordinates must be an array of two numbers [longitude, latitude].'
-            }
-        },
-        required:true
+            },
+            required:true
+        }   
     }
 })
 
 
-wasteRequestSchema.index({ location: '2dsphere' });
-const WasteRequest = mongoose.model('wasterequests', wasteRequestSchema);
+wasteRequests.index({ location: '2dsphere' });
+const WasteRequest = mongoose.model('wasterequests', wasteRequests);
 module.exports = WasteRequest;
