@@ -28,9 +28,10 @@ function Login() {
         {
           isLogin = true;
           if (data[0].usertype === 'Disposer') {
-            navigate('/pages/disposerHome');
-          } else {
-            navigate('/pages/collectorHome');
+            navigate('/pages/disposerHome' , {state : data[1]});
+          } 
+          else {
+            navigate('/pages/collectorHome', {state : data[1]});
           }
         }
         else{

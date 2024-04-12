@@ -8,7 +8,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 
 function Activity( {reportRender} ) {
 
-const wasteDetails = useContext(wasteData);
+const {wasteDetails} = useContext(wasteData);
 const [deleteWasteTab,setdeleteWasteTab] = useState({
   index:null,value:null
 });

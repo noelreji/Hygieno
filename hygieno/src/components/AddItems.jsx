@@ -1,5 +1,6 @@
-import React ,{useState,useEffect, useRef}from 'react'
+import React ,{useState,useEffect, useRef , useContext}from 'react'
 import "../styles/addItems.css"
+import {wasteData} from '../pages/DisposerHome'
 
 function AddItems({isOn,setShowItem}) { 
   const [showItemBox, setShowItemBox] = useState(false);
@@ -7,6 +8,8 @@ function AddItems({isOn,setShowItem}) {
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const controlClickRef = useRef();
+  const {state} = useContext(wasteData);
+
 
   const handleOutsideClick = (event) => {
     if (controlClickRef.current && !controlClickRef.current.contains(event.target)) {
@@ -121,10 +124,35 @@ function AddItems({isOn,setShowItem}) {
     }
   }
 
+  function prettyTime(date) {
+    const months = [
+      'January', 'February', 'March', 'April',
+      'May', 'June', 'July', 'August',
+      'September', 'October', 'November', 'December'
+    ];
+  
+    const year = date.getFullYear(); 
+    const monthIndex = date.getMonth(); 
+    const month = months[monthIndex]; 
+    const day = date.getDate(); 
+    const hours = date.getHours(); 
+    const minutes = date.getMinutes(); 
+    const seconds = date.getSeconds(); 
+  
+    const formattedDateTime = `${month} ${day}, ${year} ${hours}:${minutes}:${seconds}`;
+    return formattedDateTime;
+  }
+
+
   const handleSubmit = async () => {
 
     let wasteData = new FormData();
-    wasteData.append('userId','66137b0f004cddd58ebe6179');
+    wasteData.append('userId',state._id);
+    wasteData.append('desc','UI not ready');
+    wasteData.append('status','Pending Collection');
+    const time = prettyTime( new Date() );
+    console.log(time);
+    wasteData.append('date',time);
     wasteData.append('wasteTypes',selectedTypes);
     wasteData.append('waste_image',selectedImage);
     wasteData.append('location',JSON.stringify({

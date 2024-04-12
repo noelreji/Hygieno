@@ -7,7 +7,7 @@ import { BiDonateHeart } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
 import logo192  from '../assets/Guts.jpg';
 
-function Profile( userDetails ) {
+function Profile( {state} ) {
 
 const [expand,setExpand] = useState(false);
 const toggleValue = () => {
@@ -27,7 +27,7 @@ useEffect(() => {
   }, []);
 
 
- const firstname = userDetails.data.peru.split(" ")[0];
+ const firstname = state.firstName;
   return (
     <div className='profileContainer'>
         <div className="sub1">
@@ -40,7 +40,7 @@ useEffect(() => {
                     <div className={`profileContainerMenu ${expand ? 'show' :''}`}>
                         <div className="dpDetails">
                             <img className="afterExp" src={logo192} alt="profile picture" />
-                            <h6>{userDetails.data.peru}</h6>
+                            <h6>{`${state.firstName} ${state.middleName} ${state.lastName}`}</h6>
                         </div>
                         <ul className='profileMenu' style={{listStyleType: 'none'}}>
                             <li><span className='menuIcons'><CgProfile/></span> <Link to="/MyProfile">Your Profile</Link> </li>

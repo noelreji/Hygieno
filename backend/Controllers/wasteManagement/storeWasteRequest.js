@@ -1,6 +1,6 @@
 const waste  = require('../../SchemaModels/wasteRequests')
 
-module.exports.handleWasteRequest = async ( data ) => {
+module.exports.storeWasteRequest = async ( data ) => {
 
     let responseData = {
         status:Number,
@@ -13,7 +13,13 @@ module.exports.handleWasteRequest = async ( data ) => {
     
     const newWaste = new waste({
         userId: data.userId,
-    
+        
+        date:data.date,
+
+        status:data.status,
+
+        desc:data.desc,
+        
         wasteTypes: data.wasteTypes,
     
         image: imageBuffer,
@@ -30,6 +36,5 @@ module.exports.handleWasteRequest = async ( data ) => {
                 responseData.message=`Error storing waste request because ${error}`,
                 responseData.status=404
             })
-            return responseData;
-            
+            return responseData;           
 }

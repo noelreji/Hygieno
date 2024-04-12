@@ -2,11 +2,24 @@ const mongoose  = require('mongoose');
 const { Schema } = mongoose;
 const ObjectId = Schema.Types.ObjectId;
 
-//collector Schema
 const wasteRequests = new Schema({
 
     userId:{
         type : ObjectId,
+        required:true
+    },
+
+    date:{
+        type:String,
+        required:true
+    },
+
+    desc:{
+        type:String
+    },
+
+    status:{
+        type:String,
         required:true
     },
 

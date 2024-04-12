@@ -12,14 +12,10 @@ function WasteCard( wasteDetails ) {
  const [deleteWasteTab,setdeleteWasteTab] = useState(false);
  const myRef = useRef();
 
- let le = 2;
+ let orderSize = wasteDetails.data.length;
 
-if( le > 0 )  
-    var { date, type, desc, status } = wasteDetails.data[0];
-
-
- 
-
+ if( orderSize > 0 )  
+    var { date, wasteTypes, desc, status } = wasteDetails.data[0];
 
   useEffect(() => {
     const handleClick = (event) => {
@@ -44,18 +40,28 @@ if( le > 0 )
     setShowActivity(false);
   }
 
+  const handlewasteDelete = async () => {
+    const res = await fetch(`http://localhost:5656/wasteRequests?id=${state._id}`, {
+        method: 'GET'
+      });
+    const response = res.json();
+    response.then( (data) => {
+        
+    }).catch( err =>   console.log(err))
+  }
+
   const deleteParams = { deleteWasteTab , setdeleteWasteTab};
 
   return (
     <div className="waste-card " ref={myRef}>
-        <div className={`contentWaste ${showActivity ? 'hide' : ''}  ${le === 0 ? 'makeBackground' : ''}`}>
+        <div className={`contentWaste ${showActivity ? 'hide' : ''}  ${orderSize === 0 ? 'makeBackground' : ''}`}>
             {
-                le > 0 ? 
+                orderSize > 0 ? 
                 <div className="contentWaste">
                     <div className="left-content">
                         <ul style={{listStyleType:'none'}}>
                             <li>{date}</li>
-                            <li id='main'>{type}</li>
+                            <li id='main'>{wasteTypes}</li>
                             <li>{desc}</li>
                         </ul>
                     </div>

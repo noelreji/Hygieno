@@ -1,3 +1,4 @@
+const { use } = require('../../Routes/authentication');
 const User  = require('../../SchemaModels/userSchema')
 
 module.exports.validateUser = async (userCredentials) => {
@@ -13,24 +14,32 @@ module.exports.validateUser = async (userCredentials) => {
       console.log("Failed");
       return [{
         status:404,
-        message:"User not found"
+        message:"User not found . Check your email."
       }]
     }
     else{
       console.log("Success");
       if(user.password === userCredentials.password)
       {
+        const resData = {
+          _id: user._id,
+          firstName: user.firstName,
+          middleName: user.middleName,
+          lastName: user.lastName,
+          email: user.email,
+          phoneNo: user.phoneNo,
+        }
         return [{
           status:200,
           message:"You have been autheticated.",
           usertype:userCredentials.usertype
-      },user]
+      },resData]
       }
       else
         return [{
           status:404,
           message:"Wrong Password",
           usertype:userCredentials.usertype
-      },user]
+      }]
     }
   }

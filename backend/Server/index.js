@@ -14,11 +14,12 @@ connectDb();
 
 //route functions
 const authentication = require('../Routes/authentication.js');
-const storeWaste = require('../Routes/storeWaste.js');
+const handleWaste = require('../Routes/handleWaste.js');
 //routes
 app.post('/login',authentication);
 app.post('/signup',authentication);
-app.post('/wasteRequests',storeWaste)
+app.post('/wasteRequests',handleWaste)
+app.get('/wasteRequests',handleWaste)
 
 app.listen(process.env.PORT , () => {
     console.log("Listening ")

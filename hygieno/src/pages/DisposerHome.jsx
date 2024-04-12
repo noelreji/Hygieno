@@ -6,27 +6,40 @@ import ListWaste from '../components/ListWaste';
 import { FaTrashCanArrowUp } from "react-icons/fa6" 
 import { FaSearch } from "react-icons/fa";
 import FindUser from '../components/FindUser';
-import { GiUnlitBomb } from "react-icons/gi";
 import { isLogin } from './Login';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useLocation } from 'react-router-dom';
 
 export const wasteData = React.createContext();
 function DisposerHome() {
-  let navigate = useNavigate();
 
-  useEffect( ()=>{
+  let navigate = useNavigate();
+  const { state } = useLocation();
+  console.log(state);
+
+  const [wasteDetails,setwasteDetails ] = useState([]);
+  /*useEffect( () => {
     if(isLogin === false)
     {
       navigate('/login');
       console.log("token");
     }
-  })
+  })*/
 
-  const userData = {
-    peru : "Thorfinn"
+  useEffect( () => {
+    //implement passing session id to fetch waste orders to have increased security later
+    async function fetchWastes() {
+        const res = await fetch(`http://localhost:5656/wasteRequests?id=${state._id}`, {
+        method: 'GET'
+      });
+    const response = res.json();
+    response.then( (data) => {
+      setwasteDetails(data.wasteData);
+    }).catch( err =>   console.log(err))
   }
-  
-  const wasteDetails = [{
+  fetchWastes();
+  },[])
+
+  /*const wasteDetails = [{
     date:"March 28,2024 22:23:05",
     type:"Metal",
     desc:"Some copper",
@@ -43,14 +56,14 @@ function DisposerHome() {
     type:"Paper",
     desc:"Battery",
     status:"Waiting",
-  }];
+  }];*/
   
   const sliderData = ["Dispose","Find Collectors"];
 
 
   const [isOn,setisOn] = useState(false);
   const [changeSlider,setChangeSlider] = useState(0);
-  const icons= [FaTrashCanArrowUp,FaSearch,GiUnlitBomb];
+  const icons= [FaTrashCanArrowUp,FaSearch];
   
   const setShowItemBox = (value) => {
     setisOn(value);
@@ -64,15 +77,19 @@ function DisposerHome() {
 
   return (
     <div>
-      <Profile data={userData}></Profile>
+      <Profile state={state}></Profile>
       
-      <wasteData.Provider value={wasteDetails}>
+      <wasteData.Provider value={{wasteDetails,state}}>
           <WasteCard data={wasteDetails}>   </WasteCard>
       </wasteData.Provider>
 
       <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>
       {
-        changeSlider === 0 ? <ListWaste setShowItemBox={setShowItemBox} isOn={isOn}></ListWaste> : changeSlider === 1 ? <FindUser></FindUser> : ''
+        changeSlider === 0 ?
+        <wasteData.Provider value={{wasteDetails,state}}>
+            <ListWaste setShowItemBox={setShowItemBox} isOn={isOn}></ListWaste>
+        </wasteData.Provider>
+         : changeSlider === 1 ? <FindUser></FindUser> : ''
       }       
     </div>
   )
