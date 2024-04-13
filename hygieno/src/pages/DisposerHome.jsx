@@ -59,8 +59,6 @@ function DisposerHome() {
   }];*/
   
   const sliderData = ["Dispose","Find Collectors"];
-
-
   const [isOn,setisOn] = useState(false);
   const [changeSlider,setChangeSlider] = useState(0);
   const icons= [FaTrashCanArrowUp,FaSearch];
@@ -80,7 +78,7 @@ function DisposerHome() {
       <Profile state={state}></Profile>
       
       <wasteData.Provider value={{wasteDetails,state}}>
-          <WasteCard data={wasteDetails}>   </WasteCard>
+          <WasteCard >   </WasteCard>
       </wasteData.Provider>
 
       <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>

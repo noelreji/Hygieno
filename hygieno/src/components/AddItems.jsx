@@ -1,7 +1,7 @@
 import React ,{useState,useEffect, useRef , useContext}from 'react'
 import "../styles/addItems.css"
 import {wasteData} from '../pages/DisposerHome'
-
+import { dNewWaste } from './WasteCard';
 function AddItems({isOn,setShowItem}) { 
   const [showItemBox, setShowItemBox] = useState(false);
   const [activeTab, setActiveTab] = useState('wasteType'); 
@@ -163,7 +163,25 @@ function AddItems({isOn,setShowItem}) {
     await fetch('http://localhost:5656/wasteRequests',{
       method:'POST',
       body:wasteData
-    }).then( (response) => response.json()).then( (data) => console.log(data.message))
+    }).then( (response) => response.json() ).then( (data) => {
+      if( data.status === 200)
+      {
+        /*let addWasteEvent = new CustomEvent('displayNewWaste',{
+          detail:{
+            value:data.wasteData
+          },
+          bubbles:true
+        });*/
+        //document.dispatchEvent(addWasteEvent);
+        dNewWaste(data.wasteData);
+        console.log("Event emitted ss");
+      }
+      console.log(data.message)
+  })
+
+
+    let addWasteEvent = new CustomEvent('displayNewWaste');
+    document.dispatchEvent(addWasteEvent);
     toggleItemBox();
   }
 

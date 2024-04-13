@@ -20,6 +20,8 @@ app.post('/login',authentication);
 app.post('/signup',authentication);
 app.post('/wasteRequests',handleWaste)
 app.get('/wasteRequests',handleWaste)
+app.post('/wasteRequests/delete',handleWaste)
+
 
 app.listen(process.env.PORT , () => {
     console.log("Listening ")

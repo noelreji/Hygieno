@@ -7,8 +7,8 @@ module.exports.deleteWasteRequest = async ( data ) => {
         message:String,
         wasteData:[Object]
       }    
-    
-    await waste.deleteOne( { userId:data.userId , _id:data._id} ).then( ( data )=> {
+    console.log(data[0],data[1]);
+    await waste.deleteOne( { userId:data[0] , _id:data[1]} ).then( ( data )=> {
             console.log(data);
             responseData.message="Successfully deleted your orders",
             responseData.status=200,

@@ -8,7 +8,7 @@ module.exports.getWasteRequest = async ( data ) => {
         wasteData:[Object]
       }    
     
-    await waste.find( { userId:data } ).then( ( data )=> {
+    await waste.find( { userId:data } ).sort({date:-1}).then( ( data )=> {
             console.log(data);
             responseData.message="Successfully fetched your orders",
             responseData.status=200,

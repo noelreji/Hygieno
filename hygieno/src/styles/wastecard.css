@@ -79,6 +79,12 @@
         background-color: #ffffff;
     }
 
+    img{
+        width: 100%;
+        object-fit:contain;
+        height: 20vh;  
+    }
+
   }
 
   .waste-card .contentWaste{
@@ -173,12 +179,7 @@
     }
     
     
-    img{
-        width: 100%;
-        object-fit: contain;
-        height: 20vh;
-        
-    }
+    
 
  }
 
