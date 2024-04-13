@@ -35,4 +35,17 @@ router.get('/wasteRequests' , async (req , res) => {
     } 
 })
 
+router.post('/wasteRequests/delete' , async (req , res) => {
+    try{
+
+        console.log("Received request to delete waste data");
+        const resp = await deleteWasteRequest(req.body)
+        res.send(resp);
+    }
+    catch(error){
+        res.send(error.message);
+        console.log("Error "+error.message);
+    } 
+})
+
 module.exports = router;

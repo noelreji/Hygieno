@@ -1,13 +1,15 @@
-import React, { useState , useEffect, useRef} from 'react'
+import React, { useState , useEffect, useContext, useRef} from 'react'
 import "../styles/wastecard.css"
 //import { FaEdit } from "react-icons/fa";
 import { GiCancel } from "react-icons/gi";
 import wasteChildren from "../assets/retink-waste-01.jpg"
 import Activity from './Activity';
+import {wasteData} from '../pages/DisposerHome'
 
 export  const cancelWasteContext = React.createContext();
 function WasteCard( wasteDetails ) {
 
+ const {state} = useContext(wasteData);
  const [showActivity,setShowActivity] = useState(false);
  const [deleteWasteTab,setdeleteWasteTab] = useState(false);
  const myRef = useRef();
@@ -36,14 +38,17 @@ function WasteCard( wasteDetails ) {
     };
   }, []);
 
-  const handleShowActivity = () =>{
+  const handleShowActivity = () => {
     setShowActivity(false);
   }
 
   const handlewasteDelete = async () => {
-    const res = await fetch(`http://localhost:5656/wasteRequests?id=${state._id}`, {
-        method: 'GET'
-      });
+    console.log("Wastedetails -->",wasteDetails);
+    const wDelAuth = [wasteDetails.data[0].userId , wasteDetails.data[0]._id];
+    const res = await fetch(`http://localhost:5656/wasteRequests/delete`, {
+        method: 'POST',
+        body: wDelAuth
+    });
     const response = res.json();
     response.then( (data) => {
         
@@ -78,7 +83,8 @@ function WasteCard( wasteDetails ) {
                             <h4>Are you sure?</h4>
                             <section>
                                 <button onClick={()=>setdeleteWasteTab(false)}  id='cancel-bT'>Cancel</button> <span><button id='delete-bT' onClick={()=>{wasteDetails.data.splice(0, 1);
-                                    setdeleteWasteTab(false)}}>Delete</button></span>
+                                    setdeleteWasteTab(false);
+                                    handlewasteDelete();}}>Delete</button></span>
                             </section>
                         </div>
                         }    
