@@ -27,6 +27,6 @@ app.get('/wasteRequests',handleWaste);
 app.post('/collectionAreaRequests',handleCollectionAreaRequest);
 app.get('/collectionAreaRequests',handleCollectionAreaRequest);
 
-app.listen(5658 , () => {
+app.listen(5656 , () => {
     console.log("Listening ")
 });

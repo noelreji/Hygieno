@@ -5,9 +5,10 @@ module.exports.storeWasteRequest = async ( data ) => {
     let responseData = {
         status:Number,
         message:String
-      }
-
+    }
+    console.log(data);
     const {location} = data;
+    console.log(location);
     const { type , coordinates } = JSON.parse(location);
     const imageBuffer = Buffer.from(data.waste_image, 'base64');
     

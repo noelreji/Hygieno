@@ -4,7 +4,6 @@ const router = express.Router();
 const {storeWasteRequest} = require('../Controllers/wasteManagement/storeWasteRequest');
 const {getWasteRequest} = require('../Controllers/wasteManagement/getWasteRequest');
 
-
 const upload = multer({ storage: multer.memoryStorage()});
 
 router.post('/wasteRequests',upload.single('waste_image') ,async (req,res) => {

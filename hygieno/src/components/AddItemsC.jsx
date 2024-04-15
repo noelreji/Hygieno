@@ -122,7 +122,6 @@ function AddItemsC({isOn,setShowItem}) {
     console.log(time);
     console.log('hero');
     collectionAreaData.append('date',time);
-    setSelectedTypes(['hero','jam']);
     collectionAreaData.append('wasteTypes',selectedTypes);
     console.log(selectedTypes);
     collectionAreaData.append('location',JSON.stringify({
@@ -130,11 +129,18 @@ function AddItemsC({isOn,setShowItem}) {
       coordinates: [-74.005974, 40.712891]
     }));
     console.log(collectionAreaData);
-    await fetch('http://localhost:5658/collectionAreaRequests',{
+    await fetch('http://localhost:5656/collectionAreaRequests',{
       method:'POST',
       body:collectionAreaData
+    })
+    .then( response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
       
-    }).then( (response) => response.json()).then( (data) => console.log(data.message))
+      return response.json();
+    })
+    .then( data => console.log(data.message))
     toggleItemBox();
   }
 

@@ -160,10 +160,12 @@ function AddItems({isOn,setShowItem}) {
       coordinates: [-74.005974, 40.712891]
     }));
 
-    await fetch('http://localhost:5658/wasteRequests',{
+    await fetch('http://localhost:5656/wasteRequests',{
       method:'POST',
       body:wasteData
-    }).then( (response) => response.json()).then( (data) => console.log(data.message))
+    })
+    .then( response => response.json())
+    .then( data => console.log(data.message))
     toggleItemBox();
   }
 

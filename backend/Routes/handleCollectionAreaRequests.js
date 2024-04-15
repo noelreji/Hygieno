@@ -1,24 +1,22 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
 const { storeCollectionAreaRequest } = require('../Controllers/CollectionAreaManagement/storeCollectionAreaRequest');
 const { getCollectionAreaRequest } = require('../Controllers/CollectionAreaManagement/getCollectionAreaRequest');
 //const {getWasteRequest} = require('../Controllers/wasteManagement/getWasteRequest');
 
-
-router.post('/collectionAreaRequests' ,async (req,res) => {
+const upload = multer({ storage: multer.memoryStorage()});
+router.post('/collectionAreaRequests' ,upload.single('waste_image'), async (req,res) => {
     try{
-        console.log("Received Collection Area request");
-        console.log("yep  "+req.body);
+        console.log("\n\n**************\n\nReceived Collection Area request");
         const resp = await storeCollectionAreaRequest(req.body);
-        console.log("fun");
         res.send(resp);
-        console.log("joker");
     }
     catch(error){
         res.send(error.message);
         console.log("Error "+error.message);
     }   
-})
+});
 
 router.get('/collectionAreaRequests' ,async (req , res) => {
     try{
@@ -34,7 +32,7 @@ router.get('/collectionAreaRequests' ,async (req , res) => {
         res.send(error.message);
         console.log("Error "+error.message);
     } 
-})
+});
 /*
 router.post('/collectionAreaRequests/delete' , async (req , res) => {
     try{

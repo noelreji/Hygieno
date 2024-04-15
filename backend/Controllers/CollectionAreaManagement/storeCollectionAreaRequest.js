@@ -13,13 +13,15 @@ module.exports.storeCollectionAreaRequest = async ( data ) => {
     console.log(location);
     const { type , coordinates } = JSON.parse(location);
     const newcollectionarea = new collectionarea({
-        userId: data.userId,
+        userId:     data.userId,
 
-        email:data.email,
+        email:      data.email,
         
-        date:data.date,
+        date:       data.date,
 
-        desc:data.desc,
+        desc:       data.desc,
+
+        status:     data.status,
         
         wasteTypes: data.wasteTypes,
     
