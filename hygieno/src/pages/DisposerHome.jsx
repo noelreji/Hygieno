@@ -10,6 +10,7 @@ import { isLogin } from './Login';
 import { useNavigate , useLocation } from 'react-router-dom';
 
 export const wasteData = React.createContext();
+export let reportLocation;
 function DisposerHome() {
 
   let navigate = useNavigate();
@@ -17,6 +18,10 @@ function DisposerHome() {
   console.log(state);
 
   const [wasteDetails,setwasteDetails ] = useState([]);
+
+  reportLocation = (data) => {
+    state.location = data;
+  }
   /*useEffect( () => {
     if(isLogin === false)
     {
@@ -38,25 +43,6 @@ function DisposerHome() {
   }
   fetchWastes();
   },[])
-
-  /*const wasteDetails = [{
-    date:"March 28,2024 22:23:05",
-    type:"Metal",
-    desc:"Some copper",
-    status:404,
-  },
-  {
-    date:"May 28,2024 22:23:05",
-    type:"E-Waste",
-    desc:"Battery",
-    status:"PickedUp",
-  },
-  {
-    date:"January 28,2024 22:23:05",
-    type:"Paper",
-    desc:"Battery",
-    status:"Waiting",
-  }];*/
   
   const sliderData = ["Dispose","Find Collectors"];
   const [isOn,setisOn] = useState(false);

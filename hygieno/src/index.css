@@ -16,16 +16,69 @@
     border-radius: 5px;
     font-size: small;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color:#D3DACF;
     height: 10vh;   
-}
-.profileContainer  .sub1{  
-        display: flex;
-        position: relative;
+
+    .sub1{  
         left: 5%;
-        justify-content: center;
-        align-items: center;
-        background-color:  #D3DACF;
+        position: relative;
+    }
+
+    .locationContainer{
+        display: grid;
+        position: relative;
+        right: 8%;
+        grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 30px ;
+        place-items: center;
+
+        .locationicon{
+            color: rgb(0, 0, 0);
+            grid-column: 6/7;
+            grid-row: 1/2;
+            width: 20px;
+            height: 30px;
+            transition: color 0.4s ease-in-out;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+        .locTrue{
+            color: red;
+        }
+        .loc{
+            grid-column: 2/6;
+            grid-row: 1/2;
+            
+          
+        }
+
+
+        .setLocationC{
+            border-radius: 5%;
+            background-color: rgb(255, 255, 255);
+            justify-self: stretch;
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            top: 10px;
+            left: 30px;
+            align-items: center;
+            z-index: 1;
+            grid-column: 1/6;
+            grid-row: 2/5;
+
+            button{
+                width: 1fr;
+                font-size: small;
+            }
+        }
+    }
 }
 
 .profileContainer  .sub2{
@@ -35,10 +88,8 @@
         height: 10vh;
         position: absolute;
         right: 5%;
- 
-    /*    padding: 5vh;      */
-        background-color:  #D3DACF;
-    }
+        background-color:  #D3DACF;       
+}
 
     .beforeExp{
         height: 24px;

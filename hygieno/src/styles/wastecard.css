@@ -9,6 +9,12 @@
         border-radius: 5px;
         margin-bottom: 5px;
         font-size: small;
+
+        img{
+            width: 100vw;
+            object-fit:contain;
+            height: 15vh;  
+        }
       }
     
       .waste-card .contentWaste{
@@ -80,7 +86,7 @@
     }
 
     img{
-        width: 100%;
+        width: 100vw;
         object-fit:contain;
         height: 20vh;  
     }

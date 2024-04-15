@@ -9,7 +9,7 @@ const {deleteWasteRequest} = require('../Controllers/wasteManagement/deleteWaste
 
 const upload = multer({ storage: multer.memoryStorage()});
 
-router.post('/wasteRequests',upload.single('waste_image') ,async (req,res) => {
+router.post('/wasteRequestsp',upload.single('waste_image') ,async (req,res) => {
     try{
         console.log("Received Waste Store request");
         const resp = await storeWasteRequest(req.body)
