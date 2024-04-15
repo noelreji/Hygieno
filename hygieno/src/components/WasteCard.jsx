@@ -7,17 +7,19 @@ import Activity from './Activity';
 import {wasteData} from '../pages/DisposerHome'
 
 export  const cancelWasteContext = React.createContext();
-function WasteCard( wasteDetails ) {
+export let dNewWaste;
+function WasteCard() {
 
- const {state} = useContext(wasteData);
+ const {state,wasteDetails} = useContext(wasteData);
+ const tempWDetails = wasteDetails;
  const [showActivity,setShowActivity] = useState(false);
  const [deleteWasteTab,setdeleteWasteTab] = useState(false);
  const myRef = useRef();
 
- let orderSize = wasteDetails.data.length;
-
+ let orderSize = tempWDetails.length;
+ 
  if( orderSize > 0 )  
-    var { date, wasteTypes, desc, status } = wasteDetails.data[0];
+    var { date, wasteTypes, desc, status } = tempWDetails[0];
 
   useEffect(() => {
     const handleClick = (event) => {
@@ -38,20 +40,31 @@ function WasteCard( wasteDetails ) {
     };
   }, []);
 
+  
+  dNewWaste = (data) => {
+            console.log("Event Catch",data);
+            tempWDetails.unshift(data);
+            console.log(tempWDetails);
+    }
+
   const handleShowActivity = () => {
     setShowActivity(false);
   }
 
-  const handlewasteDelete = async () => {
-    console.log("Wastedetails -->",wasteDetails);
-    const wDelAuth = [wasteDetails.data[0].userId , wasteDetails.data[0]._id];
-    const res = await fetch(`http://localhost:5656/wasteRequests/delete`, {
+  const handlewasteDelete = async ( index ) => {
+    console.log("Wastedetails -->",tempWDetails);
+    const wDelAuth = [tempWDetails[index].userId , tempWDetails[index]._id];
+    console.log(wDelAuth);
+    const res = await fetch(`http://localhost:5658/deleteWasteRequest`, {
         method: 'POST',
-        body: wDelAuth
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(wDelAuth)
     });
     const response = res.json();
     response.then( (data) => {
-        
+        console.log(data);
     }).catch( err =>   console.log(err))
   }
 
@@ -78,15 +91,16 @@ function WasteCard( wasteDetails ) {
                             </div>
                         </div>
                         {
-                        deleteWasteTab && 
-                        <div className="delete">
-                            <h4>Are you sure?</h4>
-                            <section>
-                                <button onClick={()=>setdeleteWasteTab(false)}  id='cancel-bT'>Cancel</button> <span><button id='delete-bT' onClick={()=>{wasteDetails.data.splice(0, 1);
-                                    setdeleteWasteTab(false);
-                                    handlewasteDelete();}}>Delete</button></span>
-                            </section>
-                        </div>
+                            deleteWasteTab && 
+                            <div className="delete">
+                                <h4>Are you sure?</h4>
+                                <section>
+                                    <button onClick={()=>setdeleteWasteTab(false)}  id='cancel-bT'>Cancel</button> <span><button id='delete-bT' onClick={()=>{handlewasteDelete(0);
+                                        wasteDetails.splice(0, 1);
+                                        setdeleteWasteTab(false);
+                                        }}>Delete</button></span>
+                                </section>
+                            </div>
                         }    
                 </div>
             </div>
@@ -100,10 +114,10 @@ function WasteCard( wasteDetails ) {
         </div>        
        {     showActivity && 
        <cancelWasteContext.Provider value={deleteParams}>   
-            <Activity data={wasteDetails}  reportRender={handleShowActivity}></Activity>       
+            <Activity   handlewasteDelete={handlewasteDelete}  reportRender={handleShowActivity}></Activity>       
         </cancelWasteContext.Provider>
 
-        }
+       }
 
   </div>
 );

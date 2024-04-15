@@ -10,6 +10,7 @@ import { isLogin } from './Login';
 import { useNavigate , useLocation } from 'react-router-dom';
 
 export const wasteData = React.createContext();
+export let reportLocation;
 function DisposerHome() {
 
   let navigate = useNavigate();
@@ -17,6 +18,10 @@ function DisposerHome() {
   console.log(state);
 
   const [wasteDetails,setwasteDetails ] = useState([]);
+
+  reportLocation = (data) => {
+    state.location = data;
+  }
   /*useEffect( () => {
     if(isLogin === false)
     {
@@ -28,7 +33,7 @@ function DisposerHome() {
   useEffect( () => {
     //implement passing session id to fetch waste orders to have increased security later
     async function fetchWastes() {
-      const res = await fetch(`http://localhost:5656/wasteRequests?id=${state._id}`, {
+      const res = await fetch(`http://localhost:5658/getWasteRequest?id=${state._id}`, {
       method: 'GET'
       });
       const response = res.json();
@@ -38,29 +43,8 @@ function DisposerHome() {
   }
   fetchWastes();
   },[])
-
-  /*const wasteDetails = [{
-    date:"March 28,2024 22:23:05",
-    type:"Metal",
-    desc:"Some copper",
-    status:404,
-  },
-  {
-    date:"May 28,2024 22:23:05",
-    type:"E-Waste",
-    desc:"Battery",
-    status:"PickedUp",
-  },
-  {
-    date:"January 28,2024 22:23:05",
-    type:"Paper",
-    desc:"Battery",
-    status:"Waiting",
-  }];*/
   
   const sliderData = ["Dispose","Find Collectors"];
-
-
   const [isOn,setisOn] = useState(false);
   const [changeSlider,setChangeSlider] = useState(0);
   const icons= [FaTrashCanArrowUp,FaSearch];
@@ -80,7 +64,7 @@ function DisposerHome() {
       <Profile state={state}></Profile>
       
       <wasteData.Provider value={{wasteDetails,state}}>
-          <WasteCard data={wasteDetails}>   </WasteCard>
+          <WasteCard >   </WasteCard>
       </wasteData.Provider>
 
       <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>

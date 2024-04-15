@@ -3,10 +3,12 @@ const multer = require('multer');
 const router = express.Router();
 const {storeWasteRequest} = require('../Controllers/wasteManagement/storeWasteRequest');
 const {getWasteRequest} = require('../Controllers/wasteManagement/getWasteRequest');
+const {deleteWasteRequest} = require('../Controllers/wasteManagement/deleteWasteRequest');
+
 
 const upload = multer({ storage: multer.memoryStorage()});
 
-router.post('/wasteRequests',upload.single('waste_image') ,async (req,res) => {
+router.post('/addWasteRequest',upload.single('waste_image') ,async (req,res) => {
     try{
         console.log("Received Waste Store request");
         const resp = await storeWasteRequest(req.body)
@@ -18,7 +20,7 @@ router.post('/wasteRequests',upload.single('waste_image') ,async (req,res) => {
     }   
 })
 
-router.get('/wasteRequests' , async (req , res) => {
+router.get('/getWasteRequest' , async (req , res) => {
     try{
 
         console.log("Received request to retrieve waste data");
@@ -34,10 +36,11 @@ router.get('/wasteRequests' , async (req , res) => {
     } 
 })
 
-router.post('/wasteRequests/delete' , async (req , res) => {
+router.post('/deleteWasteRequest' , async (req , res) => {
     try{
 
         console.log("Received request to delete waste data");
+        console.log(req.body);
         const resp = await deleteWasteRequest(req.body)
         res.send(resp);
     }

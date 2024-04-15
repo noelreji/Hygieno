@@ -6,13 +6,16 @@ import '../styles/activity.css'
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 
-function Activity( {reportRender} ) {
+function Activity( {  handlewasteDelete ,reportRender } ) {
 
 const {wasteDetails} = useContext(wasteData);
 const [deleteWasteTab,setdeleteWasteTab] = useState({
   index:null,value:null
 });
 const checkClick = useRef();
+
+if(wasteDetails.length < 1)
+  reportRender();
 
 useEffect(() => {
   const handleClick = (event) => {
@@ -35,7 +38,6 @@ const handlerenderNormal = ()=>{
   console.log(wasteDetails);
   const activityObjects = [];
   for (let index = 0; index < wasteDetails.length; index++) {
-    console.log("hey")
     const value =  wasteDetails[index];
     const activityObject = {
       key: index,
@@ -84,7 +86,9 @@ const handlerenderNormal = ()=>{
                             <button onClick={()=>setdeleteWasteTab({
                           key:null,
                           value:false
-                        })}  id='cancel-bT'>Cancel</button> <span><button id='delete-bT' onClick={()=>{wasteDetails.splice(activityObject.key, 1);
+                        })}  id='cancel-bT'>Cancel</button> <span><button customKey={activityObject.key}  id='delete-bT' onClick={(e)=>{
+                                handlewasteDelete(e.target.getAttribute('customKey'));
+                                wasteDetails.splice(activityObject.key, 1);
                                 setdeleteWasteTab({
                                   key:null,
                                   value:false

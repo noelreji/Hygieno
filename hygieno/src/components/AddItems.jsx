@@ -1,7 +1,7 @@
 import React ,{useState,useEffect, useRef , useContext}from 'react'
 import "../styles/addItems.css"
 import {wasteData} from '../pages/DisposerHome'
-
+import { dNewWaste } from './WasteCard';
 function AddItems({isOn,setShowItem}) { 
   const [showItemBox, setShowItemBox] = useState(false);
   const [activeTab, setActiveTab] = useState('wasteType'); 
@@ -9,7 +9,6 @@ function AddItems({isOn,setShowItem}) {
   const [selectedImage, setSelectedImage] = useState(null);
   const controlClickRef = useRef();
   const {state} = useContext(wasteData);
-
 
   const handleOutsideClick = (event) => {
     if (controlClickRef.current && !controlClickRef.current.contains(event.target)) {
@@ -110,19 +109,7 @@ function AddItems({isOn,setShowItem}) {
     }
   }
 
-  const validationCheckImage = () => {
-    if(selectedImage)
-        handleSubmit();
-    else
-    {
-      const errorAnimation = document.getElementById('container')
-      errorAnimation.classList.add('error');
-      setTimeout(() => {
-        errorAnimation.classList.remove('error');
-      }, 1000);
-      return;
-    }
-  }
+
 
   function prettyTime(date) {
     const months = [
@@ -138,36 +125,73 @@ function AddItems({isOn,setShowItem}) {
     const hours = date.getHours(); 
     const minutes = date.getMinutes(); 
     const seconds = date.getSeconds(); 
-  
     const formattedDateTime = `${month} ${day}, ${year} ${hours}:${minutes}:${seconds}`;
     return formattedDateTime;
   }
 
 
   const handleSubmit = async () => {
-
-    let wasteData = new FormData();
-    wasteData.append('userId',state._id);
-    wasteData.append('desc','UI not ready');
-    wasteData.append('status','Pending Collection');
-    const time = prettyTime( new Date() );
-    console.log(time);
-    wasteData.append('date',time);
-    wasteData.append('wasteTypes',selectedTypes);
-    wasteData.append('waste_image',selectedImage);
-    wasteData.append('location',JSON.stringify({
-      type: 'Point',
-      coordinates: [-74.005974, 40.712891]
-    }));
-
-    await fetch('http://localhost:5656/wasteRequests',{
+    const wasteData = new FormData();
+    try{
+      if(!state.location.lat)
+      {
+        alert("Update Your Location");
+        return;
+      }
+      else {
+          wasteData.append('location',JSON.stringify({
+            type: 'Point',
+            coordinates: [state.location.lat, state.location.lon]
+          }));
+      }
+      console.log(state);
+      wasteData.append('userId',state._id);
+      wasteData.append('desc','UI not ready');
+      wasteData.append('status','Pending Collection');
+      const time = prettyTime( new Date() );
+      console.log(time);
+      wasteData.append('date',time);
+      wasteData.append('wasteTypes',selectedTypes);
+      console.log(selectedTypes)
+      wasteData.append('waste_image',selectedImage);
+      console.log("waste data",wasteData.get("waste_image"))
+  }
+  catch(er)
+  {
+    console.log("error in form data ",er);
+  }
+  //console.log("waste data",wasteData)
+  console.log("waste data",wasteData.get("waste_image"))
+    await fetch('http://localhost:5658/addWasteRequest',{
       method:'POST',
       body:wasteData
-    })
-    .then( response => response.json())
-    .then( data => console.log(data.message))
-    toggleItemBox();
+    }).then( (response) => response.json() ).then( (data) => {
+      if( data.status === 200)
+      {
+        dNewWaste(data.wasteData);
+        console.log("Event emitted ss");
+      }
+      console.log(data.message)
+  }).catch((e)=>{
+    console.error(e)
+  })
+
+  toggleItemBox();
+}
+
+const validationCheckImage = () => {
+  if(selectedImage)
+      handleSubmit();
+  else
+  {
+    const errorAnimation = document.getElementById('container')
+    errorAnimation.classList.add('error');
+    setTimeout(() => {
+      errorAnimation.classList.remove('error');
+    }, 1000);
+    return;
   }
+}
 
   return (
     <div className={`item-box ${showItemBox ? 'active' : ''}`} id='container'  ref={controlClickRef}>

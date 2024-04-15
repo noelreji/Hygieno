@@ -1,12 +1,12 @@
-    .services
+
+ .services
 {
     margin-top:5px;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:450px;
     background-color:#D3DACF;
-    height:610px;
+    height: 75vh;
     overflow: hidden;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);

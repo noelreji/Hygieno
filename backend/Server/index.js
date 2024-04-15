@@ -2,13 +2,13 @@
 require('dotenv').config();
 const connectDb = require('./dbConnection.js');
 const express = require('express');
+const bodyParser = require('body-parser')
 const cors = require('cors');
 const app = express();
 
-
 //essentials
 app.use(cors());
-//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 connectDb();
 
@@ -21,12 +21,13 @@ const handleCollectionAreaRequest = require('../Routes/handleCollectionAreaReque
 app.post('/login',authentication);
 app.post('/signup',authentication);
 
-app.post('/wasteRequests',handleWaste);
-app.get('/wasteRequests',handleWaste);
+app.post('/addWasteRequest',handleWaste);
+app.get('/getWasteRequest',handleWaste);
+app.post('/deleteWasteRequest',handleWaste);
 
 app.post('/collectionAreaRequests',handleCollectionAreaRequest);
 app.get('/collectionAreaRequests',handleCollectionAreaRequest);
 
-app.listen(5656 , () => {
+app.listen(process.env.PORT , () => {
     console.log("Listening ")
 });

@@ -4,13 +4,15 @@ module.exports.storeWasteRequest = async ( data ) => {
 
     let responseData = {
         status:Number,
-        message:String
+        message:String,
+        wasteData:[Object]
     }
-    console.log(data);
+
     const {location} = data;
     console.log(location);
     const { type , coordinates } = JSON.parse(location);
     const imageBuffer = Buffer.from(data.waste_image, 'base64');
+    console.log(imageBuffer)
     
     const newWaste = new waste({
         userId: data.userId,
@@ -30,9 +32,10 @@ module.exports.storeWasteRequest = async ( data ) => {
             coordinates : coordinates
         }
     })
-            await newWaste.save().then( ()=> {
+            await newWaste.save().then( (data)=> {
                 responseData.message="Waste Request has been stored successfully",
-                responseData.status=200
+                responseData.status=200,
+                responseData.wasteData=data
             }).catch( (error) => {
                 responseData.message=`Error storing waste request because ${error}`,
                 responseData.status=404

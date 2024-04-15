@@ -9,6 +9,12 @@
         border-radius: 5px;
         margin-bottom: 5px;
         font-size: small;
+
+        img{
+            width: 100vw;
+            object-fit:contain;
+            height: 15vh;  
+        }
       }
     
       .waste-card .contentWaste{
@@ -77,6 +83,12 @@
         cursor: pointer;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         background-color: #ffffff;
+    }
+
+    img{
+        width: 100vw;
+        object-fit:contain;
+        height: 20vh;  
     }
 
   }
@@ -173,12 +185,7 @@
     }
     
     
-    img{
-        width: 100%;
-        object-fit: contain;
-        height: 20vh;
-        
-    }
+    
 
  }
 

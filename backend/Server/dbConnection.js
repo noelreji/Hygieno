@@ -2,7 +2,7 @@ const mongo = require('mongoose');
 const connectDb = async () => {
     try
     {
-       const conObj = await mongo.connect('mongodb+srv://hAdmin:CR9KL359XhrtxbA@hygieno.ryzdgdp.mongodb.net/Hygieno?retryWrites=true&w=majority&appName=Hygieno')
+       const conObj = await mongo.connect(process.env.DB_URL)
        console.log(`Database Connected ${conObj.connection.host}`);
        //await listDatabases(mongo);
     }
