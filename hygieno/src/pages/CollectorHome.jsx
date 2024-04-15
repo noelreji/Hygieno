@@ -48,7 +48,7 @@ function CollectorHome() {
   },[])
   return (
     <div>
-      <Profile state={userData}></Profile>
+      
        <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>
       {
         changeSlider === 0 ? 
