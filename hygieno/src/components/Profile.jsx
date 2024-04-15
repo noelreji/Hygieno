@@ -9,18 +9,18 @@ import logo192  from '../assets/Guts.jpg';
 
 function Profile( {state} ) {
 
-const [expand,setExpand] = useState(false);
-const toggleValue = () => {
-    setExpand((!expand));
-}
+  const [expand,setExpand] = useState(false);
+  const toggleValue = () => {
+      setExpand((!expand));
+  }
 
-useEffect(() => {
+  useEffect(() => {
     const handleOutsideClick = (event) => {
       if (!event.target.closest('.beforeExp') && !event.target.closest('.profileContainerMenu')) {
         setExpand(false); 
       }
     };
-      document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('click', handleOutsideClick);
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };

@@ -10,12 +10,12 @@ function Login() {
     email: '',
     password: '',
     usertype:''
-});
+  });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch('http://localhost:5656/login', {
+    const response = await fetch('http://localhost:5658/login', {
         method: 'POST',
         body: JSON.stringify(formData), 
         headers: { 'Content-Type': 'application/json' },
@@ -23,7 +23,7 @@ function Login() {
 
     if (response.ok) {
         const data = await response.json();
-        console.log('Success:', data.status);
+        console.log('Success man:', data.status);
         if( data[0].status === 200 )
         {
           isLogin = true;
@@ -35,8 +35,9 @@ function Login() {
           }
         }
         else{
-          alert(data[0].message);
+          
         }
+        alert(data[0].message);
     } 
     else {
         console.error('Error:', response.status, response.statusText);

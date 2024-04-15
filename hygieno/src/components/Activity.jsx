@@ -1,7 +1,7 @@
 import React , { useContext, useState ,useRef, useEffect}from 'react';
 //import { FaEdit } from "react-icons/fa";
 import { GiCancel } from "react-icons/gi";
-import {wasteData} from '../pages/DisposerHome'
+import { wasteData } from '../pages/DisposerHome'
 import '../styles/activity.css'
 import { RiArrowDropDownLine } from "react-icons/ri";
 
