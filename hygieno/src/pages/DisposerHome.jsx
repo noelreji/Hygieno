@@ -33,11 +33,11 @@ function DisposerHome() {
   useEffect( () => {
     //implement passing session id to fetch waste orders to have increased security later
     async function fetchWastes() {
-        const res = await fetch(`http://localhost:5656/wasteRequests?id=${state._id}`, {
-        method: 'GET'
+      const res = await fetch(`http://localhost:5658/getWasteRequest?id=${state._id}`, {
+      method: 'GET'
       });
-    const response = res.json();
-    response.then( (data) => {
+      const response = res.json();
+      response.then( (data) => {
       setwasteDetails(data.wasteData);
     }).catch( err =>   console.log(err))
   }

@@ -83,6 +83,7 @@ collectorSchema.index({ email: 1 }, { unique: true });
 collectorSchema.index({ phoneNo: 1 }, { unique: true });
 disposerSchema.index({ email: 1 }, { unique: true });
 disposerSchema.index({ phoneNo: 1 }, { unique: true });
+
 const collector = mongoose.model('collectorusers',collectorSchema);
 const disposer = mongoose.model('disposerusers',disposerSchema);
 

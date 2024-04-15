@@ -15,13 +15,18 @@ connectDb();
 //route functions
 const authentication = require('../Routes/authentication.js');
 const handleWaste = require('../Routes/handleWaste.js');
+const handleCollectionAreaRequest = require('../Routes/handleCollectionAreaRequests.js');
+
 //routes
 app.post('/login',authentication);
 app.post('/signup',authentication);
-app.post('/wasteRequestsp',handleWaste)
-app.get('/wasteRequests',handleWaste)
-app.post('/wasteRequests/delete',handleWaste)
 
+app.post('/addWasteRequest',handleWaste);
+app.get('/getWasteRequest',handleWaste);
+app.post('/deleteWasteRequest',handleWaste);
+
+app.post('/collectionAreaRequests',handleCollectionAreaRequest);
+app.get('/collectionAreaRequests',handleCollectionAreaRequest);
 
 app.listen(process.env.PORT , () => {
     console.log("Listening ")

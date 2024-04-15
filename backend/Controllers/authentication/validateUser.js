@@ -19,8 +19,8 @@ module.exports.validateUser = async (userCredentials) => {
     }
     else{
       console.log("Success");
-      if(user.password === userCredentials.password)
-      {
+      if(user.password === userCredentials.password){
+        console.log('Password matched');
         const resData = {
           _id: user._id,
           firstName: user.firstName,
@@ -31,9 +31,9 @@ module.exports.validateUser = async (userCredentials) => {
         }
         return [{
           status:200,
-          message:"You have been autheticated.",
+          message:"You have been authenticated.",
           usertype:userCredentials.usertype
-      },resData]
+        },resData]
       }
       else
         return [{

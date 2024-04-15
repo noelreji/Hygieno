@@ -11,10 +11,11 @@ import { reportLocation } from '../pages/DisposerHome';
 
 function Profile( {state} ) {
 
-const [expand,setExpand] = useState(false);
-const toggleValue = () => {
-    setExpand((!expand));
-}
+  const [expand,setExpand] = useState(false);
+  const toggleValue = () => {
+      setExpand((!expand));
+  }
+
 
 const [latitude, setLatitude] = useState(null);
 const [longitude, setLongitude] = useState(null);
@@ -29,7 +30,7 @@ useEffect(() => {
         setExpand(false); 
       }
     };
-      document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('click', handleOutsideClick);
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
