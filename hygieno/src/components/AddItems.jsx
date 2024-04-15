@@ -10,7 +10,6 @@ function AddItems({isOn,setShowItem}) {
   const controlClickRef = useRef();
   const {state} = useContext(wasteData);
 
-
   const handleOutsideClick = (event) => {
     if (controlClickRef.current && !controlClickRef.current.contains(event.target)) {
       setShowItemBox(false); 
