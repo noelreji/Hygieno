@@ -166,7 +166,7 @@ function AddItems({isOn,setShowItem}) {
   }
   //console.log("waste data",wasteData)
   console.log("waste data",wasteData.get("waste_image"))
-    await fetch('http://localhost:5658/addWasteRequest',{
+    await fetch('http://localhost:5656/addWasteRequest',{
       method:'POST',
       body:wasteData
     }).then( (response) => response.json() ).then( (data) => {

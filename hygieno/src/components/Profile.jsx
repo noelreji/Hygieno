@@ -7,9 +7,10 @@ import { BiDonateHeart } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
 import logo192  from '../assets/Guts.jpg';
 import { FaLocationDot } from "react-icons/fa6";
-import { reportLocation } from '../pages/DisposerHome';
+import { reportLocationDisposer } from '../pages/DisposerHome';
+import { reportLocationCollector } from '../pages/CollectorHome';
 
-function Profile( {state} ) {
+function Profile( {state , userType} ) {
 
   const [expand,setExpand] = useState(false);
   const toggleValue = () => {
@@ -83,7 +84,10 @@ useEffect(() => {
 useEffect( () => {
   if (latitude !== null) {
     convertLocation();
-    reportLocation({ 'lat': latitude, 'lon': longitude });
+    if( userType === 'disposer')
+      reportLocationDisposer({ 'lat': latitude, 'lon': longitude });
+    else
+      reportLocationCollector({ 'lat': latitude, 'lon': longitude });
     console.log(latitude, longitude);
   }
 }, [latitude]);

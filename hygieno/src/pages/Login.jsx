@@ -6,8 +6,7 @@ export var isLogin = false;
 
 function Login() {
 
-  if(sessionStorage.getItem('login'))
-    return;
+
   let navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
