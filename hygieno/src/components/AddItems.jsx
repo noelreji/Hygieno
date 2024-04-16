@@ -11,9 +11,13 @@ function AddItems({isOn,setShowItem}) {
   const {state} = useContext(wasteData);
 
   const handleOutsideClick = (event) => {
+    console.log("checking",event.target.name);
     if (controlClickRef.current && !controlClickRef.current.contains(event.target)) {
-      setShowItemBox(false); 
-      setShowItem(false);
+      if (event.target.classList.contains('locationicon') || event.target.classList.contains('locTrue') || event.target.classList.contains('locationicon') || event.target.classList.contains('locationContainer')) 
+        return;
+        setShowItemBox(false); 
+        setShowItem(false);
+      
     }
   };
 
@@ -200,9 +204,9 @@ const validationCheckImage = () => {
         <div className={`tab waste-type-tab ${activeTab === 'wasteType' ? 'active' : ''}`}>
           <h2>Waste Type</h2>
           <p>Select the type of waste:</p>
-            <label><input className="box"  type="checkbox" value="plastic" onChange={handleCheckboxChange} /> Plastic</label>
-            <label><input className="box" type="checkbox" value="metal" onChange={handleCheckboxChange} /> Metal</label>
-            <label><input className="box" type="checkbox" value="paper" onChange={handleCheckboxChange} /> Paper</label>
+            <label><input className="box"  type="checkbox" value="Plastic" onChange={handleCheckboxChange} /> Plastic</label>
+            <label><input className="box" type="checkbox" value="Metal" onChange={handleCheckboxChange} /> Metal</label>
+            <label><input className="box" type="checkbox" value="Paper" onChange={handleCheckboxChange} /> Paper</label>
           <button className="next-btn" onClick={() => validationCheck()}>Next</button>
         </div>
         <div className={`tab image-tab ${activeTab === 'image' ? 'active' : ''}`}>

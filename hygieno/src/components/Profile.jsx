@@ -65,7 +65,9 @@ const convertLocation = async () => {
     });
     const response = await resp.json();
     console.log(response); 
-    setformattedLoc(response); 
+    var locname = response.display_name;
+    locname = locname.split(',').slice(0, 2).join(',');
+    setformattedLoc(locname);
   } 
   catch (error) {
     console.error('Error fetching location data:', error);
@@ -79,10 +81,12 @@ useEffect(() => {
 }, [formattedLoc]);
 
 useEffect( () => {
-  convertLocation();
-  reportLocation({'lat':latitude,'lon':longitude});
-  console.log(latitude , longitude);
-},[latitude]);
+  if (latitude !== null) {
+    convertLocation();
+    reportLocation({ 'lat': latitude, 'lon': longitude });
+    console.log(latitude, longitude);
+  }
+}, [latitude]);
 
 const setupLocation = async () => {
         const resp = await fetchLocation();
@@ -106,7 +110,7 @@ const setupLocation = async () => {
               }
             }/>
             {
-                convLoc === true ?  <h4 className='loc'>{`${formattedLoc.address.town},${formattedLoc.address.county}`}</h4> : ''
+                convLoc === true ?  <h4 className='loc'>{`${formattedLoc}`}</h4> : ''
             }           
         </div>
 

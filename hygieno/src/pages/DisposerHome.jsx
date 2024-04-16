@@ -22,13 +22,13 @@ function DisposerHome() {
   reportLocation = (data) => {
     state.location = data;
   }
-  /*useEffect( () => {
+  useEffect( () => {
     if(isLogin === false)
     {
       navigate('/login');
       console.log("token");
     }
-  })*/
+  },[])
 
   useEffect( () => {
     //implement passing session id to fetch waste orders to have increased security later
