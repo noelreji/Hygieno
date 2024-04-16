@@ -10,7 +10,7 @@ import { useNavigate , useLocation } from 'react-router-dom';
 
 export const collectionAreaData = React.createContext();
 const userData = {
-  firstName : "Noyal Reji"
+  firstName : "Noyal"
 
 }
 const sliderData = ["Collect","Find Disposers"];
@@ -36,7 +36,7 @@ function CollectorHome() {
   useEffect( () => {
     //implement passing session id to fetch waste orders to have increased security later
     async function fetchCollectionAreas() {
-      const res = await fetch(`http://localhost:5658/collectionAreaRequests?id=${state._id}`, {
+      const res = await fetch(`http://localhost:5656/collectionAreaRequests?id=${state._id}`, {
       method: 'GET'
       });
       const response = res.json();
@@ -48,7 +48,7 @@ function CollectorHome() {
   },[])
   return (
     <div>
-      <Profile state={userData}></Profile>
+      
        <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>
       {
         changeSlider === 0 ? 
