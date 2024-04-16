@@ -15,10 +15,16 @@ const userData = {
 }
 const sliderData = ["Collect","Find Disposers"];
 
+export let reportLocationCollector;
 
 function CollectorHome() {
+
   const { state } = useLocation();
   console.log(state);
+
+  reportLocationCollector = (data) => {
+    state.location = data;
+  }
 
   const [collectionAreaDetails,setCollectionAreaDetails ] = useState([]);
 
@@ -48,7 +54,7 @@ function CollectorHome() {
   },[])
   return (
     <div>
-      <Profile state={state}></Profile>
+      <Profile state={state} userType={'collector'}></Profile>
        <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>
       {
         changeSlider === 0 ? 

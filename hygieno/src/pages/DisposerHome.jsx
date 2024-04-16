@@ -10,7 +10,7 @@ import { isLogin } from './Login';
 import { useNavigate , useLocation } from 'react-router-dom';
 
 export const wasteData = React.createContext();
-export let reportLocation;
+export let reportLocationDisposer;
 function DisposerHome() {
 
   let navigate = useNavigate();
@@ -19,21 +19,22 @@ function DisposerHome() {
 
   const [wasteDetails,setwasteDetails ] = useState([]);
 
-  reportLocation = (data) => {
+  reportLocationDisposer = (data) => {
     state.location = data;
   }
-  /*useEffect( () => {
+
+  useEffect( () => {
     if(isLogin === false)
     {
-      navigate('/login');
+      navigate('/about');
       console.log("token");
     }
-  })*/
+  },[])
 
   useEffect( () => {
     //implement passing session id to fetch waste orders to have increased security later
     async function fetchWastes() {
-      const res = await fetch(`http://localhost:5658/getWasteRequest?id=${state._id}`, {
+      const res = await fetch(`http://localhost:5656/getWasteRequest?id=${state._id}`, {
       method: 'GET'
       });
       const response = res.json();
@@ -61,7 +62,7 @@ function DisposerHome() {
 
   return (
     <div>
-      <Profile state={state}></Profile>
+      <Profile state={state} userType={'disposer'}></Profile>
       
       <wasteData.Provider value={{wasteDetails,state}}>
           <WasteCard >   </WasteCard>

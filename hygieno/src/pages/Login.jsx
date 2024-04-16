@@ -5,6 +5,8 @@ import '../styles/login.css'
 export var isLogin = false;
 
 function Login() {
+
+
   let navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -28,6 +30,7 @@ function Login() {
         {
           isLogin = true;
           if (data[0].usertype === 'Disposer') {
+            sessionStorage.setItem('login','true')
             navigate('/pages/disposerHome' , {state : data[1]});
           } 
           else {

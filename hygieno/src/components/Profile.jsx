@@ -7,9 +7,10 @@ import { BiDonateHeart } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
 import logo192  from '../assets/Guts.jpg';
 import { FaLocationDot } from "react-icons/fa6";
-import { reportLocation } from '../pages/DisposerHome';
+import { reportLocationDisposer } from '../pages/DisposerHome';
+import { reportLocationCollector } from '../pages/CollectorHome';
 
-function Profile( {state} ) {
+function Profile( {state , userType} ) {
 
   const [expand,setExpand] = useState(false);
   const toggleValue = () => {
@@ -65,7 +66,9 @@ const convertLocation = async () => {
     });
     const response = await resp.json();
     console.log(response); 
-    setformattedLoc(response); 
+    var locname = response.display_name;
+    locname = locname.split(',').slice(0, 2).join(',');
+    setformattedLoc(locname);
   } 
   catch (error) {
     console.error('Error fetching location data:', error);
@@ -78,11 +81,16 @@ useEffect(() => {
   setconLoc(true);
 }, [formattedLoc]);
 
-useEffect(() => {
-  convertLocation();
-  reportLocation({'lat':latitude,'lon':longitude});
-  console.log(latitude , longitude);
-},[latitude]);
+useEffect( () => {
+  if (latitude !== null) {
+    convertLocation();
+    if( userType === 'disposer')
+      reportLocationDisposer({ 'lat': latitude, 'lon': longitude });
+    else
+      reportLocationCollector({ 'lat': latitude, 'lon': longitude });
+    console.log(latitude, longitude);
+  }
+}, [latitude]);
 
 const setupLocation = async () => {
         const resp = await fetchLocation();
@@ -106,7 +114,7 @@ const setupLocation = async () => {
               }
             }/>
             {
-                convLoc === true ?  <h4 className='loc'>{`${formattedLoc.address.town},${formattedLoc.address.county}`}</h4> : ''
+                convLoc === true ?  <h4 className='loc'>{`${formattedLoc}`}</h4> : ''
             }           
         </div>
 

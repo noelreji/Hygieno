@@ -35,7 +35,6 @@ const handlerenderNormal = ()=>{
 }
 
   console.log("acc")
-  console.log(wasteDetails);
   const activityObjects = [];
   for (let index = 0; index < wasteDetails.length; index++) {
     const value =  wasteDetails[index];
