@@ -21,7 +21,7 @@ router.post('/collectionAreaRequests' ,upload.single('waste_image'), async (req,
 router.get('/collectionAreaRequests' ,async (req , res) => {
     try{
 
-        console.log("Received request to retrieve collection area data");
+        console.log("\n\n**************\n\nReceived request to retrieve collection area data");
         const data = req.query.id;
         console.log(data);
         const resp = await getCollectionAreaRequest(data)

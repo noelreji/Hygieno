@@ -78,7 +78,7 @@ useEffect(() => {
   setconLoc(true);
 }, [formattedLoc]);
 
-useEffect( () => {
+useEffect(() => {
   convertLocation();
   reportLocation({'lat':latitude,'lon':longitude});
   console.log(latitude , longitude);
