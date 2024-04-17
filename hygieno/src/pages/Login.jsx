@@ -43,7 +43,7 @@ function Login() {
         alert(data[0].message);
     } 
     else {
-        console.error('Error:', response.status, response.statusText);
+      console.error('Error:', response.status, response.statusText);
     }    
 };
 

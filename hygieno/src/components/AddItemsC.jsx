@@ -72,18 +72,16 @@ function AddItemsC({isOn,setShowItem}) {
   };
 
   const validationCheck = () => {
-    
     const boxes = document.getElementsByClassName('box');
     let shouldReturn = false;
     const boxArray = Array.from(boxes); 
     boxArray.map((value,index)=>{
-        if( boxArray[index].checked === true)
-        {
-          shouldReturn = true;
-        }
+      if( boxArray[index].checked === true){
+        shouldReturn = true;
+      }
     })
     if(shouldReturn)
-        return;
+      return;
     const errorAnimation = document.getElementById('container')
     errorAnimation.classList.add('error');
     setTimeout(() => {
@@ -113,11 +111,10 @@ function AddItemsC({isOn,setShowItem}) {
 
   const handleSubmit = async () => {
     console.log("donesubmit");
+    validationCheck();
     let collectionAreaData = new FormData();
     collectionAreaData.append('userId',state._id);
     collectionAreaData.append('email',state.email);
-    collectionAreaData.append('desc', 'oi its me')
-    collectionAreaData.append('status','Pending Collection');
     const time = prettyTime( new Date() );
     console.log(time);
     console.log('hero');

@@ -17,15 +17,6 @@ const collectionAreaRequests = new Schema({
         required:true
     },
 
-    desc:{
-        type:String
-    },
-
-    status:{
-        type:String,
-        required:true
-    },
-
     wasteTypes:{
         type:[String],
         required:true

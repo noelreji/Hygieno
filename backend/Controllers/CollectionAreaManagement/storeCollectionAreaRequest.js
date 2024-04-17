@@ -19,10 +19,6 @@ module.exports.storeCollectionAreaRequest = async ( data ) => {
         
         date:       data.date,
 
-        desc:       data.desc,
-
-        status:     data.status,
-        
         wasteTypes: data.wasteTypes,
     
         location:{

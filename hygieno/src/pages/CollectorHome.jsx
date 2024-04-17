@@ -9,10 +9,6 @@ import { FaSearch } from "react-icons/fa";
 import { useNavigate , useLocation } from 'react-router-dom';
 
 export const collectionAreaData = React.createContext();
-const userData = {
-  firstName : "Noyal"
-
-}
 const sliderData = ["Collect","Find Disposers"];
 
 export let reportLocationCollector;
