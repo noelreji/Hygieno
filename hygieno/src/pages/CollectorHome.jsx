@@ -9,6 +9,7 @@ import { FaSearch } from "react-icons/fa";
 import { useNavigate , useLocation } from 'react-router-dom';
 
 export const collectionAreaData = React.createContext();
+export let updateCLoc;
 const userData = {
   firstName : "Noyal"
 
@@ -24,6 +25,27 @@ function CollectorHome() {
 
   reportLocationCollector = (data) => {
     state.location = data;
+  }
+
+  updateCLoc = async (data) => {
+    try {
+        alert(data.id);
+        const response = await fetch('http://localhost:5656/updateCollector',{
+        method: 'POST',
+        body: JSON.stringify(data), 
+        headers: { 'Content-Type': 'application/json' }
+      }); 
+      if (!response.ok) {
+        alert("oo")
+        throw new Error(`Error fetching data: ${response.status}`);
+      }
+      console.log(1565);
+      if(response.json().status === 200 )
+        alert("Successfully updated your location.")
+
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   const [collectionAreaDetails,setCollectionAreaDetails ] = useState([]);

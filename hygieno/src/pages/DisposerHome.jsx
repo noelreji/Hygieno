@@ -6,7 +6,7 @@ import ListWaste from '../components/ListWaste';
 import { FaTrashCanArrowUp } from "react-icons/fa6" 
 import { FaSearch } from "react-icons/fa";
 import FindUser from '../components/FindUser';
-import { isLogin } from './Login';
+import { setLogin } from './Login';
 import { useNavigate , useLocation } from 'react-router-dom';
 
 export const wasteData = React.createContext();
@@ -14,21 +14,20 @@ export let reportLocationDisposer;
 function DisposerHome() {
 
   let navigate = useNavigate();
-  const { state } = useLocation();
-  console.log(state);
+
+
+  
+  let { state } = useLocation();
 
   const [wasteDetails,setwasteDetails ] = useState([]);
 
-  reportLocationDisposer = (data) => {
+  reportLocationDisposer = ( data ) => {
     state.location = data;
   }
 
   useEffect( () => {
-    if(isLogin === false)
-    {
-      navigate('/about');
-      console.log("token");
-    }
+    if(sessionStorage.getItem('isLogin') === 'false')
+      navigate('/login');
   },[])
 
   useEffect( () => {
@@ -58,11 +57,14 @@ function DisposerHome() {
     setChangeSlider(activeSlider)
   }
 
-
+  function reportLogout() {
+    sessionStorage.setItem('isLogin','false');
+    navigate('/login');
+  }
 
   return (
-    <div>
-      <Profile state={state} userType={'disposer'}></Profile>
+    <div className='main'>
+      <Profile state={state} userType={'disposer'} reportLogout={reportLogout}></Profile>
       
       <wasteData.Provider value={{wasteDetails,state}}>
           <WasteCard >   </WasteCard>

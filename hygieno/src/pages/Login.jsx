@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { Link ,useNavigate } from 'react-router-dom';
 import '../styles/login.css'
 
-export var isLogin = false;
+export var setLogin = false;
 
 function Login() {
 
@@ -28,7 +28,8 @@ function Login() {
         console.log('Success man:', data.status);
         if( data[0].status === 200 )
         {
-          isLogin = true;
+          setLogin = true;
+          sessionStorage.setItem('isLogin','true');
           if (data[0].usertype === 'Disposer') {
             sessionStorage.setItem('login','true')
             navigate('/pages/disposerHome' , {state : data[1]});

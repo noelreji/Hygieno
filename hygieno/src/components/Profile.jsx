@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 import '../index.css';
 import { CgProfile }  from "react-icons/cg";
 import { RxActivityLog } from "react-icons/rx";
@@ -9,9 +9,10 @@ import logo192  from '../assets/Guts.jpg';
 import { FaLocationDot } from "react-icons/fa6";
 import { reportLocationDisposer } from '../pages/DisposerHome';
 import { reportLocationCollector } from '../pages/CollectorHome';
+import { updateCLoc } from '../pages/CollectorHome';
 
-function Profile( {state , userType} ) {
-
+function Profile( {state , userType , reportLogout} ) {
+  let navigate = useNavigate();
   const [expand,setExpand] = useState(false);
   const toggleValue = () => {
       setExpand((!expand));
@@ -78,7 +79,7 @@ const convertLocation = async () => {
 useEffect(() => {
   console.log(formattedLoc);
   if(latitude)
-  setconLoc(true);
+    setconLoc(true);
 }, [formattedLoc]);
 
 useEffect( () => {
@@ -87,7 +88,11 @@ useEffect( () => {
     if( userType === 'disposer')
       reportLocationDisposer({ 'lat': latitude, 'lon': longitude });
     else
+    {
+      alert("c");
+      updateCLoc({id:state._id,loc:[76.56266553946307,9.59252685203433]})
       reportLocationCollector({ 'lat': latitude, 'lon': longitude });
+    }
     console.log(latitude, longitude);
   }
 }, [latitude]);
@@ -135,7 +140,9 @@ const setupLocation = async () => {
                             <li><span className='menuIcons'><CgProfile/></span> <Link to="/MyProfile">Your Profile</Link> </li>
                             <li> <span className='menuIcons'><RxActivityLog /></span><Link to="/MyActivities"> Your Activities</Link> </li>
                             <li><span className='menuIcons'> <BiDonateHeart /></span> <Link to="/Donate">Donate Us</Link> </li>
-                            <li><span className='menuIcons'><MdLogout /></span> <Link to="/logout">Log out</Link> </li>
+                            <li className='logout' onClick={()=>{
+                                 reportLogout();
+                            }}><span className='menuIcons'><MdLogout /></span> Log out</li>
                         </ul>
                     </div>
                 

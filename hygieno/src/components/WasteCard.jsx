@@ -55,7 +55,7 @@ function WasteCard() {
     console.log("Wastedetails -->",tempWDetails);
     const wDelAuth = [tempWDetails[index].userId , tempWDetails[index]._id];
     console.log(wDelAuth);
-    const res = await fetch(`http://localhost:5658/deleteWasteRequest`, {
+    const res = await fetch(`http://localhost:5656/deleteWasteRequest`, {
         method: 'POST',
         headers:{
             'Content-Type':'application/json'

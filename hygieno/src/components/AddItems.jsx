@@ -137,7 +137,7 @@ function AddItems({isOn,setShowItem}) {
   const handleSubmit = async () => {
     const wasteData = new FormData();
     try{
-      if(!state.location.lat)
+      if( !state.location )
       {
         alert("Update Your Location");
         return;
@@ -177,7 +177,9 @@ function AddItems({isOn,setShowItem}) {
       }
       console.log(data.message)
   }).catch((e)=>{
-    console.error(e)
+    if(e.type === 'multer')
+      alert('Size too high');
+    console.log(e)
   })
 
   toggleItemBox();

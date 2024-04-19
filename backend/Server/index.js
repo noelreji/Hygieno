@@ -16,6 +16,10 @@ connectDb();
 const authentication = require('../Routes/authentication.js');
 const handleWaste = require('../Routes/handleWaste.js');
 const handleCollectionAreaRequest = require('../Routes/handleCollectionAreaRequests.js');
+const findCollector = require('../Routes/findCollector.js');
+const updateLocation = require('../Routes/updateLocation.js');
+
+
 
 //routes
 app.post('/login',authentication);
@@ -28,6 +32,8 @@ app.post('/deleteWasteRequest',handleWaste);
 app.post('/collectionAreaRequests',handleCollectionAreaRequest);
 app.get('/collectionAreaRequests',handleCollectionAreaRequest);
 
+app.post('/findCollectors',findCollector);
+app.post('/updateCollector',updateLocation)
 app.listen(process.env.PORT , () => {
     console.log("Listening ")
 });
