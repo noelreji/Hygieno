@@ -11,7 +11,7 @@ module.exports.storeCollectionAreaRequest = async ( data ) => {
     const { location } = data;
     console.log("hello");
     console.log(location);
-    const { type , coordinates } = JSON.parse(location);
+    const { type , coordinates } = JSON.parse(location.trim());
     const newcollectionarea = new collectionarea({
         userId:     data.userId,
 
