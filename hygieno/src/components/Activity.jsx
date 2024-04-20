@@ -6,7 +6,8 @@ import '../styles/activity.css'
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 
-function Activity( {  handlewasteDelete ,reportRender } ) {
+function Activity( {  handlewasteDelete , reportRender } ) {
+
 
 const {wasteDetails} = useContext(wasteData);
 const [deleteWasteTab,setdeleteWasteTab] = useState({

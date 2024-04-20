@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const User  = require('../SchemaModels/userSchema')
-
+ 
 router.post('/findCollectors',async (req,res) => {
     const data = req.body;
     console.log("find collectors");
-    console.log(data);
-
+    console.log(data); 
+ 
     for( let i=1; i<=4; i++){
         console.log(i*5 + "radius");
         var nearC = await User.collector.find({location:{ $geoWithin: {$centerSphere : [ [data.lon,data.lat] , i*5/6378.1]} }});
@@ -17,7 +17,7 @@ router.post('/findCollectors',async (req,res) => {
             break;
     }
     if(!nearC)
-    {
+    { 
         console.log("No nearby collectors");
         res.status(500).send('0');
     }

@@ -10,8 +10,8 @@ export  const cancelWasteContext = React.createContext();
 export let dNewWaste;
 function WasteCard() {
 
- const {state,wasteDetails} = useContext(wasteData);
- const tempWDetails = wasteDetails;
+ const {wasteDetails} = useContext(wasteData);
+ let   tempWDetails = wasteDetails;
  const [showActivity,setShowActivity] = useState(false);
  const [deleteWasteTab,setdeleteWasteTab] = useState(false);
  const myRef = useRef();
@@ -42,10 +42,10 @@ function WasteCard() {
 
   
   dNewWaste = (data) => {
-            console.log("Event Catch",data);
+            alert("pooi");
             tempWDetails.unshift(data);
             console.log(tempWDetails);
-    }
+}
 
   const handleShowActivity = () => {
     setShowActivity(false);

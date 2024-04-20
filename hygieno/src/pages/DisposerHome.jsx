@@ -14,8 +14,6 @@ export let reportLocationDisposer;
 function DisposerHome() {
 
   let navigate = useNavigate();
-
-
   
   let { state } = useLocation();
 
@@ -32,6 +30,7 @@ function DisposerHome() {
 
   useEffect( () => {
     //implement passing session id to fetch waste orders to have increased security later
+    alert("Disposer");
     async function fetchWastes() {
       const res = await fetch(`http://localhost:5656/getWasteRequest?id=${state._id}`, {
       method: 'GET'
@@ -63,21 +62,18 @@ function DisposerHome() {
   }
 
   return (
+    
     <div className='main'>
-      <Profile state={state} userType={'disposer'} reportLogout={reportLogout}></Profile>
-      
-      <wasteData.Provider value={{wasteDetails,state}}>
-          <WasteCard >   </WasteCard>
-      </wasteData.Provider>
-
-      <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>
-      {
-        changeSlider === 0 ?
         <wasteData.Provider value={{wasteDetails,state}}>
-            <ListWaste setShowItemBox={setShowItemBox} isOn={isOn}></ListWaste>
+            <Profile state={state} userType={'disposer'} reportLogout={reportLogout}></Profile>     
+            <WasteCard /> 
+            <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>
+            {
+              changeSlider === 0 ?
+                  <ListWaste setShowItemBox={setShowItemBox} isOn={isOn}></ListWaste>
+              : changeSlider === 1 ? <FindUser></FindUser> : ''
+            }       
         </wasteData.Provider>
-         : changeSlider === 1 ? <FindUser></FindUser> : ''
-      }       
     </div>
   )
 }

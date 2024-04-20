@@ -27,6 +27,8 @@ module.exports.storeWasteRequest = async ( data ) => {
     
         image: imageBuffer,
     
+        collector:data.collector,
+
         location:{
             type : type,
             coordinates : coordinates
@@ -35,7 +37,7 @@ module.exports.storeWasteRequest = async ( data ) => {
             await newWaste.save().then( (data)=> {
                 responseData.message="Waste Request has been stored successfully",
                 responseData.status=200,
-                responseData.wasteData=data
+                responseData.wasteData = data
             }).catch( (error) => {
                 responseData.message=`Error storing waste request because ${error}`,
                 responseData.status=404

@@ -1,37 +1,178 @@
-.main{
+.main {
     display: flex;
     flex-direction: column;
     height: 100vh;
-}
- .services
-{
-    margin-top:5px;
-    display:flex;
+  }
+  
+  .services {
+    margin-top: 5px;
+    display: flex;
     flex-grow: 1;
-    justify-content:center;
-    align-items:center;
-    background-color:#D3DACF;
-    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    background-color: #d3dacf;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 
-}
-
-
-.contentList{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.services img{
-    transform: scale(1);
-    transition: transform 0.6s ease;
-    &:hover{
-        cursor: pointer;
-        transform: scale(1.2);
-    }
-}
-
+  }
   
+  .wasteMenuContainer {
+    margin: 10px;
+    width: 75%;
+    border-radius: 10px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
 
+  }
+
+  .wasteImageContainer.active{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+}
+
+  .wasteType{
+    display: none;
+  }
+  .wasteType.active{
+    display: block;
+  }
+
+   h3 {
+    font-size: clamp(20px, 2.5vw, 48px);
+  }
+  
+  .wasteTypesOption {
+    display: flex;
+    height: 30%;
+    gap: 30px;
+    flex-wrap: wrap;
+    
+  }
+
+  .wasteTypesOption button{
+    background-color: rgb(255, 255, 255);
+    font-size: clamp(20px, 1.5vw, 48px);
+    padding: 10px;
+    font-weight: 700;
+    border-radius: 10px;
+  }
+
+  .green{
+    border-style:solid;
+    border-color: greenyellow;
+  }
+
+  .nextIcon{
+    position: relative;
+    transform: scale(3);
+    left: 87%;
+    top:3%;
+    
+    transition: transform 0.2s ease-in-out;
+    &:hover{
+        transform: scale(4);
+    }
+  }
+
+ 
+
+  .nextIconImage{
+   grid-row: 7/8;
+   grid-column: 6/7;
+   justify-self:center ;
+   align-self: center;
+   transform: scale(3);
+    transition: transform 0.2s ease-in-out;
+    &:hover{
+        transform: scale(4);
+    }
+  }
+  .backIcon {
+    grid-row: 7/8;
+    grid-column:1/2;
+    justify-self:flex-start ;
+    align-self: center;
+    transform: scale(3) rotate(180deg); 
+    transition: transform 0.2s ease-in-out;
+
+  }
+  
+  .backIcon:hover{
+    transform: scale(4) rotate(180deg); 
+}
+
+.wasteImgFile{
+    grid-row:7/8;
+  grid-column:1/2;
+  justify-self: center;
+  align-self: center;
+}
+
+.wasteImageContainer img{
+    position: relative;
+    grid-row: 3/7;
+    grid-column:1/4;
+    justify-self: flex-start;
+    align-self: center;
+}
+.findCollectors{
+    display: none;
+}
+.findCollectors.active{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    overflow-y: scroll;
+
+}
+
+.findCollectors h3 , .wasteType h3 {
+  background-color: #6A816A;
+  padding: 20px;
+  border-radius: 10px;
+}
+.collectorDetails{
+  padding: 20px;
+  margin-top: 5px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #000000;  /* Adjust color as needed */
+  border-radius: 10px;
+}
+
+.findCollectors .collectorDetails h4{
+  margin: 0px;
+  background-color: rgb(255, 255, 255);
+}
+
+.collectorDetails.green{
+  border-color: chartreuse;
+}
+
+.backIconC{
+  position: relative;
+  top: 25px;
+  transform: scale(3) rotate(180deg);
+}
+
+.submitC{
+  
+  align-self: flex-end;
+  background-color: #d3ddd4;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.wasteImageContainer h3{
+  position: relative;
+  background-color: #6A816A;
+  padding: 20px;
+  border-radius: 10px;
+  grid-row: 1/4;
+  grid-column: 1/7;
+}

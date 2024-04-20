@@ -224,9 +224,7 @@ const validationCheckImage = () => {
            <span>
             <button className="submit-btn" onClick={validationCheckImage}>Submit</button>          
           </span>
-
       </section>
-
         </div>
       </div>
     </div>

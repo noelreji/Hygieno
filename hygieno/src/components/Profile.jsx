@@ -67,8 +67,9 @@ const convertLocation = async () => {
     });
     const response = await resp.json();
     console.log(response); 
-    var locname = response.display_name;
-    locname = locname.split(',').slice(0, 2).join(',');
+    var locname;
+    //locname = locname.split(',').slice(0, 2).join(',');
+    locname = response.address.town
     setformattedLoc(locname);
   } 
   catch (error) {
