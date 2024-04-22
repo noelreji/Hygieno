@@ -7,6 +7,7 @@ function ListWaste({setShowItemBox,isOn}) {
   return (
     <div className="services" >
         <div className='contentList'>
+        <AddItemsC isOn={isOn} setShowItem={setShowItemBox}></AddItemsC>
           <img src={trashcan} onClick={() => setShowItemBox(true)} draggable='false' alt="dispose logo" style={{width:'50px'}} />
           <h2></h2>
         </div>  

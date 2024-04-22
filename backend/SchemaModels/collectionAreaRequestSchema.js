@@ -39,6 +39,10 @@ const collectionAreaRequests = new Schema({
             },
             required:true
         }   
+    },
+    area:{
+        type: String,
+        required:true
     }
 })
 

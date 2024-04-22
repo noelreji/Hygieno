@@ -1,23 +1,22 @@
-body {
+.body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     display: block;
+    height: 100vh;
+    width: 100vw;
+
     /*background-image:url(../CSS/signupbg.webp);*/
-     /* Adjust to your needs */
+    /* Adjust to your needs */
 }
-#logo {
-    height: 3%;
-    width: 3%;
-    margin-top: .5%;
-    margin-left: 1%;
-}
-header {
-    background-color: #213f24eb;
+
+.body .header {
+    background-color: #265d2beb;
     color: #fff;
-    padding: 20px 0;
+    height: 150px;
 }
-header nav .container-login {
+.body .header header{
+    height: 100%;
+}
+.body .header header nav .container-login {
   width: 80%;
   top: 0;
   margin: 0px auto;
@@ -40,12 +39,13 @@ nav h1 a{
   text-decoration: none;
   color: #fff;
 }
-.tray {
+.body .tray {
+    display: inline-block;
     background-color: #f7f7f7;
-    height: 0;
-    width: 0vw;
+    height: calc(100% - 150px);
+    width: 100%;
 }
-.tray .container-login {
+.body .tray .container-login {
     position: absolute;
     top: 50%;
     left: 50%;

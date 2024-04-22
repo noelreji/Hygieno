@@ -74,7 +74,7 @@ function DisposerHome() {
         <wasteData.Provider value={{wasteDetails,state}}>
             <ListWaste setShowItemBox={setShowItemBox} isOn={isOn}></ListWaste>
         </wasteData.Provider>
-         : changeSlider === 1 ? <FindUser></FindUser> : ''
+         : changeSlider === 1 ? <FindUser userType={'disposer'}></FindUser> : ''
       }       
     </div>
   )

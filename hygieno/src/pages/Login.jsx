@@ -52,20 +52,23 @@ const handleChange = (event) => {
 };
 
   return (
-    <div>
-      <header>
-        <nav>
-          <div className="container-login">
-            <h1>ʜʏɢɪᴇɴᴏ</h1>
-            <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/signup">Sign up</Link></li>
-                        <li><Link to="/about">About</Link></li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+    <div className='body'>
+      <div className='header'>
+        <header>
+          <nav>
+            <div className="container-login">
+              <h1>ʜʏɢɪᴇɴᴏ</h1>
+              <ul>
+                          <li><Link to="/">Home</Link></li>
+                          <li><Link to="/login">Login</Link></li>
+                          <li><Link to="/signup">Sign up</Link></li>
+                          <li><Link to="/about">About</Link></li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+      </div>
+      
 
       <div className="tray">
         <div className="container-login">

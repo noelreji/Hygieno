@@ -114,30 +114,27 @@ const setupLocation = async () => {
               }
             }/>
             {
-                convLoc === true ?  <h4 className='loc'>{`${formattedLoc}`}</h4> : ''
+              convLoc === true ?  <h4 className='loc'>{`${formattedLoc}`}</h4> : ''
             }           
         </div>
-
-
-
 
         <div className="sub2">
         {
 
             expand &&
            (
-                    <div className={`profileContainerMenu ${expand ? 'show' :''}`}>
-                        <div className="dpDetails">
-                            <img className="afterExp" src={logo192} alt="profile picture" />
-                            <h6>{`${state.firstName} ${state.middleName} ${state.lastName}`}</h6>
-                        </div>
-                        <ul className='profileMenu' style={{listStyleType: 'none'}}>
-                            <li><span className='menuIcons'><CgProfile/></span> <Link to="/MyProfile">Your Profile</Link> </li>
-                            <li> <span className='menuIcons'><RxActivityLog /></span><Link to="/MyActivities"> Your Activities</Link> </li>
-                            <li><span className='menuIcons'> <BiDonateHeart /></span> <Link to="/Donate">Donate Us</Link> </li>
-                            <li><span className='menuIcons'><MdLogout /></span> <Link to="/logout">Log out</Link> </li>
-                        </ul>
-                    </div>
+              <div className={`profileContainerMenu ${expand ? 'show' :''}`}>
+                  <div className="dpDetails">
+                      <img className="afterExp" src={logo192} alt="profile picture" />
+                      <h6>{`${state.firstName} ${state.middleName} ${state.lastName}`}</h6>
+                  </div>
+                  <ul className='profileMenu' style={{listStyleType: 'none'}}>
+                      <li><span className='menuIcons'><CgProfile/></span> <Link to="/MyProfile">Your Profile</Link> </li>
+                      <li> <span className='menuIcons'><RxActivityLog /></span><Link to="/MyActivities"> Your Activities</Link> </li>
+                      <li><span className='menuIcons'> <BiDonateHeart /></span> <Link to="/Donate">Donate Us</Link> </li>
+                      <li><span className='menuIcons'><MdLogout /></span> <Link to="/logout">Log out</Link> </li>
+                  </ul>
+              </div>
                 
             )
         }

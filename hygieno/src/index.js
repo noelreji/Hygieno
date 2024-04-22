@@ -32,10 +32,6 @@ const router = createBrowserRouter(
     {
       path:"/pages/disposerHome",
       element:<DisposerHome />
-    },
-    {
-      path:"/logout",
-      element:<Logout/>
     }
   ]
 );

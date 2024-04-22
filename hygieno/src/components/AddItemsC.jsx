@@ -1,6 +1,7 @@
 import React ,{useState,useEffect, useRef, useContext}from 'react'
-import "../styles/addItems.css"
 import {collectionAreaData} from '../pages/CollectorHome'
+import MapComponent from './MapComponent';
+import '../styles/addItemsC.css'
 
 function AddItemsC({isOn,setShowItem}) { 
   console.log("done");
@@ -44,7 +45,7 @@ function AddItemsC({isOn,setShowItem}) {
 
  
 
-  const toggleItemBox = () => {
+  const resetValues = () => {
     setShowItemBox(false);
     setShowItem(false);
     setSelectedTypes([]);
@@ -71,12 +72,16 @@ function AddItemsC({isOn,setShowItem}) {
     }
   };
 
+  const handleTabChange = (tabName) => {
+    setActiveTab(tabName);
+  };
   const validationCheck = () => {
-    const boxes = document.getElementsByClassName('box');
+    const boxes = document.getElementsByClassName('custom-checkbox');
     let shouldReturn = false;
     const boxArray = Array.from(boxes); 
     boxArray.map((value,index)=>{
       if( boxArray[index].checked === true){
+        handleTabChange('location');
         shouldReturn = true;
       }
     })
@@ -111,56 +116,98 @@ function AddItemsC({isOn,setShowItem}) {
 
   const handleSubmit = async () => {
     console.log("donesubmit");
-    validationCheck();
-    let collectionAreaData = new FormData();
-    collectionAreaData.append('userId',state._id);
-    collectionAreaData.append('email',state.email);
-    const time = prettyTime( new Date() );
-    console.log(time);
-    console.log('hero');
-    collectionAreaData.append('date',time);
-    collectionAreaData.append('wasteTypes',selectedTypes);
-    console.log(selectedTypes);
-    collectionAreaData.append('location',JSON.stringify({
-      type: 'Point',
-      coordinates: [-74.005974, 40.712891]
-    }));
-    console.log(collectionAreaData);
-    await fetch('http://localhost:5656/collectionAreaRequests',{
-      method:'POST',
-      body:collectionAreaData
-    })
-    .then( response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      
-      return response.json();
-    })
-    .then( data => console.log(data.message))
-    toggleItemBox();
+    if (validationCheck()){
+      let collectionAreaData = new FormData();
+      collectionAreaData.append('userId',state._id);
+      collectionAreaData.append('email',state.email);
+      const time = prettyTime( new Date() );
+      console.log(time);
+      console.log('hero');
+      collectionAreaData.append('date',time);
+      collectionAreaData.append('wasteTypes',selectedTypes);
+      console.log(selectedTypes);
+      collectionAreaData.append('location',JSON.stringify({
+        type: 'Point',
+        coordinates: [9.625805821451133, 76.76101006291614]
+      }));
+      console.log(collectionAreaData);
+      await fetch('http://localhost:5656/collectionAreaRequests',{
+        method:'POST',
+        body:collectionAreaData
+      })
+      .then( response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        return response.json();
+      })
+      .then( data => console.log(data.message))
+      resetValues();
+    }
+    
   }
 
   return (
-    <div className={`item-box ${showItemBox ? 'active' : ''}`} id='container'  ref={controlClickRef}>
-      <button className="closeButton" onClick={toggleItemBox}>×</button>
+    <div className='body' id='container'>
       <div className="content">
-        <div className={`tab waste-type-tab ${activeTab === 'wasteType' ? 'active' : ''}`}>
-        <h2>Waste Type</h2>
-          <p>Select the type of waste:</p>
-            <label><input className="box"  type="checkbox" value="plastic" onChange={handleCheckboxChange} /> Plastic</label>
-            <label><input className="box" type="checkbox" value="metal" onChange={handleCheckboxChange} /> Metal</label>
-            <label><input className="box" type="checkbox" value="paper" onChange={handleCheckboxChange} /> Paper</label>
-          <br></br>
-          <h2>Location</h2>
-          <p>Please state your collection area</p>
-            <input className="textbox"  type="textbox" placeholder='Address' />
-          
-          <button className="next-btn" onClick={handleSubmit}>Submit</button>
-        </div>
-
-        </div>
+      {
+        activeTab=== 'wasteType' ? 
+            <div className='tab get-waste-type-tab'>
+              <div>
+                <h2>Waste Type</h2>
+                  <p>Select the type of waste:</p>
+                  <div class='checkbox-container'>
+                    <label class="checkbox-label" for="checkbox1">
+                      <input className="custom-checkbox"  type="checkbox" id="checkbox1"  onChange={handleCheckboxChange} /> 
+                      Plastic
+                    </label>
+                    <label class="checkbox-label" for="checkbox2">
+                      <input className="custom-checkbox" type="checkbox" id="checkbox2" onChange={handleCheckboxChange} /> 
+                      Metal
+                    </label>
+                    <label class="checkbox-label" for="checkbox3">
+                      <input className="custom-checkbox" type="checkbox" id="checkbox3" onChange={handleCheckboxChange} />
+                       Paper
+                    </label>
+                  </div>
+              </div>
+                
+                <div className='next-btn-component'>
+                    <button className="next-btn" onClick={() => validationCheck()}>Next</button>
+                </div>
+            </div>
+          : activeTab=== 'location'?
+            <div className='tab get-location-tab'>
+                <p>Please either type the address of the area 
+                  you want to add as new COLLECTION AREA 
+                  or mark the location in the map
+                </p>
+                <div className='choices'>
+                    <input type='radio' id="option1" name="options" value="Option 1"></input>
+                    <label for="option1">
+                      <input className="textbox"  type="textbox" placeholder='Address' />
+                    </label>
+                </div>
+                <div className='choices'>
+                    <input type='radio' id="option2" name="options" value="Option 2"></input>
+                    <label for="option2">
+                      <MapComponent></MapComponent>
+                    </label>
+                    
+                </div>
+                <div>
+                    <section className='back-submit-btn-component'>
+                        <button className="back-btn" onClick={() => handleTabChange('wasteType')}>Back</button>
+                        <button className="submit-btn" onClick={handleSubmit}>Submit</button>          
+                    </section>
+                </div>
+            </div>
+          : ''  
+      }
       </div>
+    </div>
+      
   );
 }
 
