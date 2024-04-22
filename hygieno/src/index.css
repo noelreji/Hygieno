@@ -1,5 +1,5 @@
 *{
-    font-family: "Kode Mono";
+    font-family: "Jost";
         padding: 0;
         box-sizing: border-box;
             user-select: none;
@@ -161,10 +161,11 @@
         }
 
         li:hover{
+            cursor: pointer;
             background-color: #D8D8D8;
         }
 
-        li a{
+        li a , .logout{
             text-decoration: none;
             color: #191919;
         }

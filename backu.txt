@@ -81,3 +81,13 @@ router.post('/wasteRequests',upload.single('waste_image') ,async (req,res) => {
 })
 
 module.exports = router;
+
+
+
+ <GrFormNext className="backIconC" onClick={() => setActiveTab('image')}/>
+           <GrFormNext className='nextIcon' onClick={verifySelectedtypes}/>
+           <GrFormNext className="backIcon" onClick={() => setActiveTab('wasteType')}/>
+                <GrFormNext className="nextIconImage" onClick={ ()=> {
+                  validationCheckImage();
+                  searchCollectors();
+                  }}/> 

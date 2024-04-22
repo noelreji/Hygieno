@@ -13,6 +13,11 @@ const wasteRequests = new Schema({
         type:String,
         required:true
     },
+ 
+    collector:{
+        type:ObjectId,
+        required:true
+    },
 
     desc:{
         type:String

@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 import '../index.css';
 import { CgProfile }  from "react-icons/cg";
 import { RxActivityLog } from "react-icons/rx";
@@ -9,9 +9,10 @@ import logo192  from '../assets/Guts.jpg';
 import { FaLocationDot } from "react-icons/fa6";
 import { reportLocationDisposer } from '../pages/DisposerHome';
 import { reportLocationCollector } from '../pages/CollectorHome';
+import { updateCLoc } from '../pages/CollectorHome';
 
-function Profile( {state , userType} ) {
-
+function Profile( {state , userType , reportLogout} ) {
+  let navigate = useNavigate();
   const [expand,setExpand] = useState(false);
   const toggleValue = () => {
       setExpand((!expand));
@@ -66,8 +67,9 @@ const convertLocation = async () => {
     });
     const response = await resp.json();
     console.log(response); 
-    var locname = response.display_name;
-    locname = locname.split(',').slice(0, 2).join(',');
+    var locname;
+    //locname = locname.split(',').slice(0, 2).join(',');
+    locname = response.address.town
     setformattedLoc(locname);
   } 
   catch (error) {
@@ -78,7 +80,7 @@ const convertLocation = async () => {
 useEffect(() => {
   console.log(formattedLoc);
   if(latitude)
-  setconLoc(true);
+    setconLoc(true);
 }, [formattedLoc]);
 
 useEffect( () => {
@@ -87,7 +89,11 @@ useEffect( () => {
     if( userType === 'disposer')
       reportLocationDisposer({ 'lat': latitude, 'lon': longitude });
     else
+    {
+      alert("c");
+      updateCLoc({id:state._id,loc:[76.56266553946307,9.59252685203433]})
       reportLocationCollector({ 'lat': latitude, 'lon': longitude });
+    }
     console.log(latitude, longitude);
   }
 }, [latitude]);
@@ -123,18 +129,20 @@ const setupLocation = async () => {
 
             expand &&
            (
-              <div className={`profileContainerMenu ${expand ? 'show' :''}`}>
-                  <div className="dpDetails">
-                      <img className="afterExp" src={logo192} alt="profile picture" />
-                      <h6>{`${state.firstName} ${state.middleName} ${state.lastName}`}</h6>
-                  </div>
-                  <ul className='profileMenu' style={{listStyleType: 'none'}}>
-                      <li><span className='menuIcons'><CgProfile/></span> <Link to="/MyProfile">Your Profile</Link> </li>
-                      <li> <span className='menuIcons'><RxActivityLog /></span><Link to="/MyActivities"> Your Activities</Link> </li>
-                      <li><span className='menuIcons'> <BiDonateHeart /></span> <Link to="/Donate">Donate Us</Link> </li>
-                      <li><span className='menuIcons'><MdLogout /></span> <Link to="/logout">Log out</Link> </li>
-                  </ul>
-              </div>
+                    <div className={`profileContainerMenu ${expand ? 'show' :''}`}>
+                        <div className="dpDetails">
+                            <img className="afterExp" src={logo192} alt="profile picture" />
+                            <h6>{`${state.firstName} ${state.middleName} ${state.lastName}`}</h6>
+                        </div>
+                        <ul className='profileMenu' style={{listStyleType: 'none'}}>
+                            <li><span className='menuIcons'><CgProfile/></span> <Link to="/MyProfile">Your Profile</Link> </li>
+                            <li> <span className='menuIcons'><RxActivityLog /></span><Link to="/MyActivities"> Your Activities</Link> </li>
+                            <li><span className='menuIcons'> <BiDonateHeart /></span> <Link to="/Donate">Donate Us</Link> </li>
+                            <li className='logout' onClick={()=>{
+                                 reportLogout();
+                            }}><span className='menuIcons'><MdLogout /></span> Log out</li>
+                        </ul>
+                    </div>
                 
             )
         }

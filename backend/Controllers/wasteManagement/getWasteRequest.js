@@ -14,8 +14,12 @@ module.exports.getWasteRequest = async ( data ) => {
             responseData.status=200,
             responseData.wasteData = data
         }).catch( (error) => {
+            console.log(error)
+            console.log("Internet Down");
             responseData.message=`Error fetching your orders because ${error}`,
-            responseData.status=404
+            responseData.status=404,
+            responseData.wasteData=[]
+
     })
     return responseData;       
 }

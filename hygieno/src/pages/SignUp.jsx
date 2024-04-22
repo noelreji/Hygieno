@@ -11,7 +11,7 @@ function SignUp() {
         firstName:'',
         middleName:'',
         lastName:'',
-        phoneNo:'8129897103'
+        phoneNo:'3109857193'
     });
 
     const handleChange = (event) => {

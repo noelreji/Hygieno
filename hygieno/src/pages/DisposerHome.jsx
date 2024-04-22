@@ -6,7 +6,7 @@ import ListWaste from '../components/ListWaste';
 import { FaTrashCanArrowUp } from "react-icons/fa6" 
 import { FaSearch } from "react-icons/fa";
 import FindUser from '../components/FindUser';
-import { isLogin } from './Login';
+import { setLogin } from './Login';
 import { useNavigate , useLocation } from 'react-router-dom';
 
 export const wasteData = React.createContext();
@@ -14,25 +14,23 @@ export let reportLocationDisposer;
 function DisposerHome() {
 
   let navigate = useNavigate();
-  const { state } = useLocation();
-  console.log(state);
+  
+  let { state } = useLocation();
 
   const [wasteDetails,setwasteDetails ] = useState([]);
 
-  reportLocationDisposer = (data) => {
+  reportLocationDisposer = ( data ) => {
     state.location = data;
   }
 
   useEffect( () => {
-    if(isLogin === false)
-    {
-      navigate('/about');
-      console.log("token");
-    }
+    if(sessionStorage.getItem('isLogin') === 'false')
+      navigate('/login');
   },[])
 
   useEffect( () => {
     //implement passing session id to fetch waste orders to have increased security later
+    alert("Disposer");
     async function fetchWastes() {
       const res = await fetch(`http://localhost:5656/getWasteRequest?id=${state._id}`, {
       method: 'GET'
@@ -58,24 +56,24 @@ function DisposerHome() {
     setChangeSlider(activeSlider)
   }
 
-
+  function reportLogout() {
+    sessionStorage.setItem('isLogin','false');
+    navigate('/login');
+  }
 
   return (
-    <div>
-      <Profile state={state} userType={'disposer'}></Profile>
-      
-      <wasteData.Provider value={{wasteDetails,state}}>
-          <WasteCard >   </WasteCard>
-      </wasteData.Provider>
-
-      <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>
-      {
-        changeSlider === 0 ?
+    
+    <div className='main'>
         <wasteData.Provider value={{wasteDetails,state}}>
-            <ListWaste setShowItemBox={setShowItemBox} isOn={isOn}></ListWaste>
+            <Profile state={state} userType={'disposer'} reportLogout={reportLogout}></Profile>     
+            <WasteCard /> 
+            <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>
+            {
+              changeSlider === 0 ?
+                  <ListWaste setShowItemBox={setShowItemBox} isOn={isOn}></ListWaste>
+              : changeSlider === 1 ? <FindUser></FindUser> : ''
+            }       
         </wasteData.Provider>
-         : changeSlider === 1 ? <FindUser userType={'disposer'}></FindUser> : ''
-      }       
     </div>
   )
 }

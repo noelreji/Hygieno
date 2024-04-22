@@ -14,7 +14,12 @@ import { useNavigate , useLocation } from 'react-router-dom';
 import '../styles/dashboard.css'
 
 export const collectionAreaData = React.createContext();
-const sliderData = ["Add New Collection Area","View Collection Areas","Find Disposers"];
+export let updateCLoc;
+const userData = {
+  firstName : "Noyal"
+
+}
+const sliderData = ["Collect","Find Disposers"];
 
 export let reportLocationCollector;
 
@@ -25,6 +30,27 @@ function CollectorHome() {
 
   reportLocationCollector = (data) => {
     state.location = data;
+  }
+
+  updateCLoc = async (data) => {
+    try {
+        alert(data.id);
+        const response = await fetch('http://localhost:5656/updateCollector',{
+        method: 'POST',
+        body: JSON.stringify(data), 
+        headers: { 'Content-Type': 'application/json' }
+      }); 
+      if (!response.ok) {
+        alert("oo")
+        throw new Error(`Error fetching data: ${response.status}`);
+      }
+      console.log(1565);
+      if(response.json().status === 200 )
+        alert("Successfully updated your location.")
+
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   const [collectionAreaDetails,setCollectionAreaDetails ] = useState([]);
