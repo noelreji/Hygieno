@@ -6,9 +6,10 @@ module.exports.getCollectionAreaRequest = async ( data ) => {
         status:Number,
         message:String,
         collectionAreaData:[Object]
-      }    
+    }    
     
     await collectionarea.find( { userId:data } ).then( ( data )=> {
+            console.log("janu");
             console.log(data);
             responseData.message="Successfully fetched your requests",
             responseData.status=200,

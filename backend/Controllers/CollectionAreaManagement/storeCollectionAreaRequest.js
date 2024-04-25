@@ -1,4 +1,6 @@
 const collectionarea  = require('../../SchemaModels/collectionAreaRequestSchema')
+const ReverseGeocode = require('../Geocoding/reversegeocoding');
+const { spawn } = require('child_process');
 
 module.exports.storeCollectionAreaRequest = async ( data ) => {
 
@@ -12,6 +14,16 @@ module.exports.storeCollectionAreaRequest = async ( data ) => {
     console.log("hello");
     console.log(location);
     const { type , coordinates } = JSON.parse(location.trim());
+    const area = await ReverseGeocode(coordinates)
+    .then((formattedAddress) => {
+        console.log('Formatted Addgreress:', formattedAddress);
+        return formattedAddress;
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
+    console.log('Area: ',area);
     const newcollectionarea = new collectionarea({
         userId:     data.userId,
 
@@ -19,17 +31,16 @@ module.exports.storeCollectionAreaRequest = async ( data ) => {
         
         date:       data.date,
 
-        desc:       data.desc,
-
-        status:     data.status,
-        
         wasteTypes: data.wasteTypes,
     
         location:{
             type : type,
             coordinates : coordinates
-        }
+        },
+        area: area
+
     })
+    console.log(newcollectionarea);
     await newcollectionarea.save().then( ()=> {
         responseData.message="Collection Area Request has been stored successfully",
         responseData.status=200

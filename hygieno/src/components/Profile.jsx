@@ -89,12 +89,6 @@ useEffect( () => {
     convertLocation();
     if( userType === 'disposer')
       reportLocationDisposer({ 'lat': latitude, 'lon': longitude });
-    else
-    {
-      alert("c");
-      updateCLoc({id:state._id,loc:[76.56266553946307,9.59252685203433]})
-      reportLocationCollector({ 'lat': latitude, 'lon': longitude });
-    }
     console.log(latitude, longitude);
   }
 }, [latitude]);
@@ -113,13 +107,11 @@ const setupLocation = async () => {
         <div className="sub1">
             <h1> Welcome,{firstname}</h1>
         </div>
-
-        
-
-        
-
+      
 
         <div className="sub2">
+        { userType=='disposer'
+            ? 
           <div className="locationContainer">
                   <FaLocationDot className={`locationicon  ${latitude ? 'locTrue' : ''}`} onClick={
                     ()=> {
@@ -130,6 +122,8 @@ const setupLocation = async () => {
                       convLoc === true ?  <h4 className='loc'>{`${formattedLoc}`}</h4> : ''
                   }           
           </div>
+          : null
+        }
         {
             expand &&
            (

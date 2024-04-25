@@ -2,6 +2,7 @@ import React ,{useState,useEffect, useRef , useContext}from 'react'
 import "../styles/addItems.css"
 import {wasteData} from '../pages/DisposerHome'
 import { dNewWaste } from './WasteCard';
+
 function AddItems({isOn,setShowItem}) { 
   const [showItemBox, setShowItemBox] = useState(false);
   const [activeTab, setActiveTab] = useState('wasteType'); 
@@ -222,7 +223,7 @@ const validationCheckImage = () => {
       <section>
           <button className="back-btn" onClick={() => handleTabChange('wasteType')}>Back</button>
            <span>
-            <button className="submit-btn" onClick={validationCheckImage}>Submit</button>          
+            <button className="submit-btn" onClick={validationCheckImage}>Submit</button>
           </span>
       </section>
         </div>

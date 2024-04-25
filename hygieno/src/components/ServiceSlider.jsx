@@ -4,9 +4,7 @@ import '../styles/serviceSlider.css'
 //import { FaSearch } from "react-icons/fa";
 
 function ServiceSlider({sliderData,changeServicePage,icons}) {
-  const [active,setActive]=useState({
-    key:0
-  })
+  const [active,setActive]=useState({key:0})
 
   const toggleValue = (index) => {
     const curKey = index
@@ -15,9 +13,7 @@ function ServiceSlider({sliderData,changeServicePage,icons}) {
       return;
     else
     {
-      setActive({
-        key:curKey
-      }
+      setActive({key:curKey}
     );
       changeServicePage(curKey);
   }

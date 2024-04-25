@@ -1,4 +1,3 @@
-const { use } = require('../../Routes/authentication');
 const User  = require('../../SchemaModels/userSchema')
 
 module.exports.validateUser = async (userCredentials) => {

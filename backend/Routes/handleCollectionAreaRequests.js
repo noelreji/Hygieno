@@ -3,7 +3,7 @@ const multer = require('multer');
 const router = express.Router();
 const { storeCollectionAreaRequest } = require('../Controllers/CollectionAreaManagement/storeCollectionAreaRequest');
 const { getCollectionAreaRequest } = require('../Controllers/CollectionAreaManagement/getCollectionAreaRequest');
-//const {getWasteRequest} = require('../Controllers/wasteManagement/getWasteRequest');
+
 
 const upload = multer({ storage: multer.memoryStorage()});
 router.post('/collectionAreaRequests' ,upload.single('waste_image'), async (req,res) => {
