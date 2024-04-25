@@ -1,24 +1,24 @@
-import React ,{useEffect, useState}from 'react'
-import ServiceSlider from '../components/ServiceSlider';
-import '../styles/Table.css';
+import React , { useState, useEffect }from "react";
 
 
-  function ViewCollectionAreas(props){
-    const [collectionAreaDetails,setCollectionAreaDetails ] = useState([]);
+function NewRqFromD(props){
+  const [newRqFromD,setNewRqFromD] = useState([]);
+    console.log('ok');
     useEffect( () => {
         //implement passing session id to fetch waste orders to have increased security later
-        async function fetchCollectionAreas() {
-          const res = await fetch(`http://localhost:5656/collectionAreaRequests?id=${props.state._id}`, {
+        async function fetchNewRqFromD() {
+          const res = await fetch(`http://localhost:5656/getNewRqFromD?id=${props.state._id}`, {
           method: 'GET'
           });
           const response = res.json();
           response.then( (data) => {
-            console.log(data.collectionAreaData);
-          setCollectionAreaDetails(data.collectionAreaData);
+          console.log(data.newRqFromD);
+          setNewRqFromD(data.newRqFromD);
         }).catch( err =>   console.log(err))
       }
-      fetchCollectionAreas();
+      fetchNewRqFromD();
     },[])
+
 
     const ROWS_PER_PAGE = 10; // Define how many rows per page
 
@@ -29,7 +29,7 @@ import '../styles/Table.css';
     const endIndex = (currentPage + 1) * ROWS_PER_PAGE;
 
     // Get the data to be displayed on the current page
-    const currentPageData = collectionAreaDetails.slice(startIndex, endIndex);
+    const currentPageData = newRqFromD.slice(startIndex, endIndex);
 
     // Handle pagination
     const nextPage = () => {
@@ -40,10 +40,8 @@ import '../styles/Table.css';
         setCurrentPage(currentPage - 1);
     };
 
-
     return(
       <div>
-       
         <div className="table-container">
           <div className="table-header">
             <table className='custom-table'>
@@ -82,10 +80,9 @@ import '../styles/Table.css';
         <div className="pagination">
           <button onClick={prevPage} disabled={currentPage === 0}>Previous</button>
           <span>Page {currentPage + 1}</span>
-          <button onClick={nextPage} disabled={endIndex >= collectionAreaDetails.length}>Next</button>
-        </div>
-      </div>  
-    );
-  }
+          <button onClick={nextPage} disabled={endIndex >= newRqFromD.length}>Next</button>
+        </div></div>
+    )
+}
 
-export default ViewCollectionAreas
+export default NewRqFromD;

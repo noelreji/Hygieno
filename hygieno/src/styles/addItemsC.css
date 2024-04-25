@@ -1,6 +1,6 @@
-/* addItems.css */
+/* addItemsC.css */
   #container{
-    background-color: #bf7e39;
+    background-color: #fbfbfb;
     width:100%;
     height: 80%;
     border-radius: 10px;
@@ -17,6 +17,7 @@
     padding-left: 20px;
     margin: 10px;
     height: 100%;
+    
    }
    
    .tab {
@@ -33,14 +34,11 @@
    
 
    .get-location-tab{
-    display:block;
-    color:#5139bf;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color:#000000;
     height:100%;
-   }
-   .map{
-    height: 60%;
-    width: auto;
-    display: block;
    }
    
    .error {
@@ -123,8 +121,8 @@
       height:150px;
     }
     
-    .custom-checkbox {
-      display: block;
+    .custom-checkbox{
+      display: none;
     }
     
     .checkbox-label {
@@ -132,6 +130,7 @@
       padding-left: 25px;
       cursor: pointer;
       font-size: 16px;
+      width: fit-content;
     }
     
     .checkbox-label:before {
@@ -141,20 +140,20 @@
       top: 3px;
       width: 18px;
       height: 18px;
-      border: 1px solid #000000;
-      border-radius: 3px;
+      border: 2px solid #000000;
+      border-radius: 10px;
       background-color: #ffffff;
     }
     
-    .custom-checkbox:checked + .checkbox-label:before {
-      background-color: #007bff; /* Change color when checked */
+    .custom-checkbox:checked + .checkbox-label:before{
+      background-color: #007afd;
     }
     
     .checkbox-label:after {
       content: "";
       position: absolute;
       left: 5px;
-      top: 9px;
+      top: 6px;
       width: 5px;
       height: 10px;
       border: solid #fff;
@@ -163,7 +162,7 @@
       display: none;
     }
     
-    .custom-checkbox:checked + .checkbox-label:after {
+    .custom-checkbox:checked ~ .checkbox-label:after {
       display: block;
     }
     

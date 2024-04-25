@@ -9,7 +9,7 @@ import logo192  from '../assets/Guts.jpg';
 import { FaLocationDot } from "react-icons/fa6";
 import { reportLocationDisposer } from '../pages/DisposerHome';
 import { reportLocationCollector } from '../pages/CollectorHome';
-import { updateCLoc } from '../pages/CollectorHome';
+
 
 function Profile( {state , userType , reportLogout} ) {
   let navigate = useNavigate();
@@ -88,12 +88,6 @@ useEffect( () => {
     convertLocation();
     if( userType === 'disposer')
       reportLocationDisposer({ 'lat': latitude, 'lon': longitude });
-    else
-    {
-      alert("c");
-      updateCLoc({id:state._id,loc:[76.56266553946307,9.59252685203433]})
-      reportLocationCollector({ 'lat': latitude, 'lon': longitude });
-    }
     console.log(latitude, longitude);
   }
 }, [latitude]);
@@ -112,17 +106,19 @@ const setupLocation = async () => {
         <div className="sub1">
             <h1> Welcome,{firstname}</h1>
         </div>
-
-        <div className="locationContainer">
-            <FaLocationDot className={`locationicon  ${latitude ? 'locTrue' : ''}`} onClick={
-              ()=> {
-                setupLocation();
-              }
-            }/>
-            {
-              convLoc === true ?  <h4 className='loc'>{`${formattedLoc}`}</h4> : ''
-            }           
-        </div>
+        {userType=='disposer'
+        ? 
+          <div className="locationContainer">
+              <FaLocationDot className={`locationicon  ${latitude ? 'locTrue' : ''}`} onClick={
+                ()=> {
+                  setupLocation();
+                }
+              }/>
+              {
+                convLoc === true ?  <h4 className='loc'>{`${formattedLoc}`}</h4> : ''
+              }           
+          </div> : null
+        }
 
         <div className="sub2">
         {

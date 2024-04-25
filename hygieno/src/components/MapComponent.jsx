@@ -1,49 +1,82 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
-
+import { MapContainer, TileLayer, Marker, Popup, useMapEvent} from 'react-leaflet';
 import L from 'leaflet';
-
+import useGeolocation from './useGeolocation';
+import customIcon from '../assets/marker_map_icon.png';
+import '../styles/MapComponent.css'
+export let collectionAreaCoord = [];
 const MapComponent = () => {
-    const [map, setMap] = useState(null);
+
     const [searchQuery, setSearchQuery] = useState('');
     const [mapCenter, setMapCenter] = useState([9.625805821451133, 76.76101006291614]);
-    const [mapMarkers, setMapMarkers] = useState([{ 
-        position: [9.625805821451133, 76.76101006291614], address: "Example address" }
+    const location = useGeolocation();
+    const [selectedPosition, setSelectedPosition] = useState([
+        0,0
     ]);
-    const markerIconStyles = {
-        display: 'block' // Ensure the marker icon is displayed
-    };
+
     const mapRef = useRef(null);
+
+    location.loaded && !location.error &&(
+                    
+        <Marker position={[
+            location.coordinates.lat,
+            location.coordinates.lng]}
+        icon={L.icon({
+            iconUrl: customIcon,
+            iconSize: [24, 24], // Size of the icon
+            iconAnchor: [12, 24] // Anchor point of the icon
+        })}
+        zIndexOffset={1000}>
+            <Popup>my place</Popup>
+        </Marker>
+    )
+
     useEffect(() => {
         // Ensure Leaflet styles are loaded
         import('leaflet/dist/leaflet.css').then(() => {
             console.log('Leaflet styles have been loaded.');
         });
+        
     }, []);
 
     useEffect(() => {
-        if (!map) return;
+        collectionAreaCoord=selectedPosition;
+        console.log('collecton coord');
+        console.log(collectionAreaCoord);
 
-        // Define click event handler
-        const handleClick = (e) => {
-            const { lat, lng } = e.latlng;
-            const newMarker = {
-                position: [lat, lng],
-                address: `Clicked location: ${lat.toFixed(5)}, ${lng.toFixed(5)}`
-            };
-            setMapMarkers([...mapMarkers, newMarker]);
-        };
-        mapRef.current = map;
-        // Add click event listener to the map
-        map.on('click', handleClick);
+    },selectedPosition);
 
-        // Cleanup function to remove event listener when component unmounts
-        return () => {
-            map.off('click', handleClick);
-        };
-    }, [map, mapMarkers]);
+    const Markers = () => {
+
+        const map = useMapEvent('click',(e) => {                                
+            setSelectedPosition([
+                e.latlng.lat,
+                e.latlng.lng
+            ])
+            console.log("selectedPos");
+            
+            console.log(selectedPosition);
+            console.log("click");
+            console.log(e.latlng);
+            setSearchQuery(`${e.latlng.lat},${e.latlng.lng}`);
+        })
+        return (
+           
+            selectedPosition ? 
+                <Marker           
+                key={selectedPosition[0]}
+                position={selectedPosition}
+                interactive={false}
+                icon={L.icon({
+                    iconUrl: customIcon,
+                    iconSize: [24, 24], // Size of the icon
+                    iconAnchor: [12, 24] // Anchor point of the icon
+                })}
+                />
+            : null
+        )
+        
+    }
 
     const handleSearch = () => {
         const address = searchQuery.trim();
@@ -57,48 +90,52 @@ const MapComponent = () => {
         .then(data => {
             const { lat, lng } = data.results[0].geometry;
             setMapCenter([lat, lng]); // Update map center
-            setMapMarkers([{ position: [lat, lng], address: address }]); // Set marker for searched location
+            console.log(lat,lng);
+            setSelectedPosition([lat,lng]);
+            console.log("mapRef");
+            console.log(mapRef);
+            mapRef.current.flyTo([lat,lng],10);
         })
-            .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Error:', error));
     };
+
+
+
 
     return (
         <div>
-            <div>
+            <div className='search-bar'>
                 <input
+                    className='search-box'
                     type="text"
-                    placeholder="Enter location..."
+                    placeholder='Enter Location...'
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
+                    onKeyDown={(event) => {
+                        // Check if the pressed key is Enter (key code 13)
+                        if (event.key === 'Enter') {
+                          // Call the search function when Enter key is pressed
+                          handleSearch();
+                        }}
+                    }
                 />
-                <button onClick={handleSearch}>Search</button>
+                <button className='search-button' onClick={handleSearch}>Search</button>
             </div>
-            <MapContainer center={mapCenter} zoom={10} style={{ height: '350px' }}>
+            <MapContainer 
+                center={mapCenter}
+                zoom={10}
+                style={{ height: '350px' }}
+                ref={mapRef}
+            >
+                
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    
                 />
-                {   
-                    mapMarkers.map((marker, index) => (
-                        <Marker
-                            key={index}
-                            position={marker.position}
-                            zIndexOffset={1000} // Set a high value to ensure marker appears on top
-                            icon={L.divIcon({
-                                className: 'custom-icon',
-                                html: `<div><i class="fas fa-map-marker-alt"></i></div>`, // FontAwesome icon HTML
-                                iconSize: [24, 24], // Size of the icon
-                                iconAnchor: [12, 24], // Anchor point of the icon
-                                bubblingMouseEvents: true // Allow mouse events to bubble to the map
-                            })}
-                            eventHandlers={{
-                                click: () => mapRef.current.fireEvent('click', { latlng: marker.position })
-                            }}
-                            >
-                            <Popup>{marker.address}</Popup>
-                        </Marker>
-                    ))
-                }
+                <Markers></Markers>
+                
+                
 
             </MapContainer>
 
