@@ -42,7 +42,6 @@ function WasteCard() {
 
   
   dNewWaste = (data) => {
-            alert("pooi");
             tempWDetails.unshift(data);
             console.log(tempWDetails);
 }

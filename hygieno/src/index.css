@@ -11,6 +11,60 @@
 }
 
 
+.profileContainer .sub2 .locationContainer{
+    display: grid;
+    position: relative;
+    right: 8%;
+    grid-template-columns:   100px 1fr;
+    grid-template-rows: 2fr;
+
+    .locationicon{
+        align-self: center;
+        justify-self: center;
+        color: rgb(0, 0, 0);
+        grid-column: 2/3;
+        grid-row: 1/2;
+        height: 30px;
+        transition: color 0.4s ease-in-out;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    .locTrue{
+        color: red;
+    }
+    .loc{
+        align-self: center;
+        justify-self:center;
+        grid-column: 1/2;
+        grid-row: 1/2;    
+    }
+
+
+    .setLocationC{
+        border-radius: 5%;
+        background-color: rgb(255, 255, 255);
+        justify-self: stretch;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        top: 10px;
+        left: 30px;
+        align-items: center;
+        z-index: 1;
+        grid-column: 1/6;
+        grid-row: 2/5;
+
+        button{
+            width: 1fr;
+            font-size: small;
+        }
+    }
+}
+
 .profileContainer{
     
     border-radius: 5px;
@@ -22,79 +76,25 @@
 
     .sub1{  
         font-size: 70%;
-        background-color: #D3DACF;
         left: 5%;
         position: relative;
     }
 
-    .locationContainer{
-        display: grid;
-        position: relative;
-        right: 8%;
-        grid-template-columns:   1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: 2fr 2fr 2fr 2fr 2fr;
-        place-items: center;
-
-        .locationicon{
-            color: rgb(0, 0, 0);
-            grid-column: 6/7;
-            grid-row: 3/4;
-            width: 20px;
-            height: 30px;
-            transition: color 0.4s ease-in-out;
-            &:hover{
-                cursor: pointer;
-            }
-        }
-
-        .locTrue{
-            color: red;
-        }
-        .loc{
-            grid-column: 2/6;
-            grid-row: 3/4;
-            
-          
-        }
-
-
-        .setLocationC{
-            border-radius: 5%;
-            background-color: rgb(255, 255, 255);
-            justify-self: stretch;
-            align-self: stretch;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            top: 10px;
-            left: 30px;
-            align-items: center;
-            z-index: 1;
-            grid-column: 1/6;
-            grid-row: 2/5;
-
-            button{
-                width: 1fr;
-                font-size: small;
-            }
-        }
-    }
+   
 }
 
 .profileContainer  .sub2{
         display: flex;
+        gap: 10px;
         justify-content: center;
         align-items: center;
         height: 10vh;
         position: absolute;
         right: 5%;
-        background-color:  #D3DACF;       
 }
 
     .beforeExp{
-        height: 24px;
-        width:24px;
+        height: 20px;
         border-radius: 50%;   
         transform: scale(1.2);  
         transition: transform .3s ease-in-out;
@@ -104,8 +104,7 @@
     }
 
     .beforeExp.active{
-       height: 24px;
-       width: 24px;
+       height: 20px;
        border-radius: 50%;
        transform: scale(1.5);
        &:hover{
@@ -125,16 +124,16 @@
     width: 200px;
     height: auto;
     top:80%; 
-    right:35%;
+    right:5px;
     background-color: #F1F1F1;
     border-radius: 5%;
     z-index: 1;
 
     .dpDetails{
-        display: block;
-        text-align: center;
-        font-size: 1rem;
+        display: flex;
+        align-items: center;
         padding: 10px;
+        font-size: 20px;
         background-color: rgb(255, 255, 255);
         border-top-left-radius: 5%;
         border-top-right-radius: 5%;

@@ -29,6 +29,8 @@ module.exports.storeWasteRequest = async ( data ) => {
     
         collector:data.collector,
 
+        collectionArea : data.collectionarea,
+
         location:{
             type : type,
             coordinates : coordinates

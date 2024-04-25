@@ -5,11 +5,12 @@ import { CgProfile }  from "react-icons/cg";
 import { RxActivityLog } from "react-icons/rx";
 import { BiDonateHeart } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
-import logo192  from '../assets/Guts.jpg';
+import logo192  from '../assets/noun-user-avatar-5787297.png';
 import { FaLocationDot } from "react-icons/fa6";
 import { reportLocationDisposer } from '../pages/DisposerHome';
 import { reportLocationCollector } from '../pages/CollectorHome';
 import { updateCLoc } from '../pages/CollectorHome';
+import { FaRegCircleUser } from "react-icons/fa6";
 
 function Profile( {state , userType , reportLogout} ) {
   let navigate = useNavigate();
@@ -113,23 +114,23 @@ const setupLocation = async () => {
             <h1> Welcome,{firstname}</h1>
         </div>
 
-        <div className="locationContainer">
-            <FaLocationDot className={`locationicon  ${latitude ? 'locTrue' : ''}`} onClick={
-              ()=> {
-                setupLocation();
-              }
-            }/>
-            {
-                convLoc === true ?  <h4 className='loc'>{`${formattedLoc}`}</h4> : ''
-            }           
-        </div>
+        
 
-
+        
 
 
         <div className="sub2">
+          <div className="locationContainer">
+                  <FaLocationDot className={`locationicon  ${latitude ? 'locTrue' : ''}`} onClick={
+                    ()=> {
+                      setupLocation();
+                    }
+                  }/>
+                  {
+                      convLoc === true ?  <h4 className='loc'>{`${formattedLoc}`}</h4> : ''
+                  }           
+          </div>
         {
-
             expand &&
            (
                     <div className={`profileContainerMenu ${expand ? 'show' :''}`}>

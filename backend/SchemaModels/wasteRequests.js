@@ -38,6 +38,9 @@ const wasteRequests = new Schema({
         required:true
     },
 
+    collectionArea : {
+        type: ObjectId
+    },
     location:
     {
         type:{

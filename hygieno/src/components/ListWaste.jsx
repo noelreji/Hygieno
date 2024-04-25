@@ -150,8 +150,10 @@ function ListWaste() {
       wasteData.append('wasteTypes',selectedTypes);
       console.log(selectedTypes)
       wasteData.append('waste_image',selectedImage);
-      alert(collectorData[checkedC].firstName);
-      wasteData.append('collector',collectorData[checkedC]._id);
+     // alert(collectorData[checkedC].firstName);
+      wasteData.append('collectionarea',collectorData[checkedC]._id);
+      wasteData.append('collector',collectorData[checkedC].userId);
+
       console.log("waste data",wasteData.get("waste_image"))
   }
   catch(er)
