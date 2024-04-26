@@ -25,7 +25,7 @@
     height: 100%;
    }
    
-   .get-waste-type-tab{
+   .get-waste-type-tab {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -47,14 +47,13 @@
     animation: shake 0.5s ease-in-out;
    }
 
-   .next-btn-component{
+   .next-btn-component {
     display: flex;
     justify-content: end;
     align-self: flex-end;
-    
    }
 
-   .back-submit-btn-component{
+   .back-submit-btn-component {
     display: flex;
     justify-content: space-between;
    }
@@ -71,14 +70,7 @@
     font-family: 'Roboto', sans-serif; 
    }
    
-   input[type="file"]::-webkit-file-upload-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-   }
+   /*
    
    input[type="file"]::file-selector-button {
     background-color: #4CAF50;
@@ -88,7 +80,7 @@
     border: none;
     cursor: pointer;
     
-   }
+   }*/
    .back-btn, .submit-btn{
     margin-right: 10px;
    }

@@ -42,7 +42,8 @@ const handlerenderNormal = ()=>{
     const activityObject = {
       key: index,
       date: value.date,
-      type: value.type,
+      type: value.wasteTypes,
+      collector: value.collectorDetails[0].firstName,
       desc: value.desc,
       status: value.status
     };
@@ -65,6 +66,7 @@ const handlerenderNormal = ()=>{
                   <ul style={{ listStyleType: 'none' }}>
                     <li>{activityObject.date}</li>
                     <li id='main'>{activityObject.type}</li>
+                    <li>Collector: {activityObject.collector}</li>
                     <li>{activityObject.desc}</li>
                   </ul>
                 </div>

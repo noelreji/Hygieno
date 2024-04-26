@@ -13,10 +13,23 @@
     background-color: #d3dacf;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-
+    
   }
-  
+
+  input[type="file"]{
+    color: rgba(0, 0, 0, 0);
+    width:100px;
+  }
+  input[type="file"]::-webkit-file-upload-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   }
   .wasteMenuContainer {
+    position: relative;
     margin: 10px;
     width: 75%;
     border-radius: 10px;
@@ -24,13 +37,17 @@
     display: flex;
     flex-direction: column;
     padding: 30px;
-
+  }
+  .wasteImageContainer{
+    display: none;
   }
 
   .wasteImageContainer.active{
     display: grid;
+    position: relative;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 30% 1fr 40px 40px ;
+    height: auto;
 }
 
   .wasteType{
@@ -66,35 +83,37 @@
   }
 
   .nextIcon{
-    position: relative;
+    position: absolute;
     transform: scale(3);
-    left: 87%;
-    top:3%;
-    
+    left: 95%;
+    bottom: 18%;
     transition: transform 0.2s ease-in-out;
     &:hover{
         transform: scale(4);
+        cursor: pointer;
+
     }
   }
 
  
 
   .nextIconImage{
-   grid-row: 7/8;
+   grid-row: 4/5;
    grid-column: 6/7;
    justify-self:center ;
-   align-self: center;
+   align-self: flex-end;
    transform: scale(3);
     transition: transform 0.2s ease-in-out;
     &:hover{
         transform: scale(4);
+        cursor: pointer;
     }
   }
   .backIcon {
-    grid-row: 7/8;
+    grid-row: 4/5;
     grid-column:1/2;
     justify-self:flex-start ;
-    align-self: center;
+    align-self: flex-end;
     transform: scale(3) rotate(180deg); 
     transition: transform 0.2s ease-in-out;
 
@@ -102,22 +121,34 @@
   
   .backIcon:hover{
     transform: scale(4) rotate(180deg); 
+    cursor: pointer;
+
 }
 
 .wasteImgFile{
-    grid-row:7/8;
+  position: relative;
+  grid-row:3/4;
   grid-column:1/2;
-  justify-self: center;
-  align-self: center;
+  justify-self: flex-start;
+  align-self: flex-end;
 }
 
-.wasteImageContainer img{
+.wasteImageContainer .selectedWastePreview{
     position: relative;
-    grid-row: 3/7;
+    grid-row: 2/3;
     grid-column:1/4;
-    justify-self: flex-start;
-    align-self: center;
+    align-self:center;
+    width: 50%;
 }
+
+.wastePreview{
+  position: relative;
+  grid-row: 2/3;
+  grid-column:1/4;
+  align-self:center;
+  width: 50%;
+}
+
 .findCollectors{
     display: none;
 }
@@ -157,6 +188,10 @@
   position: relative;
   top: 25px;
   transform: scale(3) rotate(180deg);
+  &:hover{
+            cursor: pointer;
+
+  }
 }
 
 .submitC{
@@ -173,6 +208,17 @@
   background-color: #6A816A;
   padding: 20px;
   border-radius: 10px;
-  grid-row: 1/4;
+  grid-row: 1/2;
   grid-column: 1/7;
+  align-self:flex-start;
+}
+
+@media only screen and (min-width: 601px){
+  .wastePreview{
+    position: relative;
+    grid-row: 2/3;
+    grid-column:1/4;
+    align-self:center;
+    width: 30%;
+  }
 }

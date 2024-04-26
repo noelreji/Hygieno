@@ -33,17 +33,17 @@
         }
     
     .left-content{
-        background-color: rgb(255, 255, 255);
         position: relative;
+        width: 40%;
         left: 4%;
     }
     
      .right-content{
+        width: 30%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: rgb(255, 255, 255);
     
         
         .icons{

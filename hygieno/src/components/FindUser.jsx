@@ -1,7 +1,6 @@
 import "../styles/searchUI.css"
 import React, { useState } from 'react';
-import Search from '../components/searchUI'
-import trashcan from '../assets/Guts.jpg';
+
 
 function FindUser(props) {
     const [locationFilter, setLocationFilter] = useState('');

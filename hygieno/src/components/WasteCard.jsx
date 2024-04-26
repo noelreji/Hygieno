@@ -79,7 +79,7 @@ function WasteCard() {
                         <ul style={{listStyleType:'none'}}>
                             <li>{date}</li>
                             <li id='main'>{wasteTypes}</li>
-                            <li>{desc}</li>
+                            <li>Collector: {tempWDetails[0].collectorDetails[0].lastName}</li>
                         </ul>
                     </div>
                     <div className="right-content">

@@ -1,5 +1,5 @@
 /* addItems.css */
-.body.LockScroll{
+/*.body.LockScroll{
   overflow: hidden;
 }
 
@@ -12,7 +12,7 @@
  /* top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);*/
-  background: linear-gradient(45deg,  #6A816A ,#D3DACF); 
+  /*background: linear-gradient(45deg,  #6A816A ,#D3DACF); 
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -91,10 +91,7 @@
   font-family: 'Roboto', sans-serif; 
  }
  
-input[type="file"]{
-  color: rgba(0, 0, 0, 0);
-  width:100px;
-}
+
  input[type="file"]::-webkit-file-upload-button {
   background-color: #4CAF50;
   padding: 10px;
@@ -116,7 +113,7 @@ input[type="file"]{
   cursor: pointer;
  }
  */
- .back-btn, .submit-btn{
+ /*.back-btn, .submit-btn{
   margin-right: 10px;
  }
  
@@ -139,4 +136,4 @@ input[type="file"]{
   }
   100% {
     transform: translateX(0);
-  }}
+  }}*/

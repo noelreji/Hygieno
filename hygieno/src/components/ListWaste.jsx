@@ -8,9 +8,10 @@ import { wasteData } from '../pages/DisposerHome';
 import { dNewWaste } from './WasteCard';
 
 function ListWaste() {
-  const typeWaste = ['Plastics' , 'Metal' , 'E-Waste' , 'Paper' ,'Plastics' , 'Metal' , 'E-Waste' , 'Paper','Plastics' , 'Metal' , 'E-Waste' , 'Paper'];
+  const typeWaste = ['Plastics' , 'Metal' , 'E-Waste' , 'Paper' , 'Medical ' , 'Organic' , 'Hazardous' ];
 
   const [activeTab, setActiveTab] = useState('wasteType'); 
+  const [others,setothers] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const {state} = useContext(wasteData)
@@ -33,7 +34,7 @@ function ListWaste() {
   const verifySelectedtypes = ()  => {
     if(selectedTypes.length < 1)
     {
-      const errorAnimation = document.getElementById('container')
+      const errorAnimation = document.getElementById('containerLWD')
       errorAnimation.classList.add('error');
       setTimeout(() => {
           errorAnimation.classList.remove('error');
@@ -63,7 +64,7 @@ function ListWaste() {
     }
     else
     {
-      const errorAnimation = document.getElementById('container')
+      const errorAnimation = document.getElementById('containerLWD')
       errorAnimation.classList.add('error');
       setTimeout(() => {
         errorAnimation.classList.remove('error');
@@ -146,7 +147,7 @@ function ListWaste() {
       wasteData.append('status','Pending Collection');
       const time = prettyTime( new Date() );
       console.log(time);
-      wasteData.append('date',time);
+      wasteData.append('date',new Date());
       wasteData.append('wasteTypes',selectedTypes);
       console.log(selectedTypes)
       wasteData.append('waste_image',selectedImage);
@@ -184,7 +185,8 @@ function ListWaste() {
 
   return (
     <div className="services" >  
-        <div className="wasteMenuContainer" id='container'>
+        {console.log(activeTab)};
+        <div className="wasteMenuContainer" id='containerLWD' >
           <div className={`wasteType  ${activeTab === 'wasteType' ? 'active' : ''}`}>
             <h3>Select Waste Type</h3>
             <div className='wasteTypesOption'>
@@ -205,12 +207,12 @@ function ListWaste() {
             </div>
             <GrFormNext className='nextIcon' onClick={verifySelectedtypes}/>
           </div>
-            <div className={`wasteImageContainer tab ${activeTab === 'image' ? 'active' : ''}`}>
+            <div className={`wasteImageContainer  ${activeTab === 'image' ? 'active' : ''}`}>
                 <h3 >Add Images</h3>
                 { selectedImage ? 
-                                    <img src={selectedImage} alt="Uploaded" style={{ width: '45%', borderRadius:'5px'}} />
+                                    <img src={selectedImage} alt="Uploaded" className='selectedWastePreview' style={{  borderRadius:'5px'}} />
                                 :
-                                    <img src={wastePreiew} alt="Uploaded" style={{ maxWidth: '300px', maxHeight: '150px' ,borderRadius:'5px'}} />     }
+                                    <img src={wastePreiew} className='wastePreview'  alt="Uploaded" style={{ borderRadius:'5px'}} />     }
      
                 <input className='wasteImgFile' type="file" accept="image/*" onChange={handleImageChange}/>         
                 
