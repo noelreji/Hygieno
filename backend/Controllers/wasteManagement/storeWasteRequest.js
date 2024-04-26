@@ -16,7 +16,7 @@ module.exports.storeWasteRequest = async ( data ) => {
     
     const newWaste = new waste({
         userId: data.userId,
-        
+        disposername:data.disposername,
         date:data.date,
 
         status:data.status,
@@ -32,15 +32,18 @@ module.exports.storeWasteRequest = async ( data ) => {
         location:{
             type : type,
             coordinates : coordinates
-        }
+        },
+        collectionArea:data.collectionArea
     })
             await newWaste.save().then( (data)=> {
                 responseData.message="Waste Request has been stored successfully",
                 responseData.status=200,
                 responseData.wasteData = data
+                console.log("Waste Request has been stored successfully");
             }).catch( (error) => {
                 responseData.message=`Error storing waste request because ${error}`,
                 responseData.status=404
+                console.log(`Error storing waste request because ${error}`);
             })
             return responseData;           
 }

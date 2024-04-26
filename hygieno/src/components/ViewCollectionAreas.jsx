@@ -50,6 +50,7 @@ import '../styles/Table.css';
               <thead>
                 <tr>
                   <th style={{ width: '50px' }}>#</th> {/* Fixed width for this column */}
+                  <th style={{ width: '200px' }}>id</th>
                   <th style={{ width: '200px' }}>Area</th>
                   <th style={{ width: '200px' }}>Types</th>
                   <th>Date Added</th>
@@ -66,6 +67,7 @@ import '../styles/Table.css';
                   return (
                     <tr key={item.id}>
                       <td style={{ width: '50px' }}>{startIndex + index + 1}</td> {/* Display row number */}
+                      <td style={{ width: '200px' }}>{item._id}</td>
                       <td style={{ width: '200px' }}>{item.area}</td>
                       <td style={{ width: '200px' }}>
                         <span>{item.wasteTypes.join(',')}</span>

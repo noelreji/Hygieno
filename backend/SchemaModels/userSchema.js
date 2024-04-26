@@ -36,25 +36,7 @@ const collectorSchema = new Schema({
       type:String,
       required:true,
       unique:true
-    },
-
-    location:
-    {
-        type:{
-            type: String
-        },
-        coordinates: {
-            type: [Number],
-            index: '2dsphere',
-            validate: {
-                validator: function (value) {
-                    return Array.isArray(value) && value.length === 2 && typeof value[0] === 'number' && typeof value[1] === 'number';
-                },
-                message: 'Coordinates must be an array of two numbers [longitude, latitude].'
-            }
-        },
     }
-
 })
 
 //disposer schema

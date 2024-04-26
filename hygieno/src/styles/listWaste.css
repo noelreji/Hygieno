@@ -16,7 +16,7 @@
 
   }
   
-  .wasteMenuContainer {
+  .wasteMenuContainer.tab{
     margin: 10px;
     width: 75%;
     border-radius: 10px;
@@ -26,8 +26,10 @@
     padding: 30px;
 
   }
-
-  .wasteImageContainer.active{
+  .wasteImageContainer.tab{
+    display: none;
+  }
+  .wasteImageContainer.tab.active{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;

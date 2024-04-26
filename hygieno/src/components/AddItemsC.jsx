@@ -101,6 +101,8 @@ function AddItemsC() {
         type: 'Point',
         coordinates: collectionAreaCoord
       }));
+      console.log(collectionAreaCoord);
+      
       console.log(collectionAreaData);
       await fetch('http://localhost:5656/collectionAreaRequests',{
         method:'POST',
