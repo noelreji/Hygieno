@@ -41,10 +41,8 @@
   .wasteImageContainer{
     display: none;
   }
-  .wasteImageContainer.tab{
-    display: none;
-  }
-  .wasteImageContainer.tab.active{
+ 
+  .wasteImageContainer.active{
     display: grid;
     position: relative;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;

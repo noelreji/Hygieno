@@ -34,9 +34,8 @@ module.exports.storeWasteRequest = async ( data ) => {
         location:{
             type : type,
             coordinates : coordinates
-        },
-        collectionArea:data.collectionArea
-    })
+        }
+        })
             await newWaste.save().then( (data)=> {
                 responseData.message="Waste Request has been stored successfully",
                 responseData.status=200,

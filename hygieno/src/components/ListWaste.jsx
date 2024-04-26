@@ -148,7 +148,7 @@ function ListWaste() {
       wasteData.append('status','Pending Collection');
       const time = prettyTime( new Date() );
       console.log(time);
-      wasteData.append('date',new Date());
+      wasteData.append('date',time);
       wasteData.append('wasteTypes',selectedTypes);
       console.log(selectedTypes)
       wasteData.append('waste_image',selectedImage);
@@ -182,8 +182,6 @@ function ListWaste() {
   window.location.reload(true);
 
 }
-
-
 
   return (
     <div className="services" >  
