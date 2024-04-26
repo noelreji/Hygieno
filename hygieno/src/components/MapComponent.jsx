@@ -40,8 +40,8 @@ const MapComponent = () => {
     }, []);
 
     useEffect(() => {
-        collectionAreaCoord=selectedPosition;
-        console.log('collecton coord');
+        collectionAreaCoord=[selectedPosition];
+        console.log('collection coord');
         console.log(collectionAreaCoord);
 
     },selectedPosition);

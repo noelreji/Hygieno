@@ -1,7 +1,7 @@
 import React,{useState,useContext}from 'react'
 import '../styles/listWaste.css'
 import trashcan from '../assets/plus.png';
-import AddItems from '../components/AddItems';
+//import AddItems from '../components/AddItems';
 import { GrFormNext } from "react-icons/gr";
 import wastePreiew from '../assets/noun-gallery-3783249.png'
 import { wasteData } from '../pages/DisposerHome';
@@ -16,7 +16,7 @@ function ListWaste() {
   const [selectedImage, setSelectedImage] = useState(null);
   const {state} = useContext(wasteData)
   const [checked, setChecked] = useState(new Array(typeWaste.length).fill(false));
-  const [collectorData,setcollectorData] = useState([]);
+  const [collectorareaData,setcollectorareaData] = useState([]);
 
   const [checkedC, setCheckedC] = useState(-1);
   var tempWDetails;
@@ -98,8 +98,8 @@ function ListWaste() {
     {
       let res = response.json();
       res.then( (d) => {
-        setcollectorData(d) 
-        console.log(collectorData);
+        setcollectorareaData(d) 
+        console.log(collectorareaData);
       }).catch( (er) => {
         console.log(er);
         alert("Error finding collectors");
@@ -143,6 +143,7 @@ function ListWaste() {
       }));
 
       wasteData.append('userId',state._id);
+      wasteData.append('disposername',state.firstName);
       wasteData.append('desc','UI not ready');
       wasteData.append('status','Pending Collection');
       const time = prettyTime( new Date() );
@@ -156,6 +157,7 @@ function ListWaste() {
       wasteData.append('collector',collectorData[checkedC].userId);
 
       console.log("waste data",wasteData.get("waste_image"))
+      wasteData.append('collectionArea',collectorareaData[checkedC]._id)
   }
   catch(er)
   {
@@ -225,12 +227,12 @@ function ListWaste() {
            <div className={`findCollectors ${activeTab === 'findCollectors' ? 'active' : ''}`}>
                   <h3>Choose a collector</h3>
                   {
-                    collectorData.map( (value,index) => (
+                    collectorareaData.map( (value,index) => (
                       <div   key={index} className={`collectorDetails ${checkedC === index ? 'green' : '' }`}  onClick={(e)=>{
                         setCheckedC(index);
                        }}>
                           <h4 className='name'>{`Name : ${value.firstName}`}</h4>
-                          <h4 className='place'>{`Place : Vadavathoor`}</h4>
+                          <h4 className='place'>{`Place : ${value.area}`}</h4>
                           <h4 className='distance'>{`Distance : Approx 5KM`}</h4>
                           <h4 className='phone'>{`Phone : ${value.phoneNo}`}</h4>
                           <h4 className='rating'>{`Rating : 3/5`}</h4>

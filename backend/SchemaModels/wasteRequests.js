@@ -8,7 +8,10 @@ const wasteRequests = new Schema({
         type : ObjectId,
         required:true
     },
-
+    disposername:{
+        type:String,
+        required:true
+    },
     date:{
         type:Date,
         required:true
@@ -58,6 +61,10 @@ const wasteRequests = new Schema({
             },
             required:true
         }   
+    },
+    collectionArea:{
+        type : ObjectId,
+        required:true
     }
 })
 

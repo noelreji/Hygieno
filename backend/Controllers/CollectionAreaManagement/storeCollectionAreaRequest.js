@@ -14,6 +14,10 @@ module.exports.storeCollectionAreaRequest = async ( data ) => {
     console.log("hello");
     console.log(location);
     const { type , coordinates } = JSON.parse(location.trim());
+    console.log("coordinjates");
+    console.log(coordinates);
+    const [lat, lng]=coordinates[0];
+    console.log(lat);
     const area = await ReverseGeocode(coordinates)
     .then((formattedAddress) => {
         console.log('Formatted Addgreress:', formattedAddress);
@@ -35,7 +39,7 @@ module.exports.storeCollectionAreaRequest = async ( data ) => {
     
         location:{
             type : type,
-            coordinates : coordinates
+            coordinates : [lng,lat]
         },
         area: area
 
