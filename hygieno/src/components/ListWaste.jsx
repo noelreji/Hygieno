@@ -16,7 +16,7 @@ function ListWaste() {
   const [selectedImage, setSelectedImage] = useState(null);
   const {state} = useContext(wasteData)
   const [checked, setChecked] = useState(new Array(typeWaste.length).fill(false));
-  const [collectorareaData,setcollectorareaData] = useState([]);
+  const [collectorData,setcollectorData] = useState([]);
 
   const [checkedC, setCheckedC] = useState(-1);
   var tempWDetails;
@@ -98,8 +98,8 @@ function ListWaste() {
     {
       let res = response.json();
       res.then( (d) => {
-        setcollectorareaData(d) 
-        console.log(collectorareaData);
+        setcollectorData(d) 
+      //  console.log(collectorareaData);
       }).catch( (er) => {
         console.log(er);
         alert("Error finding collectors");
@@ -157,7 +157,7 @@ function ListWaste() {
       wasteData.append('collector',collectorData[checkedC].userId);
 
       console.log("waste data",wasteData.get("waste_image"))
-      wasteData.append('collectionArea',collectorareaData[checkedC]._id)
+     // wasteData.append('collectionArea',collectorareaData[checkedC]._id)
   }
   catch(er)
   {
@@ -227,7 +227,7 @@ function ListWaste() {
            <div className={`findCollectors ${activeTab === 'findCollectors' ? 'active' : ''}`}>
                   <h3>Choose a collector</h3>
                   {
-                    collectorareaData.map( (value,index) => (
+                    collectorData.map( (value,index) => (
                       <div   key={index} className={`collectorDetails ${checkedC === index ? 'green' : '' }`}  onClick={(e)=>{
                         setCheckedC(index);
                        }}>
