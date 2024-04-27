@@ -24,8 +24,9 @@ module.exports.getNewRqFromD = async ( data ) => {
         let eachCA = {
             id:i._id,
             area: i.area,
-            newRequests_date: [],
+            newRequests_dates: [],
             newRequests_disposernames:[],
+            newRequests_images:[],
             wasteTypes: i.wasteTypes,
             date: i.date
         };
@@ -38,9 +39,18 @@ module.exports.getNewRqFromD = async ( data ) => {
                 k++;
                 try{
                     eachCA.newRequests_disposernames.push(j.disposername);
-                    console.log('41 disposer ',eachCA.newRequests_disposernames);
+                    eachCA.newRequests_dates.push(j.date);
+                    console.log('43 j.image:', j.image);
+                    console.log('44 j.image.buffer:', j.image);
+                    console.log('Type of j.image.buffer:', typeof j.image);
+                    console.log('Type of j.image.buffer:', j.image);
+                    
+                        eachCA.newRequests_images.push(j.image);
+                        //console.log('41 disposer', j.image.buffer.toString('base64'));
+                
+                        //console.log('Invalid image data or empty buffer');
                     eachCA.nofNewRqFromD=k;
-                    eachCA.newRequests_date.push(j.date);
+                    
                 }catch(e){
                     console.log(e);
                 }

@@ -37,7 +37,7 @@ const wasteRequests = new Schema({
     },
 
     image:{
-        type:Buffer,
+        type:String,
         required:true
     },
 

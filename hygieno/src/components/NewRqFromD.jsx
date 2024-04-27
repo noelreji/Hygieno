@@ -8,19 +8,22 @@ function NewRqFromD(props){
   const [newRqFromD,setNewRqFromD] = useState([]);
   const [showRQ,setShowRQ]=useState(false);
   console.log('ok');
+
+  
+  async function fetchNewRqFromD() {
+    const res = await fetch(`http://localhost:5656/getNewRqFromD?id=${props.state._id}`, {
+      method: 'GET'
+    });
+    const response = res.json();
+    response.then( (data) => {
+      console.log(data);
+      console.log(data.newRqFromD);
+      setNewRqFromD(data.newRqFromD);
+    }).catch( err =>   console.log(err))
+  }
   useEffect( () => {
     //implement passing session id to fetch waste orders to have increased security later
-    async function fetchNewRqFromD() {
-      const res = await fetch(`http://localhost:5656/getNewRqFromD?id=${props.state._id}`, {
-        method: 'GET'
-      });
-      const response = res.json();
-      response.then( (data) => {
-        console.log(data);
-        console.log(data.newRqFromD);
-        setNewRqFromD(data.newRqFromD);
-      }).catch( err =>   console.log(err))
-    }
+    
     fetchNewRqFromD();
   },[])
 
@@ -50,7 +53,7 @@ function NewRqFromD(props){
   };
 
   return(
-    <div className="wasteRQSection">
+    <div className="CASection">
       <div className="table-container">
         <div className="table-header">
           <h2>Collection Area</h2>

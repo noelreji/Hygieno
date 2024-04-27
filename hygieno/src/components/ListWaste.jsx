@@ -50,7 +50,8 @@ function ListWaste() {
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setSelectedImage(event.target.result);
+        setSelectedImage(event.target.result); //base64encoded string
+        console.log('setSelectedImage = ',event.target.result);
       };
       reader.readAsDataURL(file);
     }
