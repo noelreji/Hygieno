@@ -5,10 +5,10 @@ function Home() {
     
 return (
     <div>
-        <header>
+        <header className='headerHome'>
             <nav>
-                <div class="container">
-                    <h1>ʜʏɢɪᴇɴᴏ</h1>
+                <div class="containerHomeNav">
+                    <h1>HYGIENO</h1>
                     <ul>
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/login">Login</Link></li>
@@ -20,15 +20,15 @@ return (
         </header>
         <section class="hero">
             <div class="container-home">
-                <h2>𝓨𝓸𝓾𝓻 𝓣𝓻𝓾𝓼𝓽𝓮𝓭 𝓦𝓪𝓼𝓽𝓮 𝓜𝓪𝓷𝓪𝓰𝓮𝓶𝓮𝓷𝓽 𝓟𝓪𝓻𝓽𝓷𝓮𝓻</h2>
-                <p>ᴘʀᴏᴠɪᴅɪɴɢ ꜱᴜꜱᴛᴀɪɴᴀʙʟᴇ ᴡᴀꜱᴛᴇ ꜱᴏʟᴜᴛɪᴏɴꜱ ꜰᴏʀ ᴀ ᴄʟᴇᴀɴᴇʀ ᴇɴᴠɪʀᴏɴᴍᴇɴᴛ.</p>
+                <h2>Your Trusted Waste Management Partner</h2>
+                <p>Providing Sustainable Waste Solutions For A Cleaner Environment</p>
                 <a href="/login" class="btn">Get Started</a>
             </div>
         </section>
 
         <section class="features">
             <div class="container-home">
-                <h2>𝓞𝓾𝓻 𝓢𝓮𝓻𝓿𝓲𝓬𝓮𝓼</h2>
+                <h2>Our Services</h2>
                 <div class="feature-box">
                     <h3>Reduce</h3>
                     <p>ᴡɪᴛʜ ᴇᴠᴇʀʏ ᴀᴄᴛ ᴏꜰ ᴡᴀꜱᴛᴇ ʀᴇᴅᴜᴄᴛɪᴏɴ, ᴡᴇ ᴘᴀᴠᴇ ᴛʜᴇ ᴡᴀʏ ꜰᴏʀ ᴀ ᴡᴏʀʟᴅ ᴡʜᴇʀᴇ ᴄᴏɴꜱᴇʀᴠᴀᴛɪᴏɴ ᴀɴᴅ ʜᴀʀᴍᴏɴʏ ʀᴇɪɢɴ ꜱᴜᴘʀᴇᴍᴇ.</p>

@@ -1,93 +1,100 @@
-const waste  = require('../../SchemaModels/wasteRequests')
+.body {
+    font-family: Arial, sans-serif;
+    display: block;
+    height: 100vh;
+    width: 100vw;
 
-module.exports.handleWasteRequest = async ( data ) => {
-
-    const responseData = ( condition , error ) => {
-        return new Promise( (resolve , reject ) => {
-            if(condition)
-            {
-                resolve({
-                    wasteStatus : 200,
-                    message : "The Waste request have been successfully stored."
-                })
-            }
-            else
-            {
-                reject()
-            }
-    })
+    /*background-image:url(../CSS/signupbg.webp);*/
+    /* Adjust to your needs */
 }
 
-    const {location} = data;
-    const { type , coordinates } = JSON.parse(location);
-    const imageBuffer = Buffer.from(data.waste_image, 'base64');
-    const newWaste = new waste({
-        userId: data.userId,
-    
-        wasteTypes: data.wasteTypes,
-    
-        image: imageBuffer,
-    
-        location:{
-            type : type,
-            coordinates : coordinates
-        }
-    })
-            await newWaste.save().then( (data) => {
-                console.log("The Waste request have been successfully stored.");
-                return new Promise.resolve({
-                    wasteStatus : 200,
-                    message : "The Waste request have been successfully stored."
-                })
-        }).catch((error)=>{
-            console.log("Error storing waste requests");
-            console.log(error);
-            return new Promise.reject({
-                wasteStatus : 404,
-                message : `Error storing wastes because ${error}`
-            })
-        })
+.body .header {
+    background-color: #265d2beb;
+    color: #fff;
+    height: 150px;
+}
+.body .header header{
+    height: 100%;
+}
+.body .header header nav .container-login {
+  width: 80%;
+  top: 0;
+  margin: 0px auto;
+  display: block;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+nav ul li {
+    display: inline;
+    margin-right: 20px;
 }
 
-//
-const express = require('express');
-const multer = require('multer');
-const router = express.Router();
-const {handleWasteRequest} = require('../Controllers/wasteManagement/handleWasteRequest');
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+nav h1 a{
+  text-decoration: none;
+  color: #fff;
+}
+.body .tray {
+    display: inline-block;
+    background-color: #f7f7f7;
+    height: calc(100% - 150px);
+    width: 100%;
+}
+.body .tray .container-login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50vh;
+    width: 25vw;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+}
+.usertype {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: fit-content;
+    width: fit-content;
+}
+.tray .container-login h1 {
+    text-align: center;
 
-const upload = multer({ storage: multer.memoryStorage()});
+}
+input[type="email"], input[type="password"], input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+input[type="email"]:hover, input[type="password"]:hover {
+    border-color: #bebcbc;
+}
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+a {
+    color:#4caf50;
+    text-decoration: none;
+    font-size: 15px;
+    font-style: normal;
+}
 
-router.post('/wasteRequests',upload.single('waste_image') ,async (req,res) => {
-    try{
-        console.log("Received Waste Store request");
-        await handleWasteRequest(req.body).then((response)=>{
-            console.log("Response = " + response);
-            if( response.status === 200 )
-                res.send({
-                    status:200,
-                    message:"Your Waste request have been successfully added"
-            })
-            else
-            res.send({
-                status:400,
-                message:`Error adding waste ${response.error}`
-            })
-        }).catch( (error) => res.send(error))
-    }
-    catch(error){
-        res.send(error.message);
-        console.log("Error "+error.message);
-    }   
-})
-
-module.exports = router;
-
-
-
- <GrFormNext className="backIconC" onClick={() => setActiveTab('image')}/>
-           <GrFormNext className='nextIcon' onClick={verifySelectedtypes}/>
-           <GrFormNext className="backIcon" onClick={() => setActiveTab('wasteType')}/>
-                <GrFormNext className="nextIconImage" onClick={ ()=> {
-                  validationCheckImage();
-                  searchCollectors();
-                  }}/> 
+.tray .container-login a:hover {
+    color:green;
+}

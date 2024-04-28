@@ -95,19 +95,19 @@ function SignUp() {
 
   return (
     <>
-    <header>
-      <nav>
-        <div classNameName="container">
-          <h1>ʜʏɢɪᴇɴᴏ</h1>
-          <ul>
-                      <li><Link to="/">Home</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/signup">Sign up</Link></li>
-                        <li><Link to="/about">About</Link></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+     <header className='headerHome'>
+            <nav>
+                <div class="containerHomeNav">
+                    <h1>HYGIENO</h1>
+                    <ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/login">Login</Link></li>
+                            <li><Link to="/signup">Sign up</Link></li>
+                            <li><Link to="/about">About</Link></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
     <div className="grid-container">
       <div className="container-signup">
         <h1>Sign Up</h1>

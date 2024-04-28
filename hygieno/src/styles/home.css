@@ -11,15 +11,27 @@ body {
     margin: 0 auto;
 }
 
-header {
+.headerHome {
     background-color: #213f24eb;
     color: #fff;
-    padding: 20px 0;
+    padding: 20px 0;   
+}
+
+.containerHomeNav{
+    display: flex;
+    justify-content: space-between;
+
+    h1{
+        position: relative;
+        left: 5vw;
+    }
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
+    position: relative;
+    right: 5vw;
+    top: 4vh;
 }
 
 nav ul li {
@@ -33,9 +45,10 @@ nav ul li a {
 }
 
 .hero {
-    background-image: url("https://cdn.pixabay.com/photo/2014/04/17/23/26/environmental-protection-326923_1280.jpg");
+    /*background-image: url("https://cdn.pixabay.com/photo/2014/04/17/23/26/environmental-protection-326923_1280.jpg");*/
+    background-image: url("C:\OrginalHygieno\hygieno\src\assets\homecover.jpg");
     height:325px;
-    background-size: cover;
+    background-size:contain;
     color: #fff;
     text-align: center;
     padding: 100px 0;
