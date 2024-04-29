@@ -11,7 +11,7 @@ const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 2 *
 router.post('/addWasteRequest',upload.single('waste_image'),async (req,res) => {
     try{
         console.log("Received Waste Store request");
-        const resp = await storeWasteRequest(req.body)
+        const resp = await storeWasteRequest(req.body);
         res.send(resp);
     }
     catch (error) {

@@ -16,21 +16,6 @@ const MapComponent = () => {
 
     const mapRef = useRef(null);
 
-    location.loaded && !location.error &&(
-                    
-        <Marker position={[
-            location.coordinates.lat,
-            location.coordinates.lng]}
-        icon={L.icon({
-            iconUrl: customIcon,
-            iconSize: [24, 24], // Size of the icon
-            iconAnchor: [12, 24] // Anchor point of the icon
-        })}
-        zIndexOffset={1000}>
-            <Popup>my place</Popup>
-        </Marker>
-    )
-
     useEffect(() => {
         // Ensure Leaflet styles are loaded
         import('leaflet/dist/leaflet.css').then(() => {
@@ -61,7 +46,7 @@ const MapComponent = () => {
             setSearchQuery(`${e.latlng.lat},${e.latlng.lng}`);
         })
         return (
-           
+            
             selectedPosition ? 
                 <Marker           
                 key={selectedPosition[0]}
@@ -121,10 +106,11 @@ const MapComponent = () => {
                 />
                 <button className='search-button' onClick={handleSearch}>Search</button>
             </div>
+            <div>
             <MapContainer 
                 center={mapCenter}
                 zoom={10}
-                style={{ height: '350px' }}
+                style={{ height: '550px' ,width:'550px'}}
                 ref={mapRef}
             >
                 
@@ -133,11 +119,14 @@ const MapComponent = () => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     
                 />
+                
                 <Markers></Markers>
                 
                 
 
             </MapContainer>
+            </div>
+            
 
         </div>
     );

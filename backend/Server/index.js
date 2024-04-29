@@ -19,7 +19,8 @@ const handleCollectionAreaRequest = require('../Routes/handleCollectionAreaReque
 const findCollector = require('../Routes/findCollector.js');
 const updateLocation = require('../Routes/updateLocation.js');
 const newrqfromd = require('../Routes/handleNewRqFromD.js');
-
+const getNewWRQDetails = require('../Routes/handleNewRqFromD.js');
+const updateWRQStatus = require('../Routes/handleWRQStatus.js');
 
 
 //routes
@@ -33,6 +34,8 @@ app.post('/deleteWasteRequest',handleWaste);
 app.post('/collectionAreaRequests',handleCollectionAreaRequest);
 app.get('/collectionAreaRequests',handleCollectionAreaRequest);
 app.get('/getNewRqFromD',newrqfromd);
+app.post('/getNewWRQDetails',getNewWRQDetails)
+app.post('/updateWasteRQStatus',updateWRQStatus);
 
 app.post('/findCollectors',findCollector);
 
