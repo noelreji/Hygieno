@@ -87,7 +87,8 @@ function AddItemsC() {
   }
 
   const handleSubmit = async () => {
-    console.log("donesubmit");
+    if(collectionAreaCoord==[0,0]){
+      console.log("donesubmit");
       let collectionAreaData = new FormData();
       collectionAreaData.append('userId',state._id);
       collectionAreaData.append('email',state.email);
@@ -104,6 +105,7 @@ function AddItemsC() {
       console.log(collectionAreaCoord);
       
       console.log(collectionAreaData);
+      
       await fetch('http://localhost:5656/collectionAreaRequests',{
         method:'POST',
         body:collectionAreaData
@@ -117,7 +119,15 @@ function AddItemsC() {
       })
       .then( data => console.log(data.message))
       resetValues();
+    }else{
+      const errorAnimation = document.getElementById('container')
+      errorAnimation.classList.add('error');
+      setTimeout(() => {
+        errorAnimation.classList.remove('error');
+      }, 1000);
+      alert('You to mark your location in the map.');
     
+    }
   }
 
   return (
@@ -174,4 +184,4 @@ function AddItemsC() {
   );
 }
 
-export default AddItemsC
+export default AddItemsC;
