@@ -23,11 +23,11 @@ function About() {
             </nav>
         </header>
       <div className="about-section">
-        <h1 id="abbt">𝓐𝓑𝓞𝓤𝓣 𝓤𝓢</h1>
-        <p><h3>𝙒𝙚 𝙖𝙧𝙚 𝙖 𝙩𝙚𝙖𝙢 𝙤𝙛 𝙛𝙤𝙪𝙧, 𝙥𝙧𝙤𝙪𝙙𝙡𝙮 𝙥𝙧𝙚𝙨𝙚𝙣𝙩𝙞𝙣𝙜 𝙮𝙤𝙪 𝙃𝙮𝙜𝙞𝙚𝙣𝙤. 𝙄𝙩 𝙬𝙖𝙨 𝙤𝙪𝙧 𝙤𝙣𝙚 𝙤𝙛 𝙩𝙝𝙚 𝙜𝙧𝙚𝙖𝙩𝙚𝙨𝙩 𝙥𝙧𝙤𝙟𝙚𝙘𝙩𝙨 𝙢𝙖𝙞𝙣𝙡𝙮 𝙖𝙞𝙢𝙞𝙣𝙜 𝙖𝙩 𝙀𝙢𝙥𝙤𝙬𝙚𝙧𝙞𝙣𝙜 𝙘𝙤𝙢𝙢𝙪𝙣𝙞𝙩𝙞𝙚𝙨 𝙩𝙝𝙧𝙤𝙪𝙜𝙝 𝙚𝙛𝙛𝙚𝙘𝙩𝙞𝙫𝙚 𝙬𝙖𝙨𝙩𝙚 𝙢𝙖𝙣𝙖𝙜𝙚𝙢𝙚𝙣𝙩 𝙥𝙧𝙖𝙘𝙩𝙞𝙘𝙚𝙨...
+        <h1 id="abbt">About Us</h1>
+        <p><h3>We are a team of four, proudly presenting you hygieno. It was one of the greatest projects mainly aiming at Empowering communities through effective waste managemnet practices...
         </h3></p>
       </div>
-      <h2 style={{ textAlign: 'center' }}>𝓛𝓮𝓽'𝓼 𝓶𝓮𝓮𝓽 𝓽𝓱𝓮 𝓹𝓮𝓽𝓪𝓵𝓼 𝓸𝓯 𝑜𝓊𝓇 𝓉𝑒𝒶𝓂</h2>
+      <h2 style={{ textAlign: 'center' }}>Let's meet the petals of our team</h2>
       <div className="container">
         <div className="column">
           <div className="card">

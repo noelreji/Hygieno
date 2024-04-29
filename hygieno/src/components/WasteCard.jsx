@@ -5,21 +5,68 @@ import { GiCancel } from "react-icons/gi";
 import wasteChildren from "../assets/retink-waste-01.jpg"
 import Activity from './Activity';
 import {wasteData} from '../pages/DisposerHome'
+import io from 'socket.io-client';
+import { reportStatusChange } from '../pages/DisposerHome';
+
 
 export  const cancelWasteContext = React.createContext();
 export let dNewWaste;
 function WasteCard() {
 
- const {wasteDetails} = useContext(wasteData);
- let   tempWDetails = wasteDetails;
+useEffect( ()=> {
+    const socket = io('http://localhost:5656');
+    
+    if(socket)
+    {
+        //alert(state._id);
+        socket.emit('myDetails',state._id);
+    }
+    socket.on('statuschange', (data) => {
+        console.log("inndadede",data.Status);
+        tempWDetails.map( (value,index) => {
+            console.log("Waste Req -->",value._id);
+            console.log("matched Req -->",data.ID);
+
+            if( value._id === data.ID)
+            {
+                console.log("found");
+                var updatedState = [ ...tempWDetails ];
+                updatedState[index].status = data.Status;
+
+               // settempWDetails(updatedState);
+                tempWDetails = updatedState;
+                //setwasteDetails(updatedState);
+                reportStatusChange(updatedState);
+                alert(`Status update on order from ${data.Status}`)
+               /* setTimeout(() => {
+                    const alertBox = document.querySelector('.alert');
+                    alertBox.style.display = 'none';
+                  }, 3000);*/
+            }
+        })  
+    })
+    socket.on('mone',(data)=> alert(data));
+})
+
+
+ var {wasteDetails,state} = useContext(wasteData);
+ //const [tempWDetails,settempWDetails] = useState(wasteDetails);
+ var   tempWDetails = wasteDetails;
  const [showActivity,setShowActivity] = useState(false);
  const [deleteWasteTab,setdeleteWasteTab] = useState(false);
- const myRef = useRef();
 
- let orderSize = tempWDetails.length;
  
+ const myRef = useRef();
+ var orderSize = tempWDetails.length;
+
+ console.log("Rnde" , wasteDetails);
  if( orderSize > 0 )  
+{
     var { date, wasteTypes, desc, status } = tempWDetails[0];
+}
+
+
+
 
   useEffect(() => {
     const handleClick = (event) => {
@@ -42,7 +89,7 @@ function WasteCard() {
 
   
   dNewWaste = (data) => {
-            tempWDetails.unshift(data);
+    tempWDetails.unshift(data);
             console.log(tempWDetails);
 }
 
@@ -79,15 +126,17 @@ function WasteCard() {
                         <ul style={{listStyleType:'none'}}>
                             <li>{date}</li>
                             <li id='main'>{wasteTypes}</li>
-                            <li>Collector: {tempWDetails[0].collectorDetails[0].lastName}</li>
+                            <li>Collector: {tempWDetails[0].collectorDetails[0].firstName}</li>
                         </ul>
                     </div>
                     <div className="right-content">
                         <div className={`statusDetails  ${deleteWasteTab  ? 'hide' : ''}`}>
                             <h4>Status : {status}</h4>
+                            { status !== 'Completed' ?
                             <div className="icons">
                                 <GiCancel className='ico'  onClick={()=>setdeleteWasteTab(true)}></GiCancel>
-                            </div>
+                            </div> : ''
+                            }
                         </div>
                         {
                             deleteWasteTab && 
@@ -108,8 +157,7 @@ function WasteCard() {
                     <img src={wasteChildren} alt="" />
                 </div>
             }
-
-            
+         
         </div>        
        {     showActivity && 
        <cancelWasteContext.Provider value={deleteParams}>   

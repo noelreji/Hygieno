@@ -52,12 +52,12 @@ module.exports.getWasteRequest = async ( data ) => {
         }
 
     ]).then( ( data )=> {
-        console.log(data );
+     //   console.log(data );
         responseData.message="Successfully fetched your orders",
         responseData.status=200,
         responseData.wasteData = data
     }).catch( (error) => {
-        console.log(error)
+       // console.log(error)
         responseData.message=`Error fetching your orders because ${error}`,
         responseData.status=404,
         responseData.wasteData=[]

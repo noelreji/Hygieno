@@ -11,6 +11,7 @@ import { useNavigate , useLocation } from 'react-router-dom';
 
 export const wasteData = React.createContext();
 export let reportLocationDisposer;
+export let reportStatusChange;
 function DisposerHome() {
 
   let navigate = useNavigate();
@@ -23,8 +24,14 @@ function DisposerHome() {
     state.location = data;
   }
 
+  reportStatusChange = ( data ) => {
+    console.log("herte");
+    console.log(data);
+    setwasteDetails(data);
+  }
+
   useEffect( () => {
-    if(sessionStorage.getItem('isLogin') === 'false')
+    if(sessionStorage.getItem('isLoginD') === 'false')
       navigate('/login');
   },[])
 
@@ -42,7 +49,7 @@ function DisposerHome() {
   fetchWastes();
   },[])
   
-  const sliderData = ["Dispose","Find Collectors"];
+  const sliderData = ["Dispose"];
   const [isOn,setisOn] = useState(false);
   const [changeSlider,setChangeSlider] = useState(0);
   const icons= [FaTrashCanArrowUp,FaSearch];
@@ -56,7 +63,7 @@ function DisposerHome() {
   }
 
   function reportLogout() {
-    sessionStorage.setItem('isLogin','false');
+    sessionStorage.setItem('isLoginD','false');
     navigate('/login');
   }
 

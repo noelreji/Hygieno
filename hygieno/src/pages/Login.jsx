@@ -31,10 +31,11 @@ function Login() {
           setLogin = true;
           sessionStorage.setItem('isLogin','true');
           if (data[0].usertype === 'Disposer') {
-            sessionStorage.setItem('login','true')
+            sessionStorage.setItem('isLoginD','true');
             navigate('/pages/disposerHome' , {state : data[1]});
           } 
           else {
+            sessionStorage.setItem('isLoginC','true');
             navigate('/pages/collectorHome', {state : data[1]});
           }
         }

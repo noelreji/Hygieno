@@ -11,7 +11,7 @@ function SignUp() {
         firstName:'',
         middleName:'',
         lastName:'',
-        phoneNo:'3109857193'
+        phoneNo:''
     });
 
     const handleChange = (event) => {
@@ -69,7 +69,9 @@ function SignUp() {
           navigate("/login")
         }
         else
-          alert("Error registering User");
+        {
+          alert(`Error registering User because password/email already in use`);
+        }
     } 
     else {
         console.error('Error:', response.status, response.statusText);
@@ -125,6 +127,8 @@ function SignUp() {
         
           <input type="email" name="email" placeholder="Email Address" required onChange={handleChange}/>
         
+          <input type="text" name="phoneNo" placeholder="Phone No" required onChange={handleChange}/>
+
         
           <input type="password" name="password" id="password" placeholder="Password" required onChange={handleChange}/>
 
