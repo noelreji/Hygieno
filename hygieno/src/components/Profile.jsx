@@ -41,7 +41,7 @@ useEffect(() => {
 
  
 
-
+useEffect( ()=> {
   const fetchLocation = async () => {
     if (navigator.geolocation) {
       try{
@@ -58,7 +58,10 @@ useEffect(() => {
     } 
     else 
       console.error('Geolocation is not supported by this browser.');
-}
+  }
+
+      fetchLocation();
+  } ,[])
 
 
 const convertLocation = async () => {
@@ -94,9 +97,9 @@ useEffect( () => {
 }, [latitude]);
 
 const setupLocation = async () => {
-        const resp = await fetchLocation();
-        if(!resp)
-          alert("Make Sure Your Location Services are on");         
+       // const resp = await fetchLocation();
+       // if(!resp)
+       //   alert("Make Sure Your Location Services are on");         
 }
 
 
@@ -133,9 +136,7 @@ const setupLocation = async () => {
                             <h6>{`${state.firstName} ${state.middleName} ${state.lastName}`}</h6>
                         </div>
                         <ul className='profileMenu' style={{listStyleType: 'none'}}>
-                            <li><span className='menuIcons'><CgProfile/></span> <Link to="/MyProfile">Your Profile</Link> </li>
-                            <li> <span className='menuIcons'><RxActivityLog /></span><Link to="/MyActivities"> Your Activities</Link> </li>
-                            <li><span className='menuIcons'> <BiDonateHeart /></span> <Link to="/Donate">Donate Us</Link> </li>
+                           
                             <li className='logout' onClick={()=>{
                                  reportLogout();
                             }}><span className='menuIcons'><MdLogout /></span> Log out</li>

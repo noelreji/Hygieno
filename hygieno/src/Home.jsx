@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import '../src/styles/home.css'
+import image from "./assets/1000_F_101682732_OejrMC8RzUdpxMVmSQLhgsnTW2HQloO0.jpg"
 function Home() {
     
 return (
     <div>
-        <header>
+        <header className='headerHome'>
             <nav>
-                <div class="container">
-                    <h1>ʜʏɢɪᴇɴᴏ</h1>
+                <div className="containerHomeNav">
+                    <h1>HYGIENO</h1>
                     <ul>
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/login">Login</Link></li>
@@ -18,26 +19,38 @@ return (
                 </div>
             </nav>
         </header>
-        <section class="hero">
-            <div class="container-home">
-                <h2>𝓨𝓸𝓾𝓻 𝓣𝓻𝓾𝓼𝓽𝓮𝓭 𝓦𝓪𝓼𝓽𝓮 𝓜𝓪𝓷𝓪𝓰𝓮𝓶𝓮𝓷𝓽 𝓟𝓪𝓻𝓽𝓷𝓮𝓻</h2>
-                <p>ᴘʀᴏᴠɪᴅɪɴɢ ꜱᴜꜱᴛᴀɪɴᴀʙʟᴇ ᴡᴀꜱᴛᴇ ꜱᴏʟᴜᴛɪᴏɴꜱ ꜰᴏʀ ᴀ ᴄʟᴇᴀɴᴇʀ ᴇɴᴠɪʀᴏɴᴍᴇɴᴛ.</p>
-                <a href="/login" class="btn">Get Started</a>
+        <section className="hero">
+            <div className="container-home">
+                <h2>Your Trusted Waste Management Partner</h2>
+                <p>Providing Sustainable Waste Solutions For A Cleaner Environment</p>
+                <Link className='btn' to="/signup">Get Started</Link>
             </div>
         </section>
 
-        <section class="features">
-            <div class="container-home">
-                <h2>𝓞𝓾𝓻 𝓢𝓮𝓻𝓿𝓲𝓬𝓮𝓼</h2>
-                <div class="feature-box">
+        <section className='ourAim'>
+            <div className="ourAimContainer">
+                <img src={image} alt="" />
+                <section className='aimText'>
+                    <h3>Our Aim</h3>
+                    <p>
+                        We provide a platform that enables people to dispose their wastes which then will be collected responsibly
+                    </p>
+                </section>
+            </div>
+        </section>
+
+        <section className="features">
+            <div className="container-home">
+                <h2>Our Services</h2>
+                <div className="feature-box">
                     <h3>Reduce</h3>
                     <p>ᴡɪᴛʜ ᴇᴠᴇʀʏ ᴀᴄᴛ ᴏꜰ ᴡᴀꜱᴛᴇ ʀᴇᴅᴜᴄᴛɪᴏɴ, ᴡᴇ ᴘᴀᴠᴇ ᴛʜᴇ ᴡᴀʏ ꜰᴏʀ ᴀ ᴡᴏʀʟᴅ ᴡʜᴇʀᴇ ᴄᴏɴꜱᴇʀᴠᴀᴛɪᴏɴ ᴀɴᴅ ʜᴀʀᴍᴏɴʏ ʀᴇɪɢɴ ꜱᴜᴘʀᴇᴍᴇ.</p>
                 </div>
-                <div class="feature-box">
+                <div className="feature-box">
                     <h3>Waste Collection</h3>
                     <p>ʀᴇʟɪᴀʙʟᴇ ᴡᴀꜱᴛᴇ ᴄᴏʟʟᴇᴄᴛɪᴏɴ ꜱᴇʀᴠɪᴄᴇꜱ ꜰᴏʀ ʀᴇꜱɪᴅᴇɴᴛɪᴀʟ ᴀɴᴅ ᴄᴏᴍᴍᴇʀᴄɪᴀʟ ᴄʟɪᴇɴᴛꜱ.</p>
                 </div>
-                <div class="feature-box">
+                <div className="feature-box">
                     <h3>Hazardous Waste Disposal</h3>
                     <p>ꜱᴀꜰᴇ ᴀɴᴅ ᴄᴏᴍᴘʟɪᴀɴᴛ ᴅɪꜱᴘᴏꜱᴀʟ ᴏꜰ ʜᴀᴢᴀʀᴅᴏᴜꜱ ᴡᴀꜱᴛᴇ ᴍᴀᴛᴇʀɪᴀʟꜱ.</p>
                 </div>
@@ -45,9 +58,8 @@ return (
         </section>
 
         <footer>
-            <div class="container-home">
+            <div className="container-home">
                 <p>&copy; 2024 Waste Management. All rights reserved.</p>
-                <p><a href="termsandconditions.html">Terms and Conditions</a></p>
             </div>
         </footer>
     </div>

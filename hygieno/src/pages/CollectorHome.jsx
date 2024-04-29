@@ -20,6 +20,7 @@ function CollectorHome() {
 
   const { state } = useLocation();
   console.log(state);
+  let navigate = useNavigate();
 
   const [collectionAreaDetails,setCollectionAreaDetails ] = useState([]);
 
@@ -31,12 +32,23 @@ function CollectorHome() {
   const changeServicePage = (activeSlider) => {
     setChangeSlider(activeSlider)
   }
-  
+
+
+  useEffect( () => {
+    if(sessionStorage.getItem('isLoginC') === 'false')
+      navigate('/login');
+  },[])
+
+  function reportLogout() {
+    sessionStorage.setItem('isLoginC','false');
+    navigate('/login');
+  }
+
   return (
     <div className="collectorhome">
       <Sidebar state={state} userType={'collector'}></Sidebar>
       <div className='main-content'>
-        <Profile state={state} userType={'collector'}></Profile>
+        <Profile state={state} userType={'collector'}  reportLogout={reportLogout} ></Profile>
         <ServiceSlider sliderData={sliderData} changeServicePage={changeServicePage} icons={icons}></ServiceSlider>
         {
           changeSlider === 0 ? 

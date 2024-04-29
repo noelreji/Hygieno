@@ -31,10 +31,11 @@ function Login() {
           setLogin = true;
           sessionStorage.setItem('isLogin','true');
           if (data[0].usertype === 'Disposer') {
-            sessionStorage.setItem('login','true')
+            sessionStorage.setItem('isLoginD','true');
             navigate('/pages/disposerHome' , {state : data[1]});
           } 
           else {
+            sessionStorage.setItem('isLoginC','true');
             navigate('/pages/collectorHome', {state : data[1]});
           }
         }
@@ -54,21 +55,19 @@ const handleChange = (event) => {
 
   return (
     <div className='body'>
-      <div className='header'>
-        <header>
-          <nav>
-            <div className="container-login">
-              <h1>ʜʏɢɪᴇɴᴏ</h1>
-              <ul>
-                          <li><Link to="/">Home</Link></li>
-                          <li><Link to="/login">Login</Link></li>
-                          <li><Link to="/signup">Sign up</Link></li>
-                          <li><Link to="/about">About</Link></li>
-              </ul>
-            </div>
-          </nav>
+       <header className='headerHome'>
+            <nav>
+                <div class="containerHomeNav">
+                    <h1>HYGIENO</h1>
+                    <ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/login">Login</Link></li>
+                            <li><Link to="/signup">Sign up</Link></li>
+                            <li><Link to="/about">About</Link></li>
+                    </ul>
+                </div>
+            </nav>
         </header>
-      </div>
       
 
       <div className="tray">
@@ -82,7 +81,6 @@ const handleChange = (event) => {
               <input type="radio" name="usertype" id="option1" value="Disposer" onChange={handleChange} required /><label htmlFor="option1">Disposer</label>
               <input type="radio" name="usertype" id="option2" value="Collector" onChange={handleChange} required /><label htmlFor="option2">Collector</label>
             </div>
-            <br />
             <input type="submit" value="Log In" />
             <div style={{ fontSize: '15px', fontStyle: 'italic' }}>Don't have an account? <a href="/signup" className="url">Create one</a></div>
           </form>

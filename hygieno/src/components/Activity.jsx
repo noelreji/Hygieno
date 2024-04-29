@@ -10,6 +10,8 @@ function Activity( {  handlewasteDelete , reportRender } ) {
 
 
 const {wasteDetails} = useContext(wasteData);
+const [showStatusOptions,setshowStatusOptions] = useState(new Array(wasteDetails.length).fill(true));
+
 const [deleteWasteTab,setdeleteWasteTab] = useState({
   index:null,value:null
 });
@@ -67,18 +69,20 @@ const handlerenderNormal = ()=>{
                     <li>{activityObject.date}</li>
                     <li id='main'>{activityObject.type}</li>
                     <li>Collector: {activityObject.collector}</li>
-                    <li>{activityObject.desc}</li>
                   </ul>
                 </div>
                 <div className="right-content">
                 <div className={`statusDetails  ${ deleteWasteTab.value &&  deleteWasteTab.key === activityObject.key  ? 'hide' : ''}`}>
                     <h4>Status : {activityObject.status}</h4>
+                    { activityObject.status !== 'Completed' ?
                     <div className="icons">
                         <GiCancel className='ico'  onClick={()=>setdeleteWasteTab({
                           key:activityObject.key,
                           value:true
                         })}></GiCancel>
                     </div>
+                    : ''
+                    }
                 </div>
                 {
                     deleteWasteTab.value &&  deleteWasteTab.key === activityObject.key &&

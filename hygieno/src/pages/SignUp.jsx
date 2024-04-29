@@ -11,7 +11,7 @@ function SignUp() {
         firstName:'',
         middleName:'',
         lastName:'',
-        phoneNo:'3109857193'
+        phoneNo:''
     });
 
     const handleChange = (event) => {
@@ -69,7 +69,9 @@ function SignUp() {
           navigate("/login")
         }
         else
-          alert("Error registering User");
+        {
+          alert(`Error registering User because password/email already in use`);
+        }
     } 
     else {
         console.error('Error:', response.status, response.statusText);
@@ -95,19 +97,19 @@ function SignUp() {
 
   return (
     <>
-    <header>
-      <nav>
-        <div classNameName="container">
-          <h1>ʜʏɢɪᴇɴᴏ</h1>
-          <ul>
-                      <li><Link to="/">Home</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/signup">Sign up</Link></li>
-                        <li><Link to="/about">About</Link></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+     <header className='headerHome'>
+            <nav>
+                <div class="containerHomeNav">
+                    <h1>HYGIENO</h1>
+                    <ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/login">Login</Link></li>
+                            <li><Link to="/signup">Sign up</Link></li>
+                            <li><Link to="/about">About</Link></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
     <div className="grid-container">
       <div className="container-signup">
         <h1>Sign Up</h1>
@@ -125,6 +127,8 @@ function SignUp() {
         
           <input type="email" name="email" placeholder="Email Address" required onChange={handleChange}/>
         
+          <input type="text" name="phoneNo" placeholder="Phone No" required onChange={handleChange}/>
+
         
           <input type="password" name="password" id="password" placeholder="Password" required onChange={handleChange}/>
 

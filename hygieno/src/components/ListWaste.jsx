@@ -97,6 +97,7 @@ function ListWaste() {
     })
     if(response.ok)
     {
+
       let res = response.json();
       res.then( (d) => {
         setcollectorData(d) 
@@ -106,6 +107,12 @@ function ListWaste() {
         alert("Error finding collectors");
       });
     }
+    else
+    {
+      alert("Sorry no collectors nearby");
+      window.location.reload(true);
+    }
+
   }
   
 
@@ -230,10 +237,9 @@ function ListWaste() {
                       <div   key={index} className={`collectorDetails ${checkedC === index ? 'green' : '' }`}  onClick={(e)=>{
                         setCheckedC(index);
                        }}>
-                          <h4 className='name'>{`Name : ${value.firstName}`}</h4>
+                          
                           <h4 className='place'>{`Place : ${value.area}`}</h4>
-                          <h4 className='distance'>{`Distance : Approx 5KM`}</h4>
-                          <h4 className='phone'>{`Phone : ${value.phoneNo}`}</h4>
+                          <h4 className='phone'>{`Phone : ${value.collectorDetails[0].phoneNo}`}</h4>
                           <h4 className='rating'>{`Rating : 3/5`}</h4>
                       </div>
                     ))
