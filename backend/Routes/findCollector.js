@@ -21,7 +21,7 @@ router.post('/findCollectors',async (req,res) => {
         },
         {
             $lookup:{
-                from: "collectorusers",
+                from: "collectorusers", 
                 localField: "userId",
                 let: { cID : "$userId"},
                 foreignField: "_id",
@@ -32,7 +32,7 @@ router.post('/findCollectors',async (req,res) => {
                         $eq : ["$$cID","$_id"]
                       }
                     }
-                  },
+                  }, 
                     {
                     $project:{
                       "_id":0,

@@ -181,6 +181,8 @@ function ListWaste() {
         dNewWaste(data.wasteData);
         console.log("Event emitted ss");
       }
+      else
+        alert(data)
       console.log(data.message)
   }).catch((e)=>{
     if(e.type === 'multer')

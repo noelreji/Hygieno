@@ -70,10 +70,16 @@ const convertLocation = async () => {
       method: "GET"
     });
     const response = await resp.json();
-    console.log(response); 
+    console.log("plac",response); 
     var locname;
     //locname = locname.split(',').slice(0, 2).join(',');
-    locname = response.address.town
+    if(response.address.village)
+        locname = response.address.village
+    else if(response.address.town)
+        locname = response.address.town
+    else
+        locname = response.display_name
+
     setformattedLoc(locname);
   } 
   catch (error) {
