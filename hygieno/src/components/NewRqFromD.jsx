@@ -9,7 +9,9 @@ function NewRqFromD(props){
   const [showRQ,setShowRQ]=useState(false);
   console.log('ok');
 
-  
+
+
+  //implement passing session id to fetch waste orders to have increased security later
   async function fetchNewRqFromD() {
     const res = await fetch(`http://localhost:5656/getNewRqFromD?id=${props.state._id}`, {
       method: 'GET'
@@ -22,35 +24,33 @@ function NewRqFromD(props){
     }).catch( err =>   console.log(err))
   }
   useEffect( () => {
-    //implement passing session id to fetch waste orders to have increased security later
-    
     fetchNewRqFromD();
   },[])
 
   const showRQSection = (data) =>{
-
     setShowRQ(data);
   }
+  console.log(newRqFromD);
 
   const ROWS_PER_PAGE = 10; // Define how many rows per page
-
   const [currentPage, setCurrentPage] = useState(0);
-
   // Calculate the index range of rows for the current page
   const startIndex = currentPage * ROWS_PER_PAGE;
   const endIndex = (currentPage + 1) * ROWS_PER_PAGE;
-  console.log(newRqFromD);
   // Get the data to be displayed on the current page
   const currentPageData = newRqFromD.slice(startIndex, endIndex);
-
   // Handle pagination
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
   };
-
   const prevPage = () => {
     setCurrentPage(currentPage - 1);
   };
+
+  const handleDataFromChild = () => {
+    fetchNewRqFromD();
+  };
+
 
   return(
     <div className="CASection">
@@ -73,7 +73,7 @@ function NewRqFromD(props){
               {currentPageData.map((item,index) => {
                 console.log(item);
                 return (
-                  <tr key={item.id} onClick={()=>showRQSection(item)}>
+                  <tr key={item.id} onClick={()=>showRQSection(item.newRequests_ids)}>
                     <td style={{ width: '50px' }}>{startIndex + index + 1}</td> {/* Display row number */}
                     <td style={{ width: '1100px' }}>{item.area}</td>
                     <td>{item.nofNewRqFromD}</td>
@@ -89,7 +89,7 @@ function NewRqFromD(props){
         <span>Page {currentPage + 1}</span>
         <button onClick={nextPage} disabled={endIndex >= newRqFromD.length}>Next</button>
       </div>
-      {showRQ ? <ShowWRinC state={state} data={showRQ}></ShowWRinC> : null }
+      {showRQ ? <ShowWRinC state={state} data={showRQ} sendDataToParent={handleDataFromChild}></ShowWRinC> : null }
       
     </div>
   )
