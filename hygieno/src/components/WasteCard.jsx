@@ -37,7 +37,7 @@ useEffect( ()=> {
                 tempWDetails = updatedState;
                 //setwasteDetails(updatedState);
                 reportStatusChange(updatedState);
-                alert(`Status update on order from ${data.Status}`)
+               // alert(`Status update on order from ${data.Status}`)
                /* setTimeout(() => {
                     const alertBox = document.querySelector('.alert');
                     alertBox.style.display = 'none';

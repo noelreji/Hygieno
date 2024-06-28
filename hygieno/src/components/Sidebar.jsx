@@ -5,11 +5,12 @@ import logo192  from '../assets/Guts.jpg';
 const Sidebar = ({state , userType}) => {
   const firstName=state.firstName;
   const lastName=state.lastName;
+  //        <img className="afterExp" src={''} alt="profile picture" />
+
   return (
     <div className="sidebar">
       <div className="sidebar-header">
         {/* Sidebar header content */}
-        <img className="afterExp" src={logo192} alt="profile picture" />
         <h2>{firstName}{lastName}</h2>
       </div>
       <div className="sidebar-menu">

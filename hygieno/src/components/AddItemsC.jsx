@@ -87,7 +87,7 @@ function AddItemsC() {
   }
 
   const handleSubmit = async () => {
-    if(collectionAreaCoord==[0,0]){
+    if(collectionAreaCoord != [0,0]){
       console.log("donesubmit");
       let collectionAreaData = new FormData();
       collectionAreaData.append('userId',state._id);
@@ -151,6 +151,14 @@ function AddItemsC() {
                     <input className="custom-checkbox" type="checkbox" id="checkbox3" value='Paper' onChange={handleCheckboxChange} />
                     <label class="checkbox-label" for="checkbox3">
                        Paper
+                    </label>
+                    <input className="custom-checkbox" type="checkbox" id="checkbox4" value='Paper' onChange={handleCheckboxChange} />
+                    <label class="checkbox-label" for="checkbox4">
+                       Hazardous
+                    </label>
+                    <input className="custom-checkbox" type="checkbox" id="checkbox5" value='Paper' onChange={handleCheckboxChange} />
+                    <label class="checkbox-label" for="checkbox5">
+                       Organic
                     </label>
                   </div>
               </div>

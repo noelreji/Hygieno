@@ -184,7 +184,7 @@ function ListWaste() {
       else
         alert(data)
       console.log(data.message)
-  }).catch((e)=>{
+  }).catch((e)=>{ 
     if(e.type === 'multer')
       alert('Size too high');
     console.log(e)

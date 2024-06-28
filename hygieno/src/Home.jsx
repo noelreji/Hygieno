@@ -1,21 +1,63 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import {React , useEffect} from 'react'
+import { Link , useNavigate} from 'react-router-dom';
 import '../src/styles/home.css'
 import image from "./assets/1000_F_101682732_OejrMC8RzUdpxMVmSQLhgsnTW2HQloO0.jpg"
+import { useState } from 'react';
+import { RxHamburgerMenu } from "react-icons/rx";
+
 function Home() {
     
+
+    const [width, setWidth] = useState(window.innerWidth);
+    const navigate = useNavigate();
+
+    const [hide , sethide] = useState(true);
+    const handleResize = () => setWidth(window.innerWidth);
+  
+    useEffect(() => {
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
 return (
     <div>
+        <div className="ppc">
         <header className='headerHome'>
             <nav>
-                <div className="containerHomeNav">
-                    <h1>HYGIENO</h1>
-                    <ul>
+                <div className={` ${width > 568 ? 'containerHomeNav' : 'containerHomeNavMob'}`}>
+                    <h1  onClick={ () => {
+                        navigate("/")
+                    }}>HYGIENO</h1>
+                    {
+                        width <= 568 ? (  
+                            
+
+                            <div className="optionC">
+                                <button className='optionBtn'  onClick={()=> sethide(!hide)}>
+                                     <RxHamburgerMenu className='hamburger' style={{color:'white'}} size='20'/>
+                                 </button>
+
+                           { !hide && (
+                                <div className="Options">
+                                        <li><Link  to="/login">Login</Link></li>
+                                        <li><Link to="/signup">Sign up</Link></li>
+                                </div>
+                            )
+                        }
+                            </div>
+                           
+
+                            
+
+                        ) : (
+                        <ul>
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/login">Login</Link></li>
                             <li><Link to="/signup">Sign up</Link></li>
                             <li><Link to="/about">About</Link></li>
-                    </ul>
+                        </ul>                        
+                    )}
+                    
                 </div>
             </nav>
         </header>
@@ -26,16 +68,18 @@ return (
                 <Link className='btn' to="/signup">Get Started</Link>
             </div>
         </section>
+        </div>
+        
 
         <section className='ourAim'>
             <div className="ourAimContainer">
-                <img src={image} alt="" />
-                <section className='aimText'>
-                    <h3>Our Aim</h3>
+            <section className='aimText'>
                     <p>
-                        We provide a platform that enables people to dispose their wastes which then will be collected responsibly
+                        We provide a platform that enables people to list their wastes for disposal which then will be collected responsibly
                     </p>
                 </section>
+                <img src={image} alt="" />
+                
             </div>
         </section>
 

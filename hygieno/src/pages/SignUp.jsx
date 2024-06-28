@@ -1,11 +1,22 @@
-import React,{useState}from 'react'
+import React,{useState , useEffect}from 'react'
 import '../styles/signup.css'
 import { Link ,useNavigate} from 'react-router-dom';
+import { RxHamburgerMenu } from "react-icons/rx";
+
 
 
 function SignUp() {
+
   let navigate = useNavigate();
-      const [formData, setFormData] = useState({
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const [hide , sethide] = useState(true);
+  const handleResize = () => setWidth(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);      const [formData, setFormData] = useState({
         email:'' ,
         password:'',
         firstName:'',
@@ -51,9 +62,18 @@ function SignUp() {
         }
         return true;
     }
+
+    const validatePhone = () => {
+      if( /[A-z]/.test(formData.phoneNo) || formData.phoneNo.length > 10 || formData.phoneNo.length < 10 || /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(formData.phoneNo)){
+        alert("Enter a valid phone number");
+        return false;
+      }
+    }
+
+
     const handleSubmit = async (event) => {
       event.preventDefault();
-      if(!validatePassword())
+      if(!validatePassword() || !validatePhone())
         return false;
 
       const response = await fetch('http://localhost:5656/signup', {
@@ -99,17 +119,45 @@ function SignUp() {
     <>
      <header className='headerHome'>
             <nav>
-                <div class="containerHomeNav">
-                    <h1>HYGIENO</h1>
-                    <ul>
+                <div className={` ${width > 568 ? 'containerHomeNav' : 'containerHomeNavMob'}`}>
+                    <h1  onClick={ () => {
+                        navigate("/")
+                      }}>HYGIENO</h1>
+                    {
+                        width <= 568 ? (  
+                            
+
+                            <div className="optionC">
+                                <button className='optionBtn'  onClick={()=> sethide(!hide)}>
+                                     <RxHamburgerMenu className='hamburger' style={{color:'white'}} size='20'/>
+                                 </button>
+
+                           { !hide && (
+                                <div className="Options">
+                                        <li><Link  to="/login">Login</Link></li>
+                                        <li><Link to="/signup">Sign up</Link></li>
+                                </div>
+                            )
+                        }
+                            </div>
+                           
+
+                            
+
+                        ) : (
+                        <ul>
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/login">Login</Link></li>
                             <li><Link to="/signup">Sign up</Link></li>
                             <li><Link to="/about">About</Link></li>
-                    </ul>
+                        </ul>                        
+                    )}
+                    
                 </div>
             </nav>
         </header>
+      
+
     <div className="grid-container">
       <div className="container-signup">
         <h1>Sign Up</h1>

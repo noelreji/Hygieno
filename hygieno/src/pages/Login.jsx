@@ -1,5 +1,7 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { Link ,useNavigate } from 'react-router-dom';
+import { RxHamburgerMenu } from "react-icons/rx";
+
 import '../styles/login.css'
 
 export var setLogin = false;
@@ -8,6 +10,15 @@ function Login() {
 
 
   let navigate = useNavigate();
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const [hide , sethide] = useState(true);
+  const handleResize = () => setWidth(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -55,16 +66,42 @@ const handleChange = (event) => {
 
   return (
     <div className='body'>
-       <header className='headerHome'>
+        <header className='headerHome'>
             <nav>
-                <div class="containerHomeNav">
-                    <h1>HYGIENO</h1>
-                    <ul>
+                <div className={` ${width > 568 ? 'containerHomeNav' : 'containerHomeNavMob'}`}>
+                    <h1  onClick={ () => {
+                        navigate("/")
+                      }}>HYGIENO</h1>
+                    {
+                        width <= 568 ? (  
+                            
+
+                            <div className="optionC">
+                                <button className='optionBtn'  onClick={()=> sethide(!hide)}>
+                                     <RxHamburgerMenu className='hamburger' style={{color:'white'}} size='20'/>
+                                 </button>
+
+                           { !hide && (
+                                <div className="Options">
+                                        <li><Link  to="/login">Login</Link></li>
+                                        <li><Link to="/signup">Sign up</Link></li>
+                                </div>
+                            )
+                        }
+                            </div>
+                           
+
+                            
+
+                        ) : (
+                        <ul>
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/login">Login</Link></li>
                             <li><Link to="/signup">Sign up</Link></li>
                             <li><Link to="/about">About</Link></li>
-                    </ul>
+                        </ul>                        
+                    )}
+                    
                 </div>
             </nav>
         </header>

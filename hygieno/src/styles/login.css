@@ -8,6 +8,10 @@
     /* Adjust to your needs */
 }
 
+.tray , .container-login{
+    background-color: burlywood;
+}
+
 
 .body .tray {
     display: inline-block;
@@ -21,7 +25,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     height: auto;
-    width: 25vw;
+    width: clamp(300px,20%,80%);
     margin: 30px auto;
     padding: 20px;
     background-color: #fff;
