@@ -14,7 +14,8 @@ Hygieno is a waste management system that connects people who want to dispose of
 - **Frontend**: 
   - HTML
   - CSS
-  - JavaScript
+  - Javascript 
+  - ReactJS
 - **Backend**:
   - Node.js
   - Express.js
@@ -57,22 +58,3 @@ Follow these steps to get the project running locally:
 1. **Disposer**: Register as a disposer and list the waste items you want collected.
 2. **Collector**: Register as a collector and browse through available waste listings in your area.
 3. Use the location filter to narrow down the waste listings based on your preferred collection area.
-
-## Future Enhancements
-
-- **Notifications**: Alert users when a waste item has been picked up.
-- **Payment Integration**: Enable secure payments between disposers and collectors.
-- **Mobile App**: Build a mobile version for easier accessibility.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For questions or feedback, please contact:
-
-- **Noyal Reji**
-- Email: [noelreji10@gmail.com](mailto:noelreji10@gmail.com)
-
-Feel free to contribute by forking this project and
