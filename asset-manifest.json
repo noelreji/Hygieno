@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/Hygieno/static/css/main.cb218052.css",
+    "main.js": "/Hygieno/static/js/main.8eaa86c1.js",
+    "static/css/433.cad63971.chunk.css": "/Hygieno/static/css/433.cad63971.chunk.css",
+    "static/js/433.aaaaa601.chunk.js": "/Hygieno/static/js/433.aaaaa601.chunk.js",
+    "static/media/ram.jpeg": "/Hygieno/static/media/ram.ae6a21f2f56305142d7c.jpeg",
+    "static/media/philips.jpeg": "/Hygieno/static/media/philips.6e3a063f69d49acd30bf.jpeg",
+    "static/media/homecover.jpg": "/Hygieno/static/media/homecover.4063df0a072d99570ac0.jpg",
+    "static/media/noyal.jpeg": "/Hygieno/static/media/noyal.70141744092661225669.jpeg",
+    "static/media/Guts.jpg": "/Hygieno/static/media/Guts.624bb97281976c0b2f41.jpg",
+    "static/media/1000_F_101682732_OejrMC8RzUdpxMVmSQLhgsnTW2HQloO0.jpg": "/Hygieno/static/media/1000_F_101682732_OejrMC8RzUdpxMVmSQLhgsnTW2HQloO0.7f7765b7c2ee11136a0b.jpg",
+    "static/media/aju.jpeg": "/Hygieno/static/media/aju.8fd9a1575ea57e31d4ea.jpeg",
+    "static/media/noun-gallery-3783249.png": "/Hygieno/static/media/noun-gallery-3783249.1e275f4ab7d3baf49eb9.png",
+    "static/media/noun-user-avatar-5787297.png": "/Hygieno/static/media/noun-user-avatar-5787297.093f83bce3b9e14a7b24.png",
+    "static/media/retink-waste-01.jpg": "/Hygieno/static/media/retink-waste-01.f1f7316a289a81881143.jpg",
+    "static/media/marker_map_icon.png": "/Hygieno/static/media/marker_map_icon.dfc0fcd600d25fa6dec0.png",
+    "index.html": "/Hygieno/index.html",
+    "main.cb218052.css.map": "/Hygieno/static/css/main.cb218052.css.map",
+    "main.8eaa86c1.js.map": "/Hygieno/static/js/main.8eaa86c1.js.map",
+    "433.cad63971.chunk.css.map": "/Hygieno/static/css/433.cad63971.chunk.css.map",
+    "433.aaaaa601.chunk.js.map": "/Hygieno/static/js/433.aaaaa601.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cb218052.css",
+    "static/js/main.8eaa86c1.js"
+  ]
+}
